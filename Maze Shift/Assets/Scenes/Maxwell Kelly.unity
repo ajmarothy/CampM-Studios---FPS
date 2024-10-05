@@ -365,6 +365,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1075104647}
   speed: 12
+  sprintMod: 1.25
+  jumpSpeed: 5
+  gravity: 15
+  jumpMax: 2
 --- !u!1 &1276327616
 GameObject:
   m_ObjectHideFlags: 0
