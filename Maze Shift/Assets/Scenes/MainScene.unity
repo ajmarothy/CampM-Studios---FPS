@@ -122,6 +122,66 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &3544695
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8388475864753829868, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.4310608
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388475864753829868, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388475864753829868, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388475864753829868, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388475864753829868, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388475864753829868, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388475864753829868, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388475864753829868, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388475864753829868, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388475864753829868, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8511839409757441924, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
+      propertyPath: m_Name
+      value: Enemy
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8511839409757441924, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 932620106}
+  m_SourcePrefab: {fileID: 100100000, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
 --- !u!4 &45211243 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8385693759861279105, guid: d7262c8bac460964095a5b58c7f7f9c5, type: 3}
@@ -1383,6 +1443,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 897136782}
   m_CullTransparentMesh: 1
+--- !u!1 &932620102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8511839409757441924, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
+  m_PrefabInstance: {fileID: 3544695}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &932620104 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8723550436492310462, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
+  m_PrefabInstance: {fileID: 3544695}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &932620106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932620102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3ab7e7e457ec9c48a871ab320e44010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 0}
+  model: {fileID: 932620104}
+  shootPos: {fileID: 0}
+  headPos: {fileID: 0}
+  HP: 10
+  rotateSpeed: 0
+  bullet: {fileID: 0}
+  shootRate: 0
 --- !u!1 &991497021
 GameObject:
   m_ObjectHideFlags: 0
@@ -1995,11 +2085,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1287772674}
+  ignoreMask:
+    serializedVersion: 2
+    m_Bits: 0
   speed: 3
   sprintMod: 5
   jumpSpeed: 5
   gravity: 8
   jumpMax: 2
+  shootDamage: 2
+  shootRate: 0.5
+  shootDist: 150
 --- !u!4 &1287772679
 Transform:
   m_ObjectHideFlags: 0
@@ -3636,3 +3732,4 @@ SceneRoots:
   - {fileID: 1287772679}
   - {fileID: 1834809764}
   - {fileID: 1450093410}
+  - {fileID: 3544695}

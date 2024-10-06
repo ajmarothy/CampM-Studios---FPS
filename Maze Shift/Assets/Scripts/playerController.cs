@@ -5,16 +5,22 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] CharacterController controller;
-
-
+    [SerializeField] LayerMask ignoreMask;
+    
     [SerializeField] float speed;
     [SerializeField] float sprintMod;
     [SerializeField] int jumpSpeed;
     [SerializeField] int gravity;
     [SerializeField] int jumpMax;
+
+    [SerializeField] int shootDamage;
+    [SerializeField] float shootRate;
+    [SerializeField] int shootDist;
     
     
     int jumpCount;
+    bool isShooting;
+    bool isSprinting;
 
 
     Vector3 moveDir;
@@ -52,6 +58,11 @@ public class PlayerController : MonoBehaviour
         }
         playerVel.y -= gravity * Time.deltaTime;
         controller.Move(playerVel * Time.deltaTime);
+
+        if(Input.GetButton("Fire1") &&!isShooting)
+        {
+            StartCoroutine(shoot());
+        }
     }
 
     void sprint()
@@ -64,5 +75,25 @@ public class PlayerController : MonoBehaviour
         {
             speed /= sprintMod;
         }
+    }
+
+    IEnumerator shoot()
+    {
+        isShooting = true;
+
+        RaycastHit hit;
+        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreMask))
+        {
+            IDamage dmg = hit.collider.GetComponent<IDamage>();
+
+            if(dmg != null)
+            {
+                dmg.takeDamage(shootDamage);
+            }
+        }
+
+        yield return new WaitForSeconds(shootRate);
+        isShooting = false;
+        
     }
 }
