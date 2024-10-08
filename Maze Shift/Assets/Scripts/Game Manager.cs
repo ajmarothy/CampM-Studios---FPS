@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
 
-    bool isPaused;
+    public bool isPaused;
 
     int enemyCounter;
 
@@ -55,10 +55,7 @@ public class GameManager : MonoBehaviour
                 menuActive = pauseMenu;
                 menuActive.SetActive(GetPause());
             }
-            else if(menuActive == pauseMenu)
-            {
-                unpause();
-            }
+          
         }
     }
 
