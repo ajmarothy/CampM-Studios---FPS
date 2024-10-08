@@ -34,8 +34,55 @@ public class EnemyAI : MonoBehaviour , IDamage
     // Update is called once per frame
     void Update()
     {
-        
+
+
+        if (playerInRange)
+        {
+            if(agent.remainingDistance <= agent.stoppingDistance)
+            {
+                faceTarget();
+            }
+
+            if (!IsShooting)
+            {
+                StartCoroutine(shoot());
+            }
+        }
+    } 
+
+    void faceTarget()
+    {
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x,0,playerDir.z));
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * rotateSpeed);
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+        }
+    }
+
+    IEnumerator shoot()
+    {
+        IsShooting = true;
+
+        Instantiate(bullet, shootPos.position,transform.rotation);
+
+        yield return new WaitForSeconds(shootRate);
+
+        IsShooting = false;
+    }
+
 
     public void takeDamage(int amount)
     {
