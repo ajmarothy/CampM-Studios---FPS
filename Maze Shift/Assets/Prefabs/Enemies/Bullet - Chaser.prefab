@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1492306905664450478}
   - component: {fileID: 7504573196866610376}
   - component: {fileID: 9206436537618908553}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bullet - Chaser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,8 +52,8 @@ MonoBehaviour:
   type: 1
   rb: {fileID: 7504573196866610376}
   damageAmount: 2
-  speed: 1000
-  destroyTime: 10
+  speed: 450
+  destroyTime: 7
 --- !u!33 &5683440597652325202
 MeshFilter:
   m_ObjectHideFlags: 0

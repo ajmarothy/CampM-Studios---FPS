@@ -99,7 +99,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 2
@@ -132,7 +132,7 @@ Transform:
   m_GameObject: {fileID: 2486257852945744138}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.323, z: 0.487}
+  m_LocalPosition: {x: 0, y: 0.48, z: 0.589}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -148,9 +148,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8388475864753829868}
   - component: {fileID: 5733297286894066833}
+  - component: {fileID: 829058466454339253}
   - component: {fileID: 3046450291648102341}
   - component: {fileID: 8723550436492310462}
   - component: {fileID: 23920600455529392}
+  - component: {fileID: 5596001632977520816}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -187,14 +189,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ab7e7e457ec9c48a871ab320e44010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
+  agent: {fileID: 829058466454339253}
   model: {fileID: 8723550436492310462}
   shootPos: {fileID: 8727413521553520509}
   headPos: {fileID: 7969257840151062521}
   HP: 6
   rotateSpeed: 1
-  bullet: {fileID: 0}
-  shootRate: 0
+  bullet: {fileID: 7582155083770215668, guid: 28982b569bd507b478cd092777ebd886, type: 3}
+  shootRate: 3
+--- !u!195 &829058466454339253
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8511839409757441924}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 32
+  avoidancePriority: 50
+  m_AngularSpeed: 600
+  m_StoppingDistance: 8
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!33 &3046450291648102341
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -267,4 +291,25 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &5596001632977520816
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8511839409757441924}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 30
   m_Center: {x: 0, y: 0, z: 0}
