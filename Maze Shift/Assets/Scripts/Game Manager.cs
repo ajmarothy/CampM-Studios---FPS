@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject loseMenu;
 
 
+    public GameObject player;
+
     bool isPaused;
 
     float timeScaleOG;
@@ -34,7 +36,7 @@ public class GameManager : MonoBehaviour
 
         timeScaleOG = Time.timeScale;
 
-
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame

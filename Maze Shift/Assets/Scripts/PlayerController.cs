@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour , IDamage
 {
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreMask;
-    
+
+    [SerializeField] int HP;
     [SerializeField] float speed;
     [SerializeField] float sprintMod;
     [SerializeField] int jumpSpeed;
@@ -95,5 +96,10 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
         
+    }
+
+    public void takeDamage(int amount)
+    {
+        HP -= amount;
     }
 }

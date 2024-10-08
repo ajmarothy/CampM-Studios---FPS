@@ -618,6 +618,7 @@ MonoBehaviour:
   winMenu: {fileID: 0}
   pauseMenu: {fileID: 0}
   loseMenu: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &1121495647
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,6 +728,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3220401348483342327, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8388475864753829868, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.5
