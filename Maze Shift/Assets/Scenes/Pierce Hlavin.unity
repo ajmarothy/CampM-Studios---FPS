@@ -130,18 +130,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4534847303116261582, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
-      propertyPath: shootDist
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 4534847303116261582, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
-      propertyPath: shootRate
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4534847303116261582, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
-      propertyPath: shootDamage
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8743316906995178320, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
       propertyPath: m_Name
       value: Player
@@ -618,6 +606,7 @@ MonoBehaviour:
   winMenu: {fileID: 0}
   pauseMenu: {fileID: 0}
   loseMenu: {fileID: 0}
+  enemyCounterText: {fileID: 0}
   player: {fileID: 0}
 --- !u!1 &1121495647
 GameObject:
@@ -728,10 +717,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3220401348483342327, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8388475864753829868, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.5

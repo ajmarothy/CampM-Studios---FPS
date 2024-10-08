@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,10 +13,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject loseMenu;
 
+    [SerializeField] TMP_Text enemyCounterText;
+
 
     public GameObject player;
 
     bool isPaused;
+
+    int enemyCounter;
 
     float timeScaleOG;
 
@@ -48,14 +53,18 @@ public class GameManager : MonoBehaviour
             {
                 pause();
                 menuActive = pauseMenu;
-                menuActive.SetActive(isPaused);
+                menuActive.SetActive(GetPause());
+            }
+            else if(menuActive == pauseMenu)
+            {
+                unpause();
             }
         }
     }
 
     public void pause()
     {
-        isPaused = !isPaused;
+        SetPause(!GetPause());
 
         Time.timeScale = 0;
 
@@ -67,14 +76,34 @@ public class GameManager : MonoBehaviour
 
     public void unpause()
     {
-        isPaused = !isPaused;
+        SetPause(!GetPause());
 
         Time.timeScale = timeScaleOG;
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        menuActive.SetActive(isPaused);
+        menuActive.SetActive(false);
         menuActive = null;
+    }
+
+    public void updateGameGoal(int amount)
+    {
+        enemyCounter += amount;
+        enemyCounterText.text = enemyCounter.ToString("F0");
+
+        if(enemyCounter <= 0)
+        {
+            pause();
+            menuActive = winMenu;
+            menuActive.SetActive(true);
+        }
+    }
+
+    public void youLose()
+    {
+        pause();
+        menuActive = loseMenu;
+        menuActive.SetActive(true);
     }
 }

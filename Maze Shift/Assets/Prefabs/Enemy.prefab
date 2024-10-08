@@ -101,7 +101,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
@@ -191,7 +191,7 @@ MonoBehaviour:
   model: {fileID: 8723550436492310462}
   shootPos: {fileID: 8727413521553520509}
   headPos: {fileID: 7969257840151062521}
-  HP: 3
+  HP: 10
   rotateSpeed: 1
   bullet: {fileID: 0}
   shootRate: 0

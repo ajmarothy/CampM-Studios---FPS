@@ -23,6 +23,10 @@ public class Damage : MonoBehaviour
             rb.velocity = transform.forward * speed;
             Destroy(gameObject, destroyTime);
         }
+        else if(type == damageType.chaser)
+        {
+            Destroy(gameObject, destroyTime);
+        }
         
     }
 
@@ -48,6 +52,9 @@ public class Damage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = (GameManager.instance.player.transform.position - transform.position).normalized * speed * Time.deltaTime;
+        if (type == damageType.chaser)
+        {
+            rb.velocity = (GameManager.instance.player.transform.position - transform.position).normalized * speed * Time.deltaTime;
+        }
     }
 }

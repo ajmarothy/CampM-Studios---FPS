@@ -1605,36 +1605,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693469532}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1876580382 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8511839409757441924, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
-  m_PrefabInstance: {fileID: 2138973550}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &1876580384 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 8723550436492310462, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
-  m_PrefabInstance: {fileID: 2138973550}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1876580386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1876580382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3ab7e7e457ec9c48a871ab320e44010, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 0}
-  model: {fileID: 1876580384}
-  shootPos: {fileID: 0}
-  headPos: {fileID: 0}
-  HP: 10
-  rotateSpeed: 0
-  bullet: {fileID: 0}
-  shootRate: 0
 --- !u!1 &1885712903
 GameObject:
   m_ObjectHideFlags: 0
@@ -2261,10 +2231,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8511839409757441924, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 1876580386}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c9830c5a9cdfd14bb89e9fec7b15aca, type: 3}
 --- !u!1001 &1083886051321054520
 PrefabInstance:

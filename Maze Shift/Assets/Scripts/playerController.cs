@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour , IDamage
         playerVel.y -= gravity * Time.deltaTime;
         controller.Move(playerVel * Time.deltaTime);
 
-        if(Input.GetButton("Fire1") &&!isShooting)
+        if(Input.GetButton("Fire1") && !GameManager.instance.isPaused && !isShooting)
         {
             StartCoroutine(shoot());
         }
@@ -101,5 +101,10 @@ public class PlayerController : MonoBehaviour , IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
+
+        if(HP < 0)
+        {
+            GameManager.instance.youLose();
+        }
     }
 }

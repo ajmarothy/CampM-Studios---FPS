@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 5412554255789561022}
   - component: {fileID: 8874964174741491677}
   - component: {fileID: 1477117002064906307}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,11 +50,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1477117002064906307}
+  ignoreMask:
+    serializedVersion: 2
+    m_Bits: 0
+  HP: 0
   speed: 12
   sprintMod: 1.25
   jumpSpeed: 5
   gravity: 15
   jumpMax: 2
+  shootDamage: 2
+  shootRate: 0.5
+  shootDist: 125
 --- !u!33 &4725039235758317717
 MeshFilter:
   m_ObjectHideFlags: 0

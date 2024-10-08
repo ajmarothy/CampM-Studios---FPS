@@ -29,6 +29,7 @@ public class EnemyAI : MonoBehaviour , IDamage
     void Start()
     {
         colorOriginal = model.material.color;
+        GameManager.instance.updateGameGoal(1);
     }
 
     // Update is called once per frame
@@ -38,6 +39,10 @@ public class EnemyAI : MonoBehaviour , IDamage
 
         if (playerInRange)
         {
+            playerDir = GameManager.instance.player.transform.position - transform.position;
+
+            agent.SetDestination(GameManager.instance.player.transform.position);
+
             if(agent.remainingDistance <= agent.stoppingDistance)
             {
                 faceTarget();
