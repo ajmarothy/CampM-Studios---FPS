@@ -191,7 +191,7 @@ MonoBehaviour:
   model: {fileID: 8723550436492310462}
   shootPos: {fileID: 8727413521553520509}
   headPos: {fileID: 7969257840151062521}
-  HP: 10
+  HP: 6
   rotateSpeed: 1
   bullet: {fileID: 0}
   shootRate: 0
