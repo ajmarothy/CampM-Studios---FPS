@@ -91,16 +91,13 @@ public class EnemyAI : MonoBehaviour , IDamage
 
     public void takeDamage(int amount)
     {
-      HP-=amount;
-
+        HP -= amount;
         StartCoroutine(flashDamageColor());
-
-
-        if(HP<= 0)
+        if( HP <= 0)
         {
+            GameManager.instance.updateGameGoal(-1);
             Destroy(gameObject);
         }
-
     }
 
     IEnumerator flashDamageColor()

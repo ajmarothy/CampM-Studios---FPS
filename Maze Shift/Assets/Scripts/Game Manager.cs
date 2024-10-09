@@ -70,7 +70,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-
     public void unpause()
     {
         SetPause(!GetPause());
@@ -87,8 +86,7 @@ public class GameManager : MonoBehaviour
     public void updateGameGoal(int amount)
     {
         enemyCounter += amount;
-        //enemyCounterText.text = enemyCounter.ToString("F0");
-
+        enemyCounterText.text = enemyCounter.ToString("F0");
         if(enemyCounter <= 0)
         {
             pause();

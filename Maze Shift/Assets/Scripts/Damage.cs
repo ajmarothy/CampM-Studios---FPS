@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Damage : MonoBehaviour
 {
-
     [SerializeField] enum damageType { bullet, chaser, stationary}
     [SerializeField] damageType type;
     [SerializeField] Rigidbody rb;
@@ -27,7 +26,6 @@ public class Damage : MonoBehaviour
         {
             Destroy(gameObject, destroyTime);
         }
-        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,14 +33,11 @@ public class Damage : MonoBehaviour
         if (other.isTrigger)
             return;
 
-
         IDamage dmg = other.GetComponent<IDamage>();
-
         if (dmg != null)
         {
             dmg.takeDamage(damageAmount);
         }
-
         if (type == damageType.bullet || type == damageType.chaser)
         {
             Destroy(gameObject);
