@@ -13,12 +13,15 @@ public class EnemyAI : MonoBehaviour , IDamage
 
     [SerializeField] int HP;
     [SerializeField] int rotateSpeed;
+    [SerializeField] int sightLineAngle;
 
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
 
     bool IsShooting;
     bool playerInRange;
+
+    float angleToPlayer;
 
     Vector3 playerDir;
 
@@ -37,23 +40,43 @@ public class EnemyAI : MonoBehaviour , IDamage
     {
 
 
-        if (playerInRange)
+        if (playerInRange && canSpotPlayer())
         {
-            playerDir = GameManager.instance.player.transform.position - transform.position;
+            
 
-            agent.SetDestination(GameManager.instance.player.transform.position);
+           
+        }
+    }
 
-            if(agent.remainingDistance <= agent.stoppingDistance)
+
+    bool canSpotPlayer()
+    {
+        playerDir = GameManager.instance.player.transform.position - headPos.position;
+        angleToPlayer = Vector3.Angle(playerDir, transform.forward);
+        Debug.DrawRay(headPos.position, playerDir);
+
+        RaycastHit hit;
+        if (Physics.Raycast(headPos.position, playerDir, out hit))
+        {
+            if(hit.collider.CompareTag("Player") && angleToPlayer <= sightLineAngle)
             {
-                faceTarget();
-            }
+                agent.SetDestination(GameManager.instance.player.transform.position);
 
-            if (!IsShooting)
-            {
-                StartCoroutine(shoot());
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    faceTarget();
+                }
+
+                if (!IsShooting)
+                {
+                    StartCoroutine(shoot());
+                }
+
+                return true;
             }
         }
-    } 
+        return false;
+    }
 
     void faceTarget()
     {
@@ -92,6 +115,8 @@ public class EnemyAI : MonoBehaviour , IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
+        agent.SetDestination(GameManager.instance.player.transform.position);
+
         StartCoroutine(flashDamageColor());
         if( HP <= 0)
         {

@@ -148,11 +148,12 @@ GameObject:
   m_Component:
   - component: {fileID: 8388475864753829868}
   - component: {fileID: 5733297286894066833}
-  - component: {fileID: 829058466454339253}
+  - component: {fileID: 4429772660057599358}
   - component: {fileID: 3046450291648102341}
   - component: {fileID: 8723550436492310462}
   - component: {fileID: 23920600455529392}
   - component: {fileID: 5596001632977520816}
+  - component: {fileID: 3939062607727207556}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -189,15 +190,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ab7e7e457ec9c48a871ab320e44010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 829058466454339253}
+  agent: {fileID: 4429772660057599358}
   model: {fileID: 8723550436492310462}
   shootPos: {fileID: 8727413521553520509}
   headPos: {fileID: 7969257840151062521}
   HP: 6
-  rotateSpeed: 1
+  rotateSpeed: 15
+  sightLineAngle: 90
   bullet: {fileID: 7582155083770215668, guid: 28982b569bd507b478cd092777ebd886, type: 3}
   shootRate: 3
---- !u!195 &829058466454339253
+--- !u!195 &4429772660057599358
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -207,7 +209,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 32
   avoidancePriority: 50
   m_AngularSpeed: 600
@@ -247,7 +249,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1fa4c7fd47010144dad8943bb030119c, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -293,6 +295,27 @@ CapsuleCollider:
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &5596001632977520816
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8511839409757441924}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 30
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &3939062607727207556
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
