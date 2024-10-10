@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour , IDamage
     int jumpCount;
     bool isShooting;
     bool isSprinting;
-
+    int originalPlayerHP;
 
     Vector3 moveDir;
     Vector3 playerVel;
@@ -30,7 +30,8 @@ public class PlayerController : MonoBehaviour , IDamage
     // Start is called before the first frame update
     void Start()
     {
-        
+        originalPlayerHP = HP;
+        updatePlayerUI();
     }
 
     // Update is called once per frame
@@ -101,10 +102,16 @@ public class PlayerController : MonoBehaviour , IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
-
+        updatePlayerUI();
         if(HP <= 0)
         {
             GameManager.instance.youLose();
         }
+    }
+
+    public void updatePlayerUI()
+    {
+        GameManager.instance.playerHPBar.fillAmount = (float)HP / originalPlayerHP;
+        GameManager.instance.playerHPValue.text = (((float)HP / originalPlayerHP) * 100).ToString();
     }
 }

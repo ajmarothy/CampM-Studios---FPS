@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject loseMenu;
 
     [SerializeField] TMP_Text enemyCounterText;
-
+    public Image playerHPBar;
+    public TMP_Text playerHPValue;
 
     public GameObject player;
 
