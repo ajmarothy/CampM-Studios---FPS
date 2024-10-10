@@ -20,6 +20,7 @@ public class EnemyAI : MonoBehaviour , IDamage
 
     bool IsShooting;
     bool playerInRange;
+    int originalEnemyHP;
 
     float angleToPlayer;
 
@@ -132,5 +133,8 @@ public class EnemyAI : MonoBehaviour , IDamage
         model.material.color = colorOriginal;
     }
 
+    public void updateEnemyUI()
+    {
 
+    }
 }
