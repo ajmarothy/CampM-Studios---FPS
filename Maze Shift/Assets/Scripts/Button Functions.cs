@@ -22,12 +22,11 @@ public class ButtonFunctions : MonoBehaviour
 
     public void quit()
     {
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
 
-        #else
-            Application.Quit();
-
-        #endif
     }
 }
