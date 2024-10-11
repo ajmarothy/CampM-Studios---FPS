@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour , IDamage
 {
+
+    
+
+    [SerializeField] Image enemyHPBar;
+
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
     [SerializeField] Transform shootPos;
@@ -29,11 +35,23 @@ public class EnemyAI : MonoBehaviour , IDamage
     Color colorOriginal;
 
 
+
+    public int GetOGhp()
+    {
+        return originalEnemyHP;
+    }
+
+    public int GetHP()
+    {
+        return HP;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         originalEnemyHP = HP;
         updateEnemyUI();
+        
         colorOriginal = model.material.color;
         GameManager.instance.updateGameGoal(1);
     }
@@ -118,7 +136,8 @@ public class EnemyAI : MonoBehaviour , IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
-        updateEnemyUI();
+         updateEnemyUI();
+        
         agent.SetDestination(GameManager.instance.player.transform.position);
 
         StartCoroutine(flashDamageColor());
@@ -139,5 +158,6 @@ public class EnemyAI : MonoBehaviour , IDamage
     public void updateEnemyUI()
     {
         //GameManager.instance.enemyHPValue.text = (((float)HP / originalEnemyHP) * 100).ToString();
+        enemyHPBar.fillAmount = (float)HP / originalEnemyHP;
     }
 }

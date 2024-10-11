@@ -29,4 +29,10 @@ public class ButtonFunctions : MonoBehaviour
 #endif
 
     }
+
+
+    public void nextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 }
