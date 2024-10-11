@@ -23,12 +23,16 @@ public class EnemyAI : MonoBehaviour , IDamage
 
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
+    [SerializeField] float gravity;
+    [SerializeField] float groundCheckDistance;
+    [SerializeField] LayerMask groundLayer;
 
     bool IsShooting;
     bool playerInRange;
     int originalEnemyHP;
 
     float angleToPlayer;
+    float verticalVel;
 
     Vector3 playerDir;
 
@@ -60,6 +64,7 @@ public class EnemyAI : MonoBehaviour , IDamage
     void Update()
     {
 
+        ApplyGravity();
 
         if (playerInRange && canSpotPlayer())
         {
@@ -67,6 +72,24 @@ public class EnemyAI : MonoBehaviour , IDamage
 
            
         }
+    }
+
+    void ApplyGravity()
+    {
+        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
+
+        if (isGrounded)
+        {
+            verticalVel = 0; // Reset vertical velocity when grounded
+        }
+        else
+        {
+            verticalVel += gravity * Time.deltaTime; // Apply gravity when not grounded
+        }
+
+        // Move the agent with the vertical velocity
+        Vector3 movement = new Vector3(0, verticalVel, 0);
+        agent.Move(movement * Time.deltaTime);
     }
 
 
