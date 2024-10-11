@@ -14,10 +14,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject loseMenu;
 
+    [SerializeField] GameObject levelExit;
+    [SerializeField] TMP_Text exitLevelText;
+
     [SerializeField] TMP_Text enemyCounterText;
     public Image playerHPBar;
     public TMP_Text playerHPValue;
-   // public Image enemyHPValue;
+    // public Image enemyHPValue;
 
     public GameObject player;
 
@@ -45,6 +48,8 @@ public class GameManager : MonoBehaviour
         timeScaleOG = Time.timeScale;
 
         player = GameObject.FindWithTag("Player");
+
+        exitLevelText.enabled = false;
     }
 
     // Update is called once per frame
@@ -58,7 +63,7 @@ public class GameManager : MonoBehaviour
                 menuActive = pauseMenu;
                 menuActive.SetActive(GetPause());
             }
-          
+
         }
     }
 
@@ -90,11 +95,12 @@ public class GameManager : MonoBehaviour
     {
         enemyCounter += amount;
         enemyCounterText.text = enemyCounter.ToString("F0");
-        if(enemyCounter <= 0)
+        if (enemyCounter <= 0)
         {
-            pause();
-            menuActive = winMenu;
-            menuActive.SetActive(true);
+            exitLevelText.enabled = true;
+            //pause();
+            //menuActive = winMenu;
+            //menuActive.SetActive(true);
         }
     }
 
@@ -103,5 +109,15 @@ public class GameManager : MonoBehaviour
         pause();
         menuActive = loseMenu;
         menuActive.SetActive(true);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (enemyCounter <= 0)
+        {
+            pause();
+            menuActive = winMenu;
+            menuActive.SetActive(true);
+        }
     }
 }
