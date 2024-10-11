@@ -32,6 +32,8 @@ public class EnemyAI : MonoBehaviour , IDamage
     // Start is called before the first frame update
     void Start()
     {
+        originalEnemyHP = HP;
+        updateEnemyUI();
         colorOriginal = model.material.color;
         GameManager.instance.updateGameGoal(1);
     }
@@ -116,6 +118,7 @@ public class EnemyAI : MonoBehaviour , IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
+        updateEnemyUI();
         agent.SetDestination(GameManager.instance.player.transform.position);
 
         StartCoroutine(flashDamageColor());
@@ -135,6 +138,6 @@ public class EnemyAI : MonoBehaviour , IDamage
 
     public void updateEnemyUI()
     {
-
+        //GameManager.instance.enemyHPValue.text = (((float)HP / originalEnemyHP) * 100).ToString();
     }
 }

@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text enemyCounterText;
     public Image playerHPBar;
     public TMP_Text playerHPValue;
-    public Image enemyHPBar;
     public TMP_Text enemyHPValue;
 
     public GameObject player;
