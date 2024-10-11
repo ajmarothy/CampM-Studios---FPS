@@ -10,6 +10,12 @@ public class cameraController : MonoBehaviour
     [SerializeField] bool invertY;
 
     float rotX;
+    float recoilOffsetY = 0;
+
+    public void ApplyRecoil(float recoilAmount)
+    {
+        recoilOffsetY -= recoilAmount;
+    }
 
 
     // Start is called before the first frame update
@@ -40,7 +46,9 @@ public class cameraController : MonoBehaviour
 
         rotX = Mathf.Clamp(rotX, lockVertMin, lockVertMax);
 
-        transform.localRotation = Quaternion.Euler(rotX, 0, 0);
+        recoilOffsetY = Mathf.Lerp(recoilOffsetY, 0, Time.deltaTime / 0.5f);
+
+        transform.localRotation = Quaternion.Euler(rotX + recoilOffsetY, 0, 0);
 
         transform.parent.Rotate(Vector3.up * mouseX);
         

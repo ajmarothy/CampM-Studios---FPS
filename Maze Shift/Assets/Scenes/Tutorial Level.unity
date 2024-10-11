@@ -20410,6 +20410,18 @@ PrefabInstance:
       propertyPath: jumpSpeed
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4534847303116261582, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 2116734851}
+    - target: {fileID: 4534847303116261582, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
+      propertyPath: recoilAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534847303116261582, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
+      propertyPath: recoilReturnSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8244568149041392312, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
       propertyPath: sens
       value: 350
@@ -22107,6 +22119,11 @@ RectTransform:
   m_AnchoredPosition: {x: 192.5, y: 12}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!20 &2116734851 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 3551625615204466707, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
+  m_PrefabInstance: {fileID: 1971592857}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2127491277
 PrefabInstance:
   m_ObjectHideFlags: 0

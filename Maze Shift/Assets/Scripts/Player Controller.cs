@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour , IDamage
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
+    [SerializeField] float recoilAmount;
     
     
     int jumpCount;
@@ -27,10 +28,13 @@ public class PlayerController : MonoBehaviour , IDamage
     Vector3 moveDir;
     Vector3 playerVel;
 
+    [SerializeField] Camera playerCamera;
+
     // Start is called before the first frame update
     void Start()
     {
         originalPlayerHP = HP;
+        playerCamera.transform.localRotation = Quaternion.identity;
         updatePlayerUI();
     }
 
@@ -94,10 +98,19 @@ public class PlayerController : MonoBehaviour , IDamage
             }
         }
 
+        applyRecoil();
+
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
         
     }
+
+    public void applyRecoil()
+    {
+        cameraController cameraController = playerCamera.GetComponent<cameraController>();
+        cameraController.ApplyRecoil(recoilAmount);
+    }
+
 
     public void takeDamage(int amount)
     {
@@ -114,4 +127,5 @@ public class PlayerController : MonoBehaviour , IDamage
         GameManager.instance.playerHPBar.fillAmount = (float)HP / originalPlayerHP;
         GameManager.instance.playerHPValue.text = (((float)HP / originalPlayerHP) * 100).ToString();
     }
+
 }
