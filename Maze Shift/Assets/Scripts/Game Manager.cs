@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject loseMenu;
 
-    [SerializeField] GameObject levelExit;
+    
     [SerializeField] TMP_Text exitLevelText;
 
     [SerializeField] TMP_Text enemyCounterText;
@@ -98,9 +98,7 @@ public class GameManager : MonoBehaviour
         if (enemyCounter <= 0)
         {
             exitLevelText.enabled = true;
-            //pause();
-            //menuActive = winMenu;
-            //menuActive.SetActive(true);
+         
         }
     }
 
@@ -111,13 +109,5 @@ public class GameManager : MonoBehaviour
         menuActive.SetActive(true);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (enemyCounter <= 0)
-        {
-            pause();
-            menuActive = winMenu;
-            menuActive.SetActive(true);
-        }
-    }
+
 }
