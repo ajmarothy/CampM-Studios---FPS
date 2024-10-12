@@ -40,6 +40,11 @@ public class GameManager : MonoBehaviour
         isPaused = _isPaused;
     }
 
+    public int getEnemyCounter()
+    {
+        return enemyCounter;
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
