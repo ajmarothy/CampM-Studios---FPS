@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class EnemyAI : MonoBehaviour , IDamage
+public class EnemyAI : MonoBehaviour, IDamage
 {
 
-    
+
 
     [SerializeField] Image enemyHPBar;
 
@@ -22,6 +22,7 @@ public class EnemyAI : MonoBehaviour , IDamage
     [SerializeField] int sightLineAngle;
 
     [SerializeField] GameObject bullet;
+    [SerializeField] float shootDistance;
     [SerializeField] float shootRate;
     [SerializeField] float gravity;
     [SerializeField] float groundCheckDistance;
@@ -55,7 +56,7 @@ public class EnemyAI : MonoBehaviour , IDamage
     {
         originalEnemyHP = HP;
         updateEnemyUI();
-        
+
         colorOriginal = model.material.color;
         GameManager.instance.updateGameGoal(1);
     }
@@ -68,9 +69,9 @@ public class EnemyAI : MonoBehaviour , IDamage
 
         if (playerInRange && canSpotPlayer())
         {
-            
 
-           
+
+
         }
     }
 
@@ -102,18 +103,25 @@ public class EnemyAI : MonoBehaviour , IDamage
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
-            if(hit.collider.CompareTag("Player") && angleToPlayer <= sightLineAngle)
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= sightLineAngle)
             {
+
+                float distanceToPlayer = Vector3.Distance(transform.position, GameManager.instance.player.transform.position);
                 agent.SetDestination(GameManager.instance.player.transform.position);
 
-                if (agent.remainingDistance <= agent.stoppingDistance)
+                if (distanceToPlayer <= shootDistance)
                 {
-                    faceTarget();
-                }
+                    
 
-                if (!IsShooting)
-                {
-                    StartCoroutine(shoot());
+                    if (agent.remainingDistance <= agent.stoppingDistance)
+                    {
+                        faceTarget();
+                    }
+
+                    if (!IsShooting)
+                    {
+                        StartCoroutine(shoot());
+                    }
                 }
 
                 return true;
@@ -124,7 +132,7 @@ public class EnemyAI : MonoBehaviour , IDamage
 
     void faceTarget()
     {
-        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x,0,playerDir.z));
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * rotateSpeed);
     }
 
@@ -148,7 +156,7 @@ public class EnemyAI : MonoBehaviour , IDamage
     {
         IsShooting = true;
 
-        Instantiate(bullet, shootPos.position,transform.rotation);
+        Instantiate(bullet, shootPos.position, transform.rotation);
 
         yield return new WaitForSeconds(shootRate);
 
@@ -159,12 +167,12 @@ public class EnemyAI : MonoBehaviour , IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
-         updateEnemyUI();
-        
+        updateEnemyUI();
+
         agent.SetDestination(GameManager.instance.player.transform.position);
 
         StartCoroutine(flashDamageColor());
-        if( HP <= 0)
+        if (HP <= 0)
         {
             GameManager.instance.updateGameGoal(-1);
             Destroy(gameObject);
@@ -182,5 +190,22 @@ public class EnemyAI : MonoBehaviour , IDamage
     {
         //GameManager.instance.enemyHPValue.text = (((float)HP / originalEnemyHP) * 100).ToString();
         enemyHPBar.fillAmount = (float)HP / originalEnemyHP;
+    }
+
+    void OnDrawGizmos()
+    {
+
+        Gizmos.color = Color.red;
+
+
+        Gizmos.DrawWireSphere(transform.position, shootDistance);
+
+
+        if (GameManager.instance.player != null)
+        {
+            Gizmos.color = Color.green;
+            Vector3 playerPosition = GameManager.instance.player.transform.position;
+            Gizmos.DrawLine(transform.position, playerPosition);
+        }
     }
 }
