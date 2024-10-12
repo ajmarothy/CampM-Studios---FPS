@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -5984793182996878499}
   - component: {fileID: 5563018236630013737}
   m_Layer: 8
-  m_Name: Bullet - Boulder
+  m_Name: Golem_Bullet_Rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
