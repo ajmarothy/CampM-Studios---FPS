@@ -16,6 +16,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Renderer model;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
+    [SerializeField] Animator animator;
 
     [SerializeField] int HP;
     [SerializeField] int rotateSpeed;
@@ -36,6 +37,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     float verticalVel;
 
     Vector3 playerDir;
+    Vector3 lastPosition;
 
     Color colorOriginal;
 
@@ -59,6 +61,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         colorOriginal = model.material.color;
         GameManager.instance.updateGameGoal(1);
+        lastPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -73,6 +76,9 @@ public class EnemyAI : MonoBehaviour, IDamage
 
 
         }
+        enemyAnimation();
+
+
     }
 
     void ApplyGravity()
@@ -156,6 +162,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         IsShooting = true;
 
+        animator.SetTrigger("attackTrigger");
         Instantiate(bullet, shootPos.position, transform.rotation);
 
         yield return new WaitForSeconds(shootRate);
@@ -174,8 +181,12 @@ public class EnemyAI : MonoBehaviour, IDamage
         StartCoroutine(flashDamageColor());
         if (HP <= 0)
         {
+            
+            animator.SetTrigger("deathTrigger");
+
+            StartCoroutine(waitForDeathAnimation());
+
             GameManager.instance.updateGameGoal(-1);
-            Destroy(gameObject);
         }
     }
 
@@ -201,11 +212,38 @@ public class EnemyAI : MonoBehaviour, IDamage
         Gizmos.DrawWireSphere(transform.position, shootDistance);
 
 
-        if (GameManager.instance.player != null)
+        if (GameManager.instance != null && GameManager.instance.player != null)
         {
             Gizmos.color = Color.green;
             Vector3 playerPosition = GameManager.instance.player.transform.position;
             Gizmos.DrawLine(transform.position, playerPosition);
         }
+    }
+
+    void enemyAnimation()
+    {
+
+        if (Vector3.Distance(lastPosition, transform.position) > 0.005f)
+        {
+            animator.SetBool("isWalking", true);
+            Debug.Log("Switching to walking animation");
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+            Debug.Log("Switching to idle animation");
+        }
+
+        lastPosition = transform.position;
+    }
+
+    IEnumerator waitForDeathAnimation()
+    {
+        AnimatorStateInfo animatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        float animationLength = animatorStateInfo.length;
+
+        yield return new WaitForSeconds(animationLength);
+
+        Destroy(gameObject);
     }
 }

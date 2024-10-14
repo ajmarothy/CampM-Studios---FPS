@@ -445,9 +445,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938611099501857147}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000029504295}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 205.89, y: 0.07, z: 90.41}
-  m_LocalScale: {x: 0.31646, y: 0.31646, z: 0.31646}
+  m_LocalScale: {x: 0.31645998, y: 0.31646, z: 0.31645998}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5949418158544615402}
@@ -472,6 +472,7 @@ MonoBehaviour:
   model: {fileID: 5254383075470886112}
   shootPos: {fileID: 4350708064425639791}
   headPos: {fileID: 4521432197904606495}
+  animator: {fileID: 6450944381770993869}
   HP: 8
   rotateSpeed: 15
   sightLineAngle: 180
@@ -491,7 +492,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938611099501857147}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
   m_Controller: {fileID: 9100000, guid: 6dc4c18bff3e51d45bd78822e2577528, type: 2}
   m_CullingMode: 1

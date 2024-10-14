@@ -62,7 +62,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 618319684419349119}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000029504295}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 3.75, y: 0, z: -165}
   m_LocalScale: {x: 1.15, y: 1.15, z: 1.15}
   m_ConstrainProportionsScale: 0
@@ -89,17 +89,18 @@ MonoBehaviour:
   model: {fileID: 2591075135752654292}
   shootPos: {fileID: 4319163794700371203}
   headPos: {fileID: 4409555566052615415}
+  animator: {fileID: 4869981856529541597}
   HP: 10
   rotateSpeed: 40
   sightLineAngle: 90
   bullet: {fileID: 3579590406932167635, guid: 3883dce2203220240a4c871077e6848d, type: 3}
   shootDistance: 2
   shootRate: 1
-  gravity: 0
-  groundCheckDistance: 0
+  gravity: 3
+  groundCheckDistance: 1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
 --- !u!195 &4329189260275544073
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -110,7 +111,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 4
+  m_Speed: 2
   m_Acceleration: 6
   avoidancePriority: 50
   m_AngularSpeed: 75
@@ -130,9 +131,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 618319684419349119}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: e88b81dbbde6e97419fd1f6bdc41d4ca, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4e8ec0d019641f449bccd8ddd4c6c105, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1

@@ -60,8 +60,10 @@ MonoBehaviour:
   gravity: 15
   jumpMax: 2
   shootDamage: 2
-  shootRate: 0.25
+  shootRate: 0.5
   shootDist: 125
+  recoilAmount: 0
+  playerCamera: {fileID: 3551625615204466707}
 --- !u!33 &4725039235758317717
 MeshFilter:
   m_ObjectHideFlags: 0
