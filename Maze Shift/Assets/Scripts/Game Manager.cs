@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
         {
             pauseMenu.SetActive(false);
         }
-        else if (loseMenu)
+        if (loseMenu)
         {
             loseMenu.SetActive(false);
         }
@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour
         {
             pauseMenu.SetActive(true);
         }
-        else if (loseMenu)
+        if (loseMenu)
         {
             loseMenu.SetActive(true);
         }
@@ -142,6 +142,7 @@ public class GameManager : MonoBehaviour
     {
         float savedVolume = PlayerPrefs.GetFloat("Volume", 1.0f);
         int savedQuality = PlayerPrefs.GetInt("GraphicsQuality", 2);
+        int savedDifficulty = PlayerPrefs.GetInt("GameDifficulty", 2); // 1, 2 ,3 to set easy to hard; default normale
         gameSettings.SetVolume(savedVolume);
         gameSettings.SetGraphicsQuality(savedQuality);
     }
@@ -149,10 +150,17 @@ public class GameManager : MonoBehaviour
     public void ApplySettings()
     {
         gameSettings.ApplySettings();
+        CloseSettings();
     }
 
     public void ResetSettings()
     {
         gameSettings.ResetToDefaults();
+        CloseSettings();
+    }
+
+    public void ChooseDifficulty(int difficulty)
+    {
+        gameSettings.SetDifficulty(difficulty);
     }
 }

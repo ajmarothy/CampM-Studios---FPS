@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class ButtonFunctions : MonoBehaviour
 {
-    public GameManager gameManager;
-   
     public void Resume()
     {
         GameManager.instance.Unpause();
@@ -50,23 +48,26 @@ public class ButtonFunctions : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        gameManager.gameSettings.SetVolume(volume);
+        GameManager.instance.gameSettings.SetVolume(volume);
     }
 
     public void SetGraphicsQuality(int quality)
     {
-        gameManager.gameSettings.SetGraphicsQuality(quality);
+        GameManager.instance.gameSettings.SetGraphicsQuality(quality);
+    }
+
+    public void SetDifficulty(int difficulty)
+    {
+        GameManager.instance.gameSettings.SetDifficulty(difficulty);
     }
 
     public void ApplySettings()
     {
-        gameManager.ApplySettings();
-        gameManager.CloseSettings();
+        GameManager.instance.ApplySettings();
     }
 
     public void ResetSettings()
     {
-        gameManager.ResetSettings();
-        gameManager.CloseSettings();
+        GameManager.instance.ResetSettings();
     }
 }

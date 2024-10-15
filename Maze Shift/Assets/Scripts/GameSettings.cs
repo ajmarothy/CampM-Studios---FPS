@@ -6,6 +6,7 @@ public class GameSettings : ISettings
 {
     private float volume;
     private int graphicsQuality;
+    private int gameDifficulty;
 
     public void ResetToDefaults()
     {
@@ -43,5 +44,20 @@ public class GameSettings : ISettings
         return graphicsQuality;
     }
 
+    public void SetDifficulty(int difficulty)
+    {
+        this.gameDifficulty = difficulty;
+        // write algorithm that changes the difficulty of the enemies
+        // easy, normal, hard dropdown in settings menu
+        /* 
+            * Easy - enemy settings / 2
+            *  Normal - enemy settings default
+            *  Hard - enemy settings * 2 
+        */
+    }
 
+    public int GetDifficulty()
+    {
+        return gameDifficulty;
+    }
 }

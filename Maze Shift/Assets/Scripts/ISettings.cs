@@ -12,4 +12,7 @@ public interface ISettings
 
     void ApplySettings();
     void ResetToDefaults();
+
+    void SetDifficulty(int difficuly);
+    int GetDifficulty();
 }

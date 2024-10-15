@@ -7,9 +7,6 @@ using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour, IDamage
 {
-
-
-
     [SerializeField] Image enemyHPBar;
 
     [SerializeField] NavMeshAgent agent;
@@ -18,6 +15,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPos;
     [SerializeField] Animator animator;
 
+    [SerializeField] int enemyDifficulty;
     [SerializeField] int HP;
     [SerializeField] int rotateSpeed;
     [SerializeField] int sightLineAngle;
@@ -40,8 +38,6 @@ public class EnemyAI : MonoBehaviour, IDamage
     Vector3 lastPosition;
 
     Color colorOriginal;
-
-
 
     public int GetOGhp()
     {
@@ -236,5 +232,25 @@ public class EnemyAI : MonoBehaviour, IDamage
         yield return new WaitForSeconds(animationLength);
 
         Destroy(gameObject);
+    }
+
+    public int EnemyDifficulty(int difficulty)
+    {
+        difficulty = GameManager.instance.gameSettings.GetDifficulty();
+        if(difficulty == 3)
+        {
+            HP *= 2;
+            shootRate *= 2;
+            shootDistance *= 2;
+            // increase move speed like full time sprint
+        }
+        else if(difficulty == 1)
+        {
+            HP /= 2;
+            shootRate /= 2;
+            shootDistance /= 2;
+            // move speed stays at normal speed
+        }
+        return difficulty;
     }
 }
