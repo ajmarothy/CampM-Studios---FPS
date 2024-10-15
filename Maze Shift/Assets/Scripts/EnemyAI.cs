@@ -27,6 +27,11 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] float groundCheckDistance;
     [SerializeField] LayerMask groundLayer;
 
+    [SerializeField] bool isSpider;
+    [SerializeField] GameObject miniSpiderPrefab; //smaller spider prefab
+    [SerializeField] int numberOfMiniSpiders; //amount of spiders to spawn
+    [SerializeField] float spawnRadius; 
+
     bool IsShooting;
     bool playerInRange;
     int originalEnemyHP;
@@ -230,6 +235,19 @@ public class EnemyAI : MonoBehaviour, IDamage
         float animationLength = animatorStateInfo.length;
 
         yield return new WaitForSeconds(animationLength);
+
+        if (isSpider)
+        {
+            for (int i = 0; i < numberOfMiniSpiders; i++)
+            {
+
+                Vector3 spawnPosition = transform.position + Random.insideUnitSphere * spawnRadius;
+                spawnPosition.y = transform.position.y; //keeping height of orignal spider
+
+                Instantiate(miniSpiderPrefab, spawnPosition, Quaternion.identity);
+            }
+        }
+
 
         Destroy(gameObject);
     }
