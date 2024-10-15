@@ -19,7 +19,7 @@ public class FinalDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.getEnemyCounter() <= 0 && !objectMoving)
+        if (GameManager.instance.GetEnemyCounter() <= 0 && !objectMoving)
         {
             objectMoving = true;
             StartCoroutine(MoveHiddenObject(moveHeight, moveDuration));

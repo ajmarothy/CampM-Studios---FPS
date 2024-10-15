@@ -60,7 +60,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         updateEnemyUI();
 
         colorOriginal = model.material.color;
-        GameManager.instance.updateGameGoal(1);
+        GameManager.instance.UpdateGameGoal(1);
         lastPosition = transform.position;
     }
 
@@ -175,18 +175,14 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         HP -= amount;
         updateEnemyUI();
-
         agent.SetDestination(GameManager.instance.player.transform.position);
-
         StartCoroutine(flashDamageColor());
+
         if (HP <= 0)
         {
-            
             animator.SetTrigger("deathTrigger");
-
             StartCoroutine(waitForDeathAnimation());
-
-            GameManager.instance.updateGameGoal(-1);
+            GameManager.instance.UpdateGameGoal(-1);
         }
     }
 
@@ -205,12 +201,9 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void OnDrawGizmos()
     {
-
         Gizmos.color = Color.red;
-
-
+        
         Gizmos.DrawWireSphere(transform.position, shootDistance);
-
 
         if (GameManager.instance != null && GameManager.instance.player != null)
         {
@@ -222,7 +215,6 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void enemyAnimation()
     {
-
         if (Vector3.Distance(lastPosition, transform.position) > 0.005f)
         {
             animator.SetBool("isWalking", true);
@@ -233,7 +225,6 @@ public class EnemyAI : MonoBehaviour, IDamage
             animator.SetBool("isWalking", false);
             Debug.Log("Switching to idle animation");
         }
-
         lastPosition = transform.position;
     }
 

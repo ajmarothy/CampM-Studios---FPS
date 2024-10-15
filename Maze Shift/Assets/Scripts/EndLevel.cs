@@ -11,7 +11,7 @@ public class EndLevel : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.instance.pause(); 
+            GameManager.instance.Pause(); 
             winMenu.SetActive(true); 
         }
     }

@@ -116,9 +116,10 @@ public class PlayerController : MonoBehaviour , IDamage
     {
         HP -= amount;
         updatePlayerUI();
+        StartCoroutine(damageFlash());
         if(HP <= 0)
         {
-            GameManager.instance.youLose();
+            GameManager.instance.YouLose();
         }
     }
 
@@ -128,4 +129,10 @@ public class PlayerController : MonoBehaviour , IDamage
         GameManager.instance.playerHPValue.text = (((float)HP / originalPlayerHP) * 100).ToString();
     }
 
+    IEnumerator damageFlash()
+    {
+        GameManager.instance.playerDamageScreen.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        GameManager.instance.playerDamageScreen.SetActive(false);
+    }
 }

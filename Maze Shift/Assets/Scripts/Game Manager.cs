@@ -3,31 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Newtonsoft.Json.Linq;
 
 public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance;
+    public ISettings gameSettings;
 
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject loseMenu;
-
-    
+    [SerializeField] GameObject settingsMenu;
     [SerializeField] TMP_Text exitLevelText;
-
     [SerializeField] TMP_Text enemyCounterText;
+
     public Image playerHPBar;
     public TMP_Text playerHPValue;
-    // public Image enemyHPValue;
+    public GameObject playerDamageScreen;
 
     public GameObject player;
-
     public bool isPaused;
-
     int enemyCounter;
-
     float timeScaleOG;
 
     bool GetPause()
@@ -40,7 +38,7 @@ public class GameManager : MonoBehaviour
         isPaused = _isPaused;
     }
 
-    public int getEnemyCounter()
+    public int GetEnemyCounter()
     {
         return enemyCounter;
     }
@@ -48,12 +46,11 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        gameSettings = new GameSettings();
+        LoadSettings();
         instance = this;
-
         timeScaleOG = Time.timeScale;
-
         player = GameObject.FindWithTag("Player");
-
         exitLevelText.enabled = false;
     }
 
@@ -64,7 +61,7 @@ public class GameManager : MonoBehaviour
         {
             if (menuActive == null)
             {
-                pause();
+                Pause();
                 menuActive = pauseMenu;
                 menuActive.SetActive(GetPause());
             }
@@ -72,7 +69,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void pause()
+    public void Pause()
     {
         SetPause(!GetPause());
 
@@ -83,7 +80,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void unpause()
+    public void Unpause()
     {
         SetPause(!GetPause());
 
@@ -96,7 +93,7 @@ public class GameManager : MonoBehaviour
         menuActive = null;
     }
 
-    public void updateGameGoal(int amount)
+    public void UpdateGameGoal(int amount)
     {
         enemyCounter += amount;
         enemyCounterText.text = enemyCounter.ToString("F0");
@@ -107,12 +104,55 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void youLose()
+    public void YouLose()
     {
-        pause();
+        Pause();
         menuActive = loseMenu;
         menuActive.SetActive(true);
     }
 
+    public void OpenSettings()
+    {
+        //this method will open the settings menu
+        settingsMenu.SetActive(true);
+        if (pauseMenu)
+        {
+            pauseMenu.SetActive(false);
+        }
+        else if (loseMenu)
+        {
+            loseMenu.SetActive(false);
+        }
+    }
 
+    public void CloseSettings()
+    {
+        settingsMenu.SetActive(false);
+        if (pauseMenu)
+        {
+            pauseMenu.SetActive(true);
+        }
+        else if (loseMenu)
+        {
+            loseMenu.SetActive(true);
+        }
+    }
+
+    public void LoadSettings()
+    {
+        float savedVolume = PlayerPrefs.GetFloat("Volume", 1.0f);
+        int savedQuality = PlayerPrefs.GetInt("GraphicsQuality", 2);
+        gameSettings.SetVolume(savedVolume);
+        gameSettings.SetGraphicsQuality(savedQuality);
+    }
+
+    public void ApplySettings()
+    {
+        gameSettings.ApplySettings();
+    }
+
+    public void ResetSettings()
+    {
+        gameSettings.ResetToDefaults();
+    }
 }
