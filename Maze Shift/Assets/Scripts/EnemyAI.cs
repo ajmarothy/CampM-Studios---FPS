@@ -19,15 +19,18 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int HP;
     [SerializeField] int rotateSpeed;
     [SerializeField] int sightLineAngle;
+    [SerializeField] int roamDistance;
+    [SerializeField] int roamPauseTime;
 
     [SerializeField] GameObject bullet;
     [SerializeField] float shootDistance;
     [SerializeField] float shootRate;
+    [SerializeField] int shootAngle;
     [SerializeField] float gravity;
     [SerializeField] float groundCheckDistance;
     [SerializeField] LayerMask groundLayer;
 
-    [SerializeField] bool isSpider;
+    [SerializeField] bool isLargeSpider;
     [SerializeField] GameObject miniSpiderPrefab; //smaller spider prefab
     [SerializeField] int numberOfMiniSpiders; //amount of spiders to spawn
     [SerializeField] float spawnRadius; 
@@ -35,14 +38,18 @@ public class EnemyAI : MonoBehaviour, IDamage
     bool IsShooting;
     bool playerInRange;
     int originalEnemyHP;
+    bool isRoaming;
 
     float angleToPlayer;
     float verticalVel;
+    float originalStoppingDist;
 
     Vector3 playerDir;
     Vector3 lastPosition;
 
     Color colorOriginal;
+
+    Coroutine someCo;
 
     public int GetOGhp()
     {
@@ -63,6 +70,8 @@ public class EnemyAI : MonoBehaviour, IDamage
         colorOriginal = model.material.color;
         GameManager.instance.UpdateGameGoal(1);
         lastPosition = transform.position;
+        originalStoppingDist = agent.stoppingDistance;
+        
     }
 
     // Update is called once per frame
@@ -73,13 +82,38 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (playerInRange && canSpotPlayer())
         {
+            if (!isRoaming && agent.remainingDistance < 0.0f)
+                someCo = StartCoroutine(roam());
 
 
-
+        }
+        else if (!playerInRange)
+        {
+            if(!isRoaming && agent.remainingDistance < 0.05f)
+            {
+                someCo = StartCoroutine(roam());
+            }
         }
         enemyAnimation();
 
 
+    }
+
+    IEnumerator roam()
+    {
+        isRoaming = true;
+        yield return new WaitForSeconds(roamPauseTime);
+
+        agent.stoppingDistance = 0;
+        Vector3 randomDistance = Random.insideUnitSphere * roamDistance;
+        randomDistance += lastPosition;
+
+        NavMeshHit hit;
+        NavMesh.SamplePosition(randomDistance, out hit, roamDistance, 1);
+        agent.SetDestination(hit.position);
+
+        isRoaming = false;
+        someCo = null;
     }
 
     void ApplyGravity()
@@ -125,15 +159,20 @@ public class EnemyAI : MonoBehaviour, IDamage
                         faceTarget();
                     }
 
-                    if (!IsShooting)
+                    if (!IsShooting && angleToPlayer < shootAngle)
                     {
                         StartCoroutine(shoot());
                     }
+
+                    agent.stoppingDistance = originalStoppingDist;
+
+                    return true;
                 }
 
-                return true;
+                
             }
         }
+        agent.stoppingDistance = 0;
         return false;
     }
 
@@ -156,6 +195,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+            agent.stoppingDistance = 0;
         }
     }
 
@@ -176,8 +216,15 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         HP -= amount;
         updateEnemyUI();
-        agent.SetDestination(GameManager.instance.player.transform.position);
+        
         StartCoroutine(flashDamageColor());
+
+        if(someCo != null)
+        {
+            StopCoroutine(someCo);
+            isRoaming = false;
+        }
+        agent.SetDestination(GameManager.instance.player.transform.position);
 
         if (HP <= 0)
         {
@@ -236,7 +283,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         yield return new WaitForSeconds(animationLength);
 
-        if (isSpider)
+        if (isLargeSpider)
         {
             for (int i = 0; i < numberOfMiniSpiders; i++)
             {

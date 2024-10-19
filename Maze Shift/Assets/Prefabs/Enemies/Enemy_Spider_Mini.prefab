@@ -1435,15 +1435,18 @@ MonoBehaviour:
   HP: 2
   rotateSpeed: 15
   sightLineAngle: 360
+  roamDistance: 25
+  roamPauseTime: 2
   bullet: {fileID: 828808059952435433, guid: 27441f83b28bb9441bff875846045f79, type: 3}
   shootDistance: 8
   shootRate: 4
+  shootAngle: 15
   gravity: 1
   groundCheckDistance: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 4294967295
-  isSpider: 0
+  isLargeSpider: 0
   miniSpiderPrefab: {fileID: 0}
   numberOfMiniSpiders: 0
   spawnRadius: 0
@@ -1509,8 +1512,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.25
-  m_Height: 3.25
+  m_Radius: 3.35
+  m_Height: 3
   m_Direction: 2
   m_Center: {x: 0, y: 0.85, z: -0.35}
 --- !u!135 &4584377388886253969
@@ -1532,7 +1535,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 120
+  m_Radius: 180
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5898658877752592533
 GameObject:

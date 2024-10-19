@@ -455,15 +455,18 @@ MonoBehaviour:
   HP: 12
   rotateSpeed: 15
   sightLineAngle: 180
+  roamDistance: 35
+  roamPauseTime: 5
   bullet: {fileID: 2547732746625949496, guid: 556077809f94f6c40bd37944424d5eda, type: 3}
   shootDistance: 25
   shootRate: 2
+  shootAngle: 25
   gravity: 1
   groundCheckDistance: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 4294967295
-  isSpider: 1
+  isLargeSpider: 1
   miniSpiderPrefab: {fileID: 5651169987988406070, guid: 0bc2ac8401d595d4caa975eeae1a78fd, type: 3}
   numberOfMiniSpiders: 4
   spawnRadius: 2
@@ -498,7 +501,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 3.65
-  m_Speed: 8
+  m_Speed: 4.5
   m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 120
