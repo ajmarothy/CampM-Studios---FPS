@@ -35,11 +35,15 @@ public class ButtonFunctions : MonoBehaviour
     }
 
 
-    public void OpenSettingsMenu()
+    public void OpenSettingsPause()
     {
-        GameManager.instance.OpenSettings();
+        GameManager.instance.OpenSettings("pause");
     }
 
+    public void OpenSettingsLose()
+    {
+        GameManager.instance.OpenSettings("lose");
+    }
 
     public void CloseSettingsMenu()
     {

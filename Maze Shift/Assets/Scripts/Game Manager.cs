@@ -18,7 +18,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject settingsMenu;
     [SerializeField] TMP_Text exitLevelText;
     [SerializeField] TMP_Text enemyCounterText;
-
+    
+    public PlayerController playerScript;
     public Image playerHPBar;
     public TMP_Text playerHPValue;
     public GameObject playerDamageScreen;
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     public bool isPaused;
     int enemyCounter;
     float timeScaleOG;
+    string previousMenu;
 
     bool GetPause()
     {
@@ -51,6 +53,7 @@ public class GameManager : MonoBehaviour
         instance = this;
         timeScaleOG = Time.timeScale;
         player = GameObject.FindWithTag("Player");
+        playerScript = player.GetComponent<PlayerController>();
         exitLevelText.enabled = false;
     }
 
@@ -111,15 +114,16 @@ public class GameManager : MonoBehaviour
         menuActive.SetActive(true);
     }
 
-    public void OpenSettings()
+    public void OpenSettings(string fromMenu)
     {
         //this method will open the settings menu
         settingsMenu.SetActive(true);
-        if (pauseMenu)
+        previousMenu = fromMenu;
+        if (fromMenu == "pause")
         {
             pauseMenu.SetActive(false);
         }
-        if (loseMenu)
+        else if (fromMenu == "lose")
         {
             loseMenu.SetActive(false);
         }
@@ -128,23 +132,14 @@ public class GameManager : MonoBehaviour
     public void CloseSettings()
     {
         settingsMenu.SetActive(false);
-        if (pauseMenu)
+        if(previousMenu == "pause")
         {
             pauseMenu.SetActive(true);
         }
-        if (loseMenu)
+        else if (previousMenu == "lose")
         {
             loseMenu.SetActive(true);
         }
-    }
-
-    public void LoadSettings()
-    {
-        float savedVolume = PlayerPrefs.GetFloat("Volume", 1.0f);
-        int savedQuality = PlayerPrefs.GetInt("GraphicsQuality", 2);
-        int savedDifficulty = PlayerPrefs.GetInt("GameDifficulty", 2); // 1, 2 ,3 to set easy to hard; default normale
-        gameSettings.SetVolume(savedVolume);
-        gameSettings.SetGraphicsQuality(savedQuality);
     }
 
     public void ApplySettings()
@@ -162,5 +157,14 @@ public class GameManager : MonoBehaviour
     public void ChooseDifficulty(int difficulty)
     {
         gameSettings.SetDifficulty(difficulty);
+    }
+
+    public void LoadSettings()
+    {
+        float savedVolume = PlayerPrefs.GetFloat("Volume", 1.0f);
+        int savedQuality = PlayerPrefs.GetInt("GraphicsQuality", 2);
+        int savedDifficulty = PlayerPrefs.GetInt("GameDifficulty", 2); // 1, 2 ,3 to set easy to hard; default normale
+        gameSettings.SetVolume(savedVolume);
+        gameSettings.SetGraphicsQuality(savedQuality);
     }
 }

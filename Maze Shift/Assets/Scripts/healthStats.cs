@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class healthStats : MonoBehaviour
+public class healthStats : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject health;
+    public GameObject healthPlus;
+    public GameObject healthHeart;
+    public AudioClip[] healSound;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int playerHP;
+    public int maxHP;
+    public int plusValue;
+    public int heartValue;
+    public int shootDistance;
+    public int healthCurr, healthMax, healthPickup;
+    public float healVolume;
 }

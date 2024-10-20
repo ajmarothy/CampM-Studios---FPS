@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour , IDamage
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreMask;
 
+    [SerializeField] List<healthStats> healthInv = new List<healthStats>();
     [SerializeField] int HP;
     [SerializeField] float speed;
     [SerializeField] float sprintMod;
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour , IDamage
     bool isShooting;
     bool isSprinting;
     int originalPlayerHP;
+
 
     Vector3 moveDir;
     Vector3 playerVel;
@@ -134,5 +136,14 @@ public class PlayerController : MonoBehaviour , IDamage
         GameManager.instance.playerDamageScreen.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         GameManager.instance.playerDamageScreen.SetActive(false);
+    }
+
+    public void GetHealth(healthStats health)
+    {
+        healthInv.Add(health);
+        updatePlayerUI();
+
+        HP = health.playerHP;
+
     }
 }
