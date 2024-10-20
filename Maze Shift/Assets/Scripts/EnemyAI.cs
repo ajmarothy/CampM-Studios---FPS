@@ -233,7 +233,6 @@ public class EnemyAI : MonoBehaviour, IDamage
             agent.speed = 0;
             animator.SetTrigger("deathTrigger");
             StartCoroutine(waitForDeathAnimation());
-            GameManager.instance.UpdateGameGoal(-1);  // Delete line once all animations are done
         }
     }
 
@@ -287,7 +286,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
 
         Destroy(gameObject);
-        //GameManager.instance.UpdateGameGoal(-1);   Uncomment once all animations are finished
+        GameManager.instance.UpdateGameGoal(-1);
     }
 
     public int EnemyDifficulty(int difficulty)
