@@ -98,8 +98,11 @@ public class GameManager : MonoBehaviour
 
     public void UpdateGameGoal(int amount)
     {
+    
         enemyCounter += amount;
+        enemyCounter = Mathf.Max(enemyCounter, 0);
         enemyCounterText.text = enemyCounter.ToString("F0");
+
         if (enemyCounter <= 0)
         {
             exitLevelText.enabled = true;
