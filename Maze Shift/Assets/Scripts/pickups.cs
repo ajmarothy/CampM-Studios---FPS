@@ -5,7 +5,7 @@ using UnityEngine;
 public class pickups : MonoBehaviour
 {
     [SerializeField] gunStats gun;
-    [SerializeField] healthStat health;
+    //[SerializeField] healthStat health;
 
     // Start is called before the first frame update
     void Start()

@@ -77,6 +77,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+        animator.SetFloat("Speed", agent.velocity.normalized.magnitude);
 
         ApplyGravity();
 
@@ -94,7 +95,7 @@ public class EnemyAI : MonoBehaviour, IDamage
                 someCo = StartCoroutine(roam());
             }
         }
-        enemyAnimation();
+        
 
 
     }
@@ -228,9 +229,11 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
+            
+            agent.speed = 0;
             animator.SetTrigger("deathTrigger");
             StartCoroutine(waitForDeathAnimation());
-            GameManager.instance.UpdateGameGoal(-1);
+            GameManager.instance.UpdateGameGoal(-1);  // Delete line once all animations are done
         }
     }
 
@@ -261,20 +264,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
     }
 
-    void enemyAnimation()
-    {
-        if (Vector3.Distance(lastPosition, transform.position) > 0.005f)
-        {
-            animator.SetBool("isWalking", true);
-            Debug.Log("Switching to walking animation");
-        }
-        else
-        {
-            animator.SetBool("isWalking", false);
-            Debug.Log("Switching to idle animation");
-        }
-        lastPosition = transform.position;
-    }
+   
 
     IEnumerator waitForDeathAnimation()
     {
@@ -297,6 +287,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
 
         Destroy(gameObject);
+        //GameManager.instance.UpdateGameGoal(-1);   Uncomment once all animations are finished
     }
 
     public int EnemyDifficulty(int difficulty)
