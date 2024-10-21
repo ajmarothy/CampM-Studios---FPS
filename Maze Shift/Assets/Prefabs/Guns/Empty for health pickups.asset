@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39ca22bd3f4531d48b646f90549597ed, type: 3}
-  m_Name: Gun - Rifel
+  m_Name: Empty for health pickups
   m_EditorClassIdentifier: 
-  gunModel: {fileID: 5571641588984482722, guid: c303a18f1cbdd4156b139b9e5b35d6a9, type: 3}
+  gunModel: {fileID: 0}
   hitEffect: {fileID: 0}
   shootSound: []
-  shootDamage: 2
-  shootDistance: 100
+  shootDamage: 0
+  shootDistance: 0
   ammoCurr: 0
-  ammoMax: 25
+  ammoMax: 0
   ammoPickup: 0
-  shootRate: 1
+  shootRate: 0
   reloadTime: 0
   shootVol: 0

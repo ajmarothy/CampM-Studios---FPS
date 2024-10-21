@@ -15,12 +15,15 @@ public class PlayerController : MonoBehaviour , IDamage
     [SerializeField] int gravity;
     [SerializeField] int jumpMax;
 
+    [SerializeField] List<gunStats> gunList = new List<gunStats>();
     [SerializeField] GameObject gunModel;
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
     [SerializeField] float recoilAmount;
-    
+
+
+    int selectedGunPos;
     int jumpCount;
     bool isShooting;
     bool isSprinting;
@@ -43,7 +46,12 @@ public class PlayerController : MonoBehaviour , IDamage
     // Update is called once per frame
     void Update()
     {
-        movement();
+        if (!GameManager.instance.isPaused) 
+        {
+            movement();
+            selectGun();
+        }
+        
         sprint();
     }
 
@@ -146,11 +154,40 @@ public class PlayerController : MonoBehaviour , IDamage
 
     public void getGunStats(gunStats gun)
     {
+        gunList.Add(gun);
+        selectedGunPos = gunList.Count - 1;
+
         shootDamage = gun.shootDamage;
         shootDist = gun.shootDistance;
         shootRate = gun.shootRate;
+        recoilAmount = gun.recoilAmount;
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gun.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+    }
+
+    void selectGun()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGunPos < gunList.Count -1)
+        {
+            selectedGunPos++;
+            changeGun();
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGunPos > 0)
+        {
+            selectedGunPos--;
+            changeGun();
+        }
+    }
+
+    void changeGun()
+    {
+        shootDamage = gunList[selectedGunPos].shootDamage;
+        shootDist = gunList[selectedGunPos].shootDistance;
+        shootRate = gunList[selectedGunPos].shootRate;
+        recoilAmount = gunList[selectedGunPos].recoilAmount;
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGunPos].gunModel.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGunPos].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
 }

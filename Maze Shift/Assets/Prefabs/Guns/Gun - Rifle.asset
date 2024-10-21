@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39ca22bd3f4531d48b646f90549597ed, type: 3}
-  m_Name: Gun - Sub Machine Gun
+  m_Name: Gun - Rifle
   m_EditorClassIdentifier: 
-  gunModel: {fileID: 5494625650325380441, guid: 944f765b84e4c4012876d61f4dfc7b5a, type: 3}
+  gunModel: {fileID: 5571641588984482722, guid: c303a18f1cbdd4156b139b9e5b35d6a9, type: 3}
   hitEffect: {fileID: 0}
   shootSound: []
-  shootDamage: 1
-  shootDistance: 50
+  shootDamage: 2
+  shootDistance: 100
   ammoCurr: 0
-  ammoMax: 50
+  ammoMax: 25
   ammoPickup: 0
-  shootRate: 0.25
-  recoilAmount: 2
+  shootRate: 1
+  recoilAmount: 3
   reloadTime: 0
   shootVol: 0

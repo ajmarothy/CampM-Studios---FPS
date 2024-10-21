@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ca22bd3f4531d48b646f90549597ed, type: 3}
   m_Name: Gun - Sniper
   m_EditorClassIdentifier: 
-  gunModel: {fileID: 0}
+  gunModel: {fileID: 4698201593948852689, guid: 185ce04d44da342739f0bef843698e6c, type: 3}
   hitEffect: {fileID: 0}
   shootSound: []
-  shootDamage: 0
-  shootDistance: 0
+  shootDamage: 6
+  shootDistance: 150
   ammoCurr: 0
-  ammoMax: 0
+  ammoMax: 5
   ammoPickup: 0
-  shootRate: 0
+  shootRate: 2
+  recoilAmount: 6
   reloadTime: 0
   shootVol: 0
