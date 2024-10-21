@@ -393,6 +393,8 @@ MonoBehaviour:
   settingsMenu: {fileID: 5752758040835355444}
   exitLevelText: {fileID: 9172211369475732799}
   enemyCounterText: {fileID: 9217997988573423262}
+  ammoCur: {fileID: 8857311775430629170}
+  ammoMax: {fileID: 4850207055504746546}
   playerScript: {fileID: 0}
   playerHPBar: {fileID: 2857380059947670078}
   playerHPValue: {fileID: 8324912674301559907}

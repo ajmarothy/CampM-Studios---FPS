@@ -99,7 +99,10 @@ public class PlayerController : MonoBehaviour , IDamage
         isShooting = true;
 
         gunList[selectedGunPos].ammoCurr--;
-        StartCoroutine(flashMuzzel());
+
+        updatePlayerUI();
+
+        StartCoroutine(flashMuzzle());
 
        
        
@@ -124,7 +127,7 @@ public class PlayerController : MonoBehaviour , IDamage
         
     }
 
-    IEnumerator flashMuzzel()
+    IEnumerator flashMuzzle()
     {
         muzzleFlash.SetActive(true);
         yield return new WaitForSeconds(0.1f);
@@ -153,6 +156,11 @@ public class PlayerController : MonoBehaviour , IDamage
     {
         GameManager.instance.playerHPBar.fillAmount = (float)HP / originalPlayerHP;
         GameManager.instance.playerHPValue.text = (((float)HP / originalPlayerHP) * 100f).ToString("F0") + "%";
+        if (gunList.Count > 0)
+        {
+            GameManager.instance.ammoMax.text = gunList[selectedGunPos].ammoMax.ToString("F0");
+            GameManager.instance.ammoCur.text = gunList[selectedGunPos].ammoCurr.ToString("F0");
+        }
     }
 
     IEnumerator damageFlash()
@@ -171,7 +179,9 @@ public class PlayerController : MonoBehaviour , IDamage
     public void getGunStats(gunStats gun)
     {
         gunList.Add(gun);
+        
         selectedGunPos = gunList.Count - 1;
+        updatePlayerUI();
 
         shootDamage = gun.shootDamage;
         shootDist = gun.shootDistance;
@@ -187,17 +197,20 @@ public class PlayerController : MonoBehaviour , IDamage
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGunPos < gunList.Count -1)
         {
             selectedGunPos++;
+            updatePlayerUI();
             changeGun();
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGunPos > 0)
         {
             selectedGunPos--;
+            updatePlayerUI();
             changeGun();
         }
     }
 
     void changeGun()
     {
+        updatePlayerUI();
         shootDamage = gunList[selectedGunPos].shootDamage;
         shootDist = gunList[selectedGunPos].shootDistance;
         shootRate = gunList[selectedGunPos].shootRate;

@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject settingsMenu;
     [SerializeField] TMP_Text exitLevelText;
     [SerializeField] TMP_Text enemyCounterText;
+    public TMP_Text ammoCur, ammoMax;
     
     public PlayerController playerScript;
     public Image playerHPBar;
