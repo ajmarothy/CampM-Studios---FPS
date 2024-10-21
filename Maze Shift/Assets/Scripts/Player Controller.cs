@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour , IDamage
     public void updatePlayerUI()
     {
         GameManager.instance.playerHPBar.fillAmount = (float)HP / originalPlayerHP;
-        GameManager.instance.playerHPValue.text = (((float)HP / originalPlayerHP) * 100).ToString();
+        GameManager.instance.playerHPValue.text = (((float)HP / originalPlayerHP) * 100f).ToString("F0") + "%";
     }
 
     IEnumerator damageFlash()
