@@ -21,12 +21,11 @@ public class PlayerController : MonoBehaviour , IDamage
     [SerializeField] int shootDist;
     [SerializeField] float recoilAmount;
     
-    
     int jumpCount;
     bool isShooting;
     bool isSprinting;
     int originalPlayerHP;
-
+    int healthPickup;
 
     Vector3 moveDir;
     Vector3 playerVel;
@@ -143,9 +142,6 @@ public class PlayerController : MonoBehaviour , IDamage
     {
         healthInv.Add(health);
         updatePlayerUI();
-
-        HP = health.playerHP;
-
     }
 
     public void getGunStats(gunStats gun)
