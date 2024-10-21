@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: EnemyStats_Spider_Mini
   m_EditorClassIdentifier: 
   HPStart: 2
-  HPCurrent: -58
+  HPCurrent: -20
   bullet: {fileID: 828808059952435433, guid: 27441f83b28bb9441bff875846045f79, type: 3}
   shootRate: 2
   shootDistance: 20
   shootAngle: 90
   rotateSpeed: 9
-  sightLineAngle: 90
+  sightLineAngle: 180
   roamDistance: 15
   roamPauseTime: 3
   gravity: 1

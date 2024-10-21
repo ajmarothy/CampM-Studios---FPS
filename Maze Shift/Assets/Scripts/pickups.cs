@@ -7,6 +7,11 @@ public class pickups : MonoBehaviour
     [SerializeField] gunStats gun;
     [SerializeField] healthStats health;
 
+
+    private void Start()
+    {
+        gun.ammoCurr = gun.ammoMax;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

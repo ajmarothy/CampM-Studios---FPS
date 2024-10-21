@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour , IDamage
 
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
     [SerializeField] GameObject gunModel;
+    [SerializeField] GameObject muzzleFlash;
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
@@ -75,7 +76,7 @@ public class PlayerController : MonoBehaviour , IDamage
         playerVel.y -= gravity * Time.deltaTime;
         controller.Move(playerVel * Time.deltaTime);
 
-        if(Input.GetButton("Fire1") && !GameManager.instance.isPaused && !isShooting)
+        if (Input.GetButton("Fire1") && !GameManager.instance.isPaused && !isShooting && gunList.Count > 0 && gunList[selectedGunPos].ammoCurr > 0)
         {
             StartCoroutine(shoot());
         }
@@ -97,10 +98,18 @@ public class PlayerController : MonoBehaviour , IDamage
     {
         isShooting = true;
 
+        gunList[selectedGunPos].ammoCurr--;
+        StartCoroutine(flashMuzzel());
+
+       
+       
+
         RaycastHit hit;
         if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreMask))
         {
             IDamage dmg = hit.collider.GetComponent<IDamage>();
+
+            Instantiate(gunList[selectedGunPos].hitEffect, hit.point, Quaternion.identity);
 
             if(dmg != null)
             {
@@ -113,6 +122,13 @@ public class PlayerController : MonoBehaviour , IDamage
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
         
+    }
+
+    IEnumerator flashMuzzel()
+    {
+        muzzleFlash.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        muzzleFlash.SetActive(false);
     }
 
     public void applyRecoil()

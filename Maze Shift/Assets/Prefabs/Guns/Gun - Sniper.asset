@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Gun - Sniper
   m_EditorClassIdentifier: 
   gunModel: {fileID: 4698201593948852689, guid: 185ce04d44da342739f0bef843698e6c, type: 3}
-  hitEffect: {fileID: 0}
+  hitEffect: {fileID: 5024009746357069192, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
   shootSound: []
   shootDamage: 10
   shootDistance: 100
-  ammoCurr: 0
+  ammoCurr: 1
   ammoMax: 5
   ammoPickup: 0
   shootRate: 2
