@@ -84,31 +84,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ab7e7e457ec9c48a871ab320e44010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyStats: {fileID: 11400000, guid: 54d5c3c1fbaa74944af11b6dad9de01e, type: 2}
   enemyHPBar: {fileID: 3079590155037444280}
   agent: {fileID: 4329189260275544073}
   model: {fileID: 2591075135752654292}
   shootPos: {fileID: 3843554811336876693}
   headPos: {fileID: 4409555566052615415}
   animator: {fileID: 4869981856529541597}
-  enemyDifficulty: 0
-  HP: 10
-  rotateSpeed: 40
-  sightLineAngle: 90
-  roamDistance: 30
-  roamPauseTime: 4
-  bullet: {fileID: 3579590406932167635, guid: 3883dce2203220240a4c871077e6848d, type: 3}
-  shootDistance: 2
-  shootRate: 1
-  shootAngle: 40
-  gravity: 3
-  groundCheckDistance: 1
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  isLargeSpider: 0
-  miniSpiderPrefab: {fileID: 0}
-  numberOfMiniSpiders: 0
-  spawnRadius: 0
 --- !u!195 &4329189260275544073
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -129,7 +111,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!95 &4869981856529541597
 Animator:

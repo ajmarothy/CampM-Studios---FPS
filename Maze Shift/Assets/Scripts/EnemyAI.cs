@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour, IDamage
 {
+    [SerializeField] EnemyStats enemyStats;
+
     [SerializeField] Image enemyHPBar;
 
     [SerializeField] NavMeshAgent agent;
@@ -15,29 +17,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPos;
     [SerializeField] Animator animator;
 
-    [SerializeField] int enemyDifficulty;
-    [SerializeField] int HP;
-    [SerializeField] int rotateSpeed;
-    [SerializeField] int sightLineAngle;
-    [SerializeField] int roamDistance;
-    [SerializeField] int roamPauseTime;
-
-    [SerializeField] GameObject bullet;
-    [SerializeField] float shootDistance;
-    [SerializeField] float shootRate;
-    [SerializeField] int shootAngle;
-    [SerializeField] float gravity;
-    [SerializeField] float groundCheckDistance;
-    [SerializeField] LayerMask groundLayer;
-
-    [SerializeField] bool isLargeSpider;
-    [SerializeField] GameObject miniSpiderPrefab; //smaller spider prefab
-    [SerializeField] int numberOfMiniSpiders; //amount of spiders to spawn
-    [SerializeField] float spawnRadius; 
-
     bool IsShooting;
     bool playerInRange;
-    int originalEnemyHP;
     bool isRoaming;
 
     float angleToPlayer;
@@ -46,25 +27,24 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     Vector3 playerDir;
     Vector3 lastPosition;
-
     Color colorOriginal;
 
     Coroutine someCo;
 
     public int GetOGhp()
     {
-        return originalEnemyHP;
+        return enemyStats.HPStart;
     }
 
     public int GetHP()
     {
-        return HP;
+        return enemyStats.HPCurrent;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        originalEnemyHP = HP;
+        enemyStats.HPCurrent = enemyStats.HPStart;
         updateEnemyUI();
 
         colorOriginal = model.material.color;
@@ -103,14 +83,14 @@ public class EnemyAI : MonoBehaviour, IDamage
     IEnumerator roam()
     {
         isRoaming = true;
-        yield return new WaitForSeconds(roamPauseTime);
+        yield return new WaitForSeconds(enemyStats.roamPauseTime);
 
         agent.stoppingDistance = 0;
-        Vector3 randomDistance = Random.insideUnitSphere * roamDistance;
+        Vector3 randomDistance = Random.insideUnitSphere * enemyStats.roamDistance;
         randomDistance += lastPosition;
 
         NavMeshHit hit;
-        NavMesh.SamplePosition(randomDistance, out hit, roamDistance, 1);
+        NavMesh.SamplePosition(randomDistance, out hit, enemyStats.roamDistance, 1);
         agent.SetDestination(hit.position);
 
         isRoaming = false;
@@ -119,7 +99,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void ApplyGravity()
     {
-        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
+        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, enemyStats.groundCheckDistance, enemyStats.groundLayer);
 
         if (isGrounded)
         {
@@ -127,7 +107,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
         else
         {
-            verticalVel += gravity * Time.deltaTime; // Apply gravity when not grounded
+            verticalVel += enemyStats.gravity * Time.deltaTime; // Apply gravity when not grounded
         }
 
         // Move the agent with the vertical velocity
@@ -145,13 +125,13 @@ public class EnemyAI : MonoBehaviour, IDamage
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
-            if (hit.collider.CompareTag("Player") && angleToPlayer <= sightLineAngle)
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= enemyStats.sightLineAngle)
             {
 
                 float distanceToPlayer = Vector3.Distance(transform.position, GameManager.instance.player.transform.position);
                 agent.SetDestination(GameManager.instance.player.transform.position);
 
-                if (distanceToPlayer <= shootDistance)
+                if (distanceToPlayer <= enemyStats.shootDistance)
                 {
                     
 
@@ -160,7 +140,7 @@ public class EnemyAI : MonoBehaviour, IDamage
                         faceTarget();
                     }
 
-                    if (!IsShooting && angleToPlayer < shootAngle)
+                    if (!IsShooting && angleToPlayer < enemyStats.shootAngle)
                     {
                         StartCoroutine(shoot());
                     }
@@ -180,7 +160,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     void faceTarget()
     {
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * rotateSpeed);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * enemyStats.rotateSpeed);
     }
 
     void OnTriggerEnter(Collider other)
@@ -205,9 +185,9 @@ public class EnemyAI : MonoBehaviour, IDamage
         IsShooting = true;
 
         animator.SetTrigger("attackTrigger");
-        Instantiate(bullet, shootPos.position, transform.rotation);
+        Instantiate(enemyStats.bullet, shootPos.position, transform.rotation);
 
-        yield return new WaitForSeconds(shootRate);
+        yield return new WaitForSeconds(enemyStats.shootRate);
 
         IsShooting = false;
     }
@@ -215,7 +195,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public void takeDamage(int amount)
     {
-        HP -= amount;
+        enemyStats.HPCurrent -= amount;
         updateEnemyUI();
         
         StartCoroutine(flashDamageColor());
@@ -227,7 +207,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
         agent.SetDestination(GameManager.instance.player.transform.position);
 
-        if (HP <= 0)
+        if (enemyStats.HPCurrent <= 0)
         {
             
             agent.speed = 0;
@@ -246,14 +226,14 @@ public class EnemyAI : MonoBehaviour, IDamage
     public void updateEnemyUI()
     {
         //GameManager.instance.enemyHPValue.text = (((float)HP / originalEnemyHP) * 100).ToString();
-        enemyHPBar.fillAmount = (float)HP / originalEnemyHP;
+        enemyHPBar.fillAmount = (float)enemyStats.HPCurrent / enemyStats.HPStart;
     }
 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         
-        Gizmos.DrawWireSphere(transform.position, shootDistance);
+        Gizmos.DrawWireSphere(transform.position, enemyStats.shootDistance);
 
         if (GameManager.instance != null && GameManager.instance.player != null)
         {
@@ -272,15 +252,15 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         yield return new WaitForSeconds(animationLength);
 
-        if (isLargeSpider)
+        if (enemyStats.isLargeSpider)
         {
-            for (int i = 0; i < numberOfMiniSpiders; i++)
+            for (int i = 0; i < enemyStats.numberOfMiniSpiders; i++)
             {
 
-                Vector3 spawnPosition = transform.position + Random.insideUnitSphere * spawnRadius;
+                Vector3 spawnPosition = transform.position + Random.insideUnitSphere * enemyStats.spawnRadius;
                 spawnPosition.y = transform.position.y; //keeping height of orignal spider
 
-                Instantiate(miniSpiderPrefab, spawnPosition, Quaternion.identity);
+                Instantiate(enemyStats.miniSpiderPrefab, spawnPosition, Quaternion.identity);
             }
         }
 
@@ -294,16 +274,16 @@ public class EnemyAI : MonoBehaviour, IDamage
         difficulty = GameManager.instance.gameSettings.GetDifficulty();
         if(difficulty == 3)
         {
-            HP *= 2;
-            shootRate *= 2;
-            shootDistance *= 2;
+            enemyStats.HPCurrent *= 2;
+            enemyStats.shootRate *= 2;
+            enemyStats.shootDistance *= 2;
             // increase move speed like full time sprint
         }
         else if(difficulty == 1)
         {
-            HP /= 2;
-            shootRate /= 2;
-            shootDistance /= 2;
+            enemyStats.HPCurrent /= 2;
+            enemyStats.shootRate /= 2;
+            enemyStats.shootDistance /= 2;
             // move speed stays at normal speed
         }
         return difficulty;

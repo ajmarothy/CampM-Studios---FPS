@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3538893150555005139}
   - component: {fileID: 5040498277222595421}
   - component: {fileID: 7853847743833042909}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy_RedGolem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,31 +50,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ab7e7e457ec9c48a871ab320e44010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyStats: {fileID: 11400000, guid: 45659df57314a1141a393e60818cf694, type: 2}
   enemyHPBar: {fileID: 7404247934868828524}
   agent: {fileID: 9121314162234109204}
   model: {fileID: 3538893150555005139}
   shootPos: {fileID: 4821082998624616554}
   headPos: {fileID: 4821082998624616548}
   animator: {fileID: 4821082998615371656}
-  enemyDifficulty: 0
-  HP: 50
-  rotateSpeed: 20
-  sightLineAngle: 70
-  roamDistance: 7
-  roamPauseTime: 4
-  bullet: {fileID: 1770451857398571712, guid: 26710d80fbcd80646a0fffea501720c9, type: 3}
-  shootDistance: 40
-  shootRate: 1
-  shootAngle: 1
-  gravity: 1
-  groundCheckDistance: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  isLargeSpider: 0
-  miniSpiderPrefab: {fileID: 0}
-  numberOfMiniSpiders: 0
-  spawnRadius: 0
 --- !u!195 &9121314162234109204
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -181,7 +163,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 15
+  m_Radius: 36
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &4821082998624754408
 PrefabInstance:

@@ -467,31 +467,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ab7e7e457ec9c48a871ab320e44010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyStats: {fileID: 11400000, guid: dec7eb45be821c5498a6b6543f0af803, type: 2}
   enemyHPBar: {fileID: 4648965859366569210}
   agent: {fileID: 6928564969280542025}
   model: {fileID: 5254383075470886112}
   shootPos: {fileID: 4350708064425639791}
   headPos: {fileID: 4521432197904606495}
   animator: {fileID: 6450944381770993869}
-  enemyDifficulty: 0
-  HP: 8
-  rotateSpeed: 15
-  sightLineAngle: 180
-  roamDistance: 40
-  roamPauseTime: 4
-  bullet: {fileID: 2547732746625949496, guid: 556077809f94f6c40bd37944424d5eda, type: 3}
-  shootDistance: 15
-  shootRate: 2
-  shootAngle: 20
-  gravity: 1
-  groundCheckDistance: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  isLargeSpider: 0
-  miniSpiderPrefab: {fileID: 0}
-  numberOfMiniSpiders: 0
-  spawnRadius: 0
 --- !u!95 &6450944381770993869
 Animator:
   serializedVersion: 5
