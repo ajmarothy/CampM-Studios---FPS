@@ -15,8 +15,8 @@ MonoBehaviour:
   gunModel: {fileID: 4698201593948852689, guid: 185ce04d44da342739f0bef843698e6c, type: 3}
   hitEffect: {fileID: 0}
   shootSound: []
-  shootDamage: 6
-  shootDistance: 150
+  shootDamage: 10
+  shootDistance: 100
   ammoCurr: 0
   ammoMax: 5
   ammoPickup: 0

@@ -12,21 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f018661b75e4f4a9f7950712bcd681, type: 3}
   m_Name: EnemyStats_RedGolem
   m_EditorClassIdentifier: 
-  HPStart: 0
-  HPCurrent: 0
-  bullet: {fileID: 0}
-  shootRate: 0
-  shootDistance: 0
-  shootAngle: 0
-  rotateSpeed: 0
-  sightLineAngle: 0
-  roamDistance: 0
-  roamPauseTime: 0
-  gravity: 0
+  HPStart: 45
+  HPCurrent: -5
+  bullet: {fileID: 1770451857398571712, guid: 26710d80fbcd80646a0fffea501720c9, type: 3}
+  shootRate: 1.5
+  shootDistance: 40
+  shootAngle: 90
+  rotateSpeed: 8
+  sightLineAngle: 80
+  roamDistance: 10
+  roamPauseTime: 3
+  gravity: 1
   groundCheckDistance: 0
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   isLargeSpider: 0
   miniSpiderPrefab: {fileID: 0}
   numberOfMiniSpiders: 0
