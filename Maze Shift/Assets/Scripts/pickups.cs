@@ -5,20 +5,15 @@ using UnityEngine;
 public class pickups : MonoBehaviour
 {
     [SerializeField] gunStats gun;
-    //[SerializeField] healthStats health;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //health.healthCurr = 0;
-        
-    }
+    [SerializeField] healthStats health;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             GameManager.instance.playerScript.getGunStats(gun);
+            Destroy(gameObject);
+            GameManager.instance.playerScript.GetHealth(health);
             Destroy(gameObject);
         }
     }
