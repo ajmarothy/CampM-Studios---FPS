@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: EnemyStats_RedGolem
   m_EditorClassIdentifier: 
   HPStart: 45
-  HPCurrent: -5
+  HPCurrent: -3
   bullet: {fileID: 1770451857398571712, guid: 26710d80fbcd80646a0fffea501720c9, type: 3}
   shootRate: 1.5
   shootDistance: 40
   shootAngle: 90
   rotateSpeed: 8
   sightLineAngle: 80
-  roamDistance: 10
+  roamDistance: 0
   roamPauseTime: 3
   gravity: 1
   groundCheckDistance: 0

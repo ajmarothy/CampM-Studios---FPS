@@ -144,6 +144,8 @@ public class PlayerController : MonoBehaviour , IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
+        HP = Mathf.Max(HP, 0);
+    
         updatePlayerUI();
         StartCoroutine(damageFlash());
         if(HP <= 0)
