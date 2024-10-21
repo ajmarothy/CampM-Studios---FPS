@@ -17,6 +17,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPos;
     [SerializeField] Animator animator;
 
+    private int HPCurrent;
+
     bool IsShooting;
     bool playerInRange;
     bool isRoaming;
@@ -38,13 +40,13 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public int GetHP()
     {
-        return enemyStats.HPCurrent;
+        return HPCurrent;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        enemyStats.HPCurrent = enemyStats.HPStart;
+        HPCurrent = enemyStats.HPStart;
         updateEnemyUI();
 
         colorOriginal = model.material.color;
@@ -195,7 +197,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public void takeDamage(int amount)
     {
-        enemyStats.HPCurrent -= amount;
+        HPCurrent -= amount;
         updateEnemyUI();
         
         StartCoroutine(flashDamageColor());
@@ -207,7 +209,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
         agent.SetDestination(GameManager.instance.player.transform.position);
 
-        if (enemyStats.HPCurrent <= 0)
+        if (HPCurrent <= 0)
         {
             
             agent.speed = 0;
@@ -226,7 +228,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     public void updateEnemyUI()
     {
         //GameManager.instance.enemyHPValue.text = (((float)HP / originalEnemyHP) * 100).ToString();
-        enemyHPBar.fillAmount = (float)enemyStats.HPCurrent / enemyStats.HPStart;
+        enemyHPBar.fillAmount = (float)HPCurrent / enemyStats.HPStart;
     }
 
     void OnDrawGizmos()
@@ -274,14 +276,14 @@ public class EnemyAI : MonoBehaviour, IDamage
         difficulty = GameManager.instance.gameSettings.GetDifficulty();
         if(difficulty == 3)
         {
-            enemyStats.HPCurrent *= 2;
+            HPCurrent *= 2;
             enemyStats.shootRate *= 2;
             enemyStats.shootDistance *= 2;
             // increase move speed like full time sprint
         }
         else if(difficulty == 1)
         {
-            enemyStats.HPCurrent /= 2;
+            HPCurrent /= 2;
             enemyStats.shootRate /= 2;
             enemyStats.shootDistance /= 2;
             // move speed stays at normal speed
