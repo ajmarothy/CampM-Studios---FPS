@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8a8864789baa39458615b89985a9824, type: 3}
-  m_Name: Health - Heart
+  m_Name: Health - Spring
   m_EditorClassIdentifier: 
-  health: {fileID: 8820321925950358457, guid: 96f30e5cd9c25914c9ef3fbebca63ac2, type: 3}
+  health: {fileID: 4623536360137790267, guid: b19882f06c8de1244acbc82dd38f9f53, type: 3}
   healSound: []
-  healValue: 5
+  healValue: 50
   healVolume: 0
