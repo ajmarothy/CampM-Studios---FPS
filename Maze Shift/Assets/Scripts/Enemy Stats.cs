@@ -24,4 +24,10 @@ public class EnemyStats : ScriptableObject
     public GameObject miniSpiderPrefab;
     public int numberOfMiniSpiders;
     public float spawnRadius;
+
+    public enum AttackType { Bullet, Chaser, Lobbed }
+    public AttackType attackType; 
+
+    public int damageAmount; //damage dealt by the enemy
+    public float speed; //speed for chaser or bullet
 }

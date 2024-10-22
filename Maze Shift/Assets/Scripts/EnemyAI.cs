@@ -187,7 +187,30 @@ public class EnemyAI : MonoBehaviour, IDamage
         IsShooting = true;
 
         animator.SetTrigger("attackTrigger");
-        Instantiate(enemyStats.bullet, shootPos.position, transform.rotation);
+
+        GameObject projectile = Instantiate(enemyStats.bullet, shootPos.position, transform.rotation);
+        Damage damageComponent = projectile.GetComponent<Damage>();
+
+        if (damageComponent != null)
+        {
+            Vector3 targetPosition = GameManager.instance.player.transform.position;
+
+            // Set the damage type based on enemy's attack type
+            switch (enemyStats.attackType)
+            {
+                case EnemyStats.AttackType.Chaser:
+                    damageComponent.Initialize(targetPosition, Damage.damageType.chaser);
+                    break;
+
+                case EnemyStats.AttackType.Lobbed:
+                    damageComponent.Initialize(targetPosition, Damage.damageType.lobbed);
+                    break;
+
+                case EnemyStats.AttackType.Bullet:
+                    damageComponent.Initialize(targetPosition, Damage.damageType.bullet);
+                    break;
+            }
+        }
 
         yield return new WaitForSeconds(enemyStats.shootRate);
 
