@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour , IDamage
     int jumpCount;
     bool isShooting;
     bool isSprinting;
+    bool isReloading;
 
     Vector3 moveDir;
     Vector3 playerVel;
@@ -54,21 +55,18 @@ public class PlayerController : MonoBehaviour , IDamage
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.instance.GetPause()) 
+        if (!GameManager.instance.GetPause())
         {
             movement();
             selectGun();
-        }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            UseHealth();
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            StopCoroutine(shoot());
-            // diable fire input
-            Reload();
-            // enable fire input
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                UseHealth();
+            }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Reload();
+            }
         }
         sprint();
     }
@@ -96,9 +94,8 @@ public class PlayerController : MonoBehaviour , IDamage
         transform.position = GameManager.instance.getSpawnPos().transform.position;
         controller.enabled = true;
         HP = originalPlayerHP;
-        
+        updatePlayerUI();
     }
-
 
 
     #region Player Controls
@@ -120,11 +117,7 @@ public class PlayerController : MonoBehaviour , IDamage
         }
         playerVel.y -= gravity * Time.deltaTime;
         controller.Move(playerVel * Time.deltaTime);
-
-        if (Input.GetButton("Fire1") && !GameManager.instance.GetPause() && !isShooting && gunList.Count > 0 && gunList[selectedGunPos].ammoCurr > 0)
-        {
-            StartCoroutine(shoot());
-        }
+        Shooting();
     }
 
     void sprint()
@@ -157,7 +150,6 @@ public class PlayerController : MonoBehaviour , IDamage
         StartCoroutine(damageFlash());
         if (HP <= 0)
         {
-            HP = 0;
             GameManager.instance.YouLose();
         }
     }
@@ -171,13 +163,18 @@ public class PlayerController : MonoBehaviour , IDamage
 
     public void UseHealth()
     {
-        if(healthInv.Count > 0)
+        if (healthInv.Count > 0 && HP < originalPlayerHP)
         {
             healthStats health = healthInv[0];
             health.Heal(this);
             healthInv.RemoveAt(0);
+            health.healItem--;
             Debug.Log("Used healing item: " + health.itemName);
             updatePlayerUI();
+        }
+        else if (healthInv.Count > 0 && HP == originalPlayerHP)
+        {
+            Debug.Log("Player does not need any health.");
         }
         else
         {
@@ -246,6 +243,14 @@ public class PlayerController : MonoBehaviour , IDamage
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGunPos].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
 
+    void Shooting()
+    {
+        if (Input.GetButton("Fire1") && !GameManager.instance.GetPause() && !isReloading && gunList.Count > 0 && gunList[selectedGunPos].ammoCurr > 0 && !isShooting)
+        {
+            StartCoroutine(shoot());
+        }
+    }
+
     void Reload()
     {
         if (gunList.Count > 0)
@@ -275,6 +280,7 @@ public class PlayerController : MonoBehaviour , IDamage
             Instantiate(gunList[selectedGunPos].hitEffect, hit.point, Quaternion.identity);
             if (dmg != null)
             {
+                // add the Vector3.zero once directional damage is applied
                 dmg.takeDamage(shootDamage);
             }
         }
@@ -300,7 +306,7 @@ public class PlayerController : MonoBehaviour , IDamage
     IEnumerator ReloadRoutine(gunStats gun)
     {
         isShooting = false; // stop shooting
-        StopCoroutine(shoot());
+        isReloading = true;
         // add UI message for reloading (orange and flashed over reticle)
         if (flashreload != null)
         {
@@ -323,7 +329,7 @@ public class PlayerController : MonoBehaviour , IDamage
 
         gunModel.SetActive(true);
         updatePlayerUI();
-        shoot();
+        isReloading = false;
     }
 
     IEnumerator FlashReload()
