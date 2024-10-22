@@ -174,6 +174,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health Spring
       objectReference: {fileID: 0}
+    - target: {fileID: 6169144372471656924, guid: b19882f06c8de1244acbc82dd38f9f53, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6169144372471656924, guid: b19882f06c8de1244acbc82dd38f9f53, type: 3}
+      propertyPath: m_Size.y
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6169144372471656924, guid: b19882f06c8de1244acbc82dd38f9f53, type: 3}
+      propertyPath: m_Size.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6169144372471656924, guid: b19882f06c8de1244acbc82dd38f9f53, type: 3}
+      propertyPath: m_Center.x
+      value: -0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6169144372471656924, guid: b19882f06c8de1244acbc82dd38f9f53, type: 3}
+      propertyPath: m_Center.y
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6169144372471656924, guid: b19882f06c8de1244acbc82dd38f9f53, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -769,6 +793,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b65163634bcdf8141903e6d82ac82d92, type: 3}
+--- !u!1001 &1792641769
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3610933813524266599, guid: ac4ea8464289ebb48a51b266834624c6, type: 3}
+      propertyPath: m_Name
+      value: Enemy_RedGolem
+      objectReference: {fileID: 0}
+    - target: {fileID: 7810481495681276778, guid: ac4ea8464289ebb48a51b266834624c6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.584969
+      objectReference: {fileID: 0}
+    - target: {fileID: 7810481495681276778, guid: ac4ea8464289ebb48a51b266834624c6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7810481495681276778, guid: ac4ea8464289ebb48a51b266834624c6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 15.614874
+      objectReference: {fileID: 0}
+    - target: {fileID: 7810481495681276778, guid: ac4ea8464289ebb48a51b266834624c6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7810481495681276778, guid: ac4ea8464289ebb48a51b266834624c6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7810481495681276778, guid: ac4ea8464289ebb48a51b266834624c6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7810481495681276778, guid: ac4ea8464289ebb48a51b266834624c6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7810481495681276778, guid: ac4ea8464289ebb48a51b266834624c6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7810481495681276778, guid: ac4ea8464289ebb48a51b266834624c6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7810481495681276778, guid: ac4ea8464289ebb48a51b266834624c6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ac4ea8464289ebb48a51b266834624c6, type: 3}
 --- !u!1001 &1955893374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -899,3 +980,4 @@ SceneRoots:
   - {fileID: 1696950152}
   - {fileID: 3457618}
   - {fileID: 105872839}
+  - {fileID: 1792641769}

@@ -14,11 +14,11 @@ public class HealingInteractive : MonoBehaviour
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1f);
             foreach (Collider collider in hitColliders)
             {
-                if (collider.enabled)
+                PlayerController player = collider.GetComponent<PlayerController>();
+                if (player != null)
                 {
-                    GameManager.instance.healRequest.gameObject.SetActive(true);
-                    healingSpring.Heal(GameManager.instance.playerScript);
-                    flashHeal();
+                    healingSpring.Heal(player);
+                    StartCoroutine(flashHeal());
                 }
             }
         }
@@ -31,8 +31,16 @@ public class HealingInteractive : MonoBehaviour
         {
             GameManager.instance.healRequest.gameObject.SetActive(true);
         }
-        else { GameManager.instance.healRequest.gameObject.SetActive(false); }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GameManager.instance.healRequest.gameObject.SetActive(false);
+        }
+    }
+
     IEnumerator flashHeal()
     {
         GameManager.instance.healing.gameObject.SetActive(true);
