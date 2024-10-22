@@ -445,6 +445,7 @@ MonoBehaviour:
   shootRate: 0
   shootDist: 0
   recoilAmount: 0
+  reloadTime: 0
   originalPlayerHP: 0
   healthPickup: 0
   playerCamera: {fileID: 3551625615204466707}
