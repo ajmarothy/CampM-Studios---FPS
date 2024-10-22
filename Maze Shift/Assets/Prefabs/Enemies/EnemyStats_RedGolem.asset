@@ -20,7 +20,7 @@ MonoBehaviour:
   shootAngle: 90
   rotateSpeed: 8
   sightLineAngle: 80
-  roamDistance: 0
+  roamDistance: 15
   roamPauseTime: 3
   gravity: 1
   groundCheckDistance: 0
@@ -31,3 +31,6 @@ MonoBehaviour:
   miniSpiderPrefab: {fileID: 0}
   numberOfMiniSpiders: 0
   spawnRadius: 0
+  attackType: 2
+  damageAmount: 0
+  speed: 0

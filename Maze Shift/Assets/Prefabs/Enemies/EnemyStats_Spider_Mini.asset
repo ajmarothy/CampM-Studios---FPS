@@ -31,3 +31,6 @@ MonoBehaviour:
   miniSpiderPrefab: {fileID: 0}
   numberOfMiniSpiders: 0
   spawnRadius: 0
+  attackType: 1
+  damageAmount: 0
+  speed: 0
