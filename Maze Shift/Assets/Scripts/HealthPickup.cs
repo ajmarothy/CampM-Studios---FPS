@@ -8,16 +8,20 @@ public class HealthPickup : MonoBehaviour
 
     private void Start()
     {
-        health.healthAmount = 0;
+        health.healItem = 0;
         health.healItemMax = 3;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(health.healItem < health.healItemMax)
+        if (other.CompareTag("Player"))
         {
-            GameManager.instance.playerScript.GetHealth(health);
-            Destroy(gameObject);
+            if(health.healItem < health.healItemMax)
+            {
+                GameManager.instance.playerScript.GetHealth(health);
+                health.healItem++;
+                Destroy(gameObject);
+            }
         }
     }
 }

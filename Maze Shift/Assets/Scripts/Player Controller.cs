@@ -64,7 +64,10 @@ public class PlayerController : MonoBehaviour , IDamage
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
+            StopCoroutine(shoot());
+            // diable fire input
             Reload();
+            // enable fire input
         }
         sprint();
     }
@@ -79,7 +82,7 @@ public class PlayerController : MonoBehaviour , IDamage
             GameManager.instance.ammoMax.text = gunList[selectedGunPos].ammoMax.ToString("F0");
             GameManager.instance.ammoCur.text = gunList[selectedGunPos].ammoCurr.ToString("F0");
         }
-        if (healthInv.Count >= 0)
+        if (healthInv.Count > 0)
         {
             GameManager.instance.healItem.text = healthInv.Count.ToString("F0");
         }
@@ -283,7 +286,8 @@ public class PlayerController : MonoBehaviour , IDamage
 
     IEnumerator ReloadRoutine(gunStats gun)
     {
-        isShooting = false;
+        isShooting = false; // stop shooting
+        StopCoroutine(shoot());
         // add UI message for reloading (orange and flashed over reticle)
         if (flashreload != null)
         {

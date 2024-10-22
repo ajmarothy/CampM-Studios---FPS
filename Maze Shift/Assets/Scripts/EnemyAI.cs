@@ -53,7 +53,6 @@ public class EnemyAI : MonoBehaviour, IDamage
         GameManager.instance.UpdateGameGoal(1);
         lastPosition = transform.position;
         originalStoppingDist = agent.stoppingDistance;
-        
     }
 
     // Update is called once per frame
@@ -67,8 +66,6 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             if (!isRoaming && agent.remainingDistance < 0.0f)
                 someCo = StartCoroutine(roam());
-
-
         }
         else if (!playerInRange)
         {
@@ -77,9 +74,6 @@ public class EnemyAI : MonoBehaviour, IDamage
                 someCo = StartCoroutine(roam());
             }
         }
-        
-
-
     }
 
     IEnumerator roam()
@@ -117,7 +111,6 @@ public class EnemyAI : MonoBehaviour, IDamage
         agent.Move(movement * Time.deltaTime);
     }
 
-
     bool canSpotPlayer()
     {
         playerDir = GameManager.instance.player.transform.position - headPos.position;
@@ -129,30 +122,22 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= enemyStats.sightLineAngle)
             {
-
                 float distanceToPlayer = Vector3.Distance(transform.position, GameManager.instance.player.transform.position);
                 agent.SetDestination(GameManager.instance.player.transform.position);
 
                 if (distanceToPlayer <= enemyStats.shootDistance)
                 {
-                    
-
                     if (agent.remainingDistance <= agent.stoppingDistance)
                     {
                         faceTarget();
                     }
-
                     if (!IsShooting && angleToPlayer < enemyStats.shootAngle)
                     {
                         StartCoroutine(shoot());
                     }
-
                     agent.stoppingDistance = originalStoppingDist;
-
                     return true;
                 }
-
-                
             }
         }
         agent.stoppingDistance = 0;
@@ -185,7 +170,6 @@ public class EnemyAI : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         IsShooting = true;
-
         animator.SetTrigger("attackTrigger");
 
         GameObject projectile = Instantiate(enemyStats.bullet, shootPos.position, transform.rotation);
@@ -201,19 +185,15 @@ public class EnemyAI : MonoBehaviour, IDamage
                 case EnemyStats.AttackType.Chaser:
                     damageComponent.Initialize(targetPosition, Damage.damageType.chaser);
                     break;
-
                 case EnemyStats.AttackType.Lobbed:
                     damageComponent.Initialize(targetPosition, Damage.damageType.lobbed);
                     break;
-
                 case EnemyStats.AttackType.Bullet:
                     damageComponent.Initialize(targetPosition, Damage.damageType.bullet);
                     break;
             }
         }
-
         yield return new WaitForSeconds(enemyStats.shootRate);
-
         IsShooting = false;
     }
 
@@ -222,7 +202,6 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         HPCurrent -= amount;
         updateEnemyUI();
-        
         StartCoroutine(flashDamageColor());
 
         if(someCo != null)
@@ -231,7 +210,6 @@ public class EnemyAI : MonoBehaviour, IDamage
             isRoaming = false;
         }
         agent.SetDestination(GameManager.instance.player.transform.position);
-
         if (HPCurrent <= 0)
         {
             
@@ -250,14 +228,12 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public void updateEnemyUI()
     {
-        //GameManager.instance.enemyHPValue.text = (((float)HP / originalEnemyHP) * 100).ToString();
         enemyHPBar.fillAmount = (float)HPCurrent / enemyStats.HPStart;
     }
 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        
         Gizmos.DrawWireSphere(transform.position, enemyStats.shootDistance);
 
         if (GameManager.instance != null && GameManager.instance.player != null)
@@ -268,28 +244,21 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
     }
 
-   
-
     IEnumerator waitForDeathAnimation()
     {
         AnimatorStateInfo animatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
         float animationLength = animatorStateInfo.length;
-
         yield return new WaitForSeconds(animationLength);
 
         if (enemyStats.isLargeSpider)
         {
             for (int i = 0; i < enemyStats.numberOfMiniSpiders; i++)
             {
-
                 Vector3 spawnPosition = transform.position + Random.insideUnitSphere * enemyStats.spawnRadius;
                 spawnPosition.y = transform.position.y; //keeping height of orignal spider
-
                 Instantiate(enemyStats.miniSpiderPrefab, spawnPosition, Quaternion.identity);
             }
         }
-
-
         Destroy(gameObject);
         GameManager.instance.UpdateGameGoal(-1);
     }
@@ -303,6 +272,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             enemyStats.shootRate *= 2;
             enemyStats.shootDistance *= 2;
             // increase move speed like full time sprint
+            enemyStats.speed *= 2;
         }
         else if(difficulty == 1)
         {
