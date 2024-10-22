@@ -48,12 +48,13 @@ public class PlayerController : MonoBehaviour , IDamage
         HealToFull();
         playerCamera.transform.localRotation = Quaternion.identity;
         updatePlayerUI();
+        spawnPlayer();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.instance.isPaused) 
+        if (!GameManager.instance.GetPause()) 
         {
             movement();
             selectGun();
@@ -85,6 +86,18 @@ public class PlayerController : MonoBehaviour , IDamage
         }
     }
 
+
+    public void spawnPlayer()
+    {
+        controller.enabled = false;
+        transform.position = GameManager.instance.getSpawnPos().transform.position;
+        controller.enabled = true;
+        HP = originalPlayerHP;
+        
+    }
+
+
+
     #region Player Controls
     void movement()
     {
@@ -105,7 +118,7 @@ public class PlayerController : MonoBehaviour , IDamage
         playerVel.y -= gravity * Time.deltaTime;
         controller.Move(playerVel * Time.deltaTime);
 
-        if (Input.GetButton("Fire1") && !GameManager.instance.isPaused && !isShooting && gunList.Count > 0 && gunList[selectedGunPos].ammoCurr > 0)
+        if (Input.GetButton("Fire1") && !GameManager.instance.GetPause() && !isShooting && gunList.Count > 0 && gunList[selectedGunPos].ammoCurr > 0)
         {
             StartCoroutine(shoot());
         }
