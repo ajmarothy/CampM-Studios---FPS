@@ -30,17 +30,26 @@ public class GameManager : MonoBehaviour
     public TMP_Text healing;
 
     public GameObject player;
-    public bool isPaused;
+    private bool isPaused;
     int enemyCounter;
     float timeScaleOG;
     string previousMenu;
 
-    bool GetPause()
+    private GameObject spawnPos;
+
+
+
+    public GameObject getSpawnPos()
+    {
+        return spawnPos;
+    }
+
+    public bool GetPause()
     {
         return isPaused;
     }
 
-    void SetPause(bool _isPaused)
+    public void SetPause(bool _isPaused)
     {
         isPaused = _isPaused;
     }
@@ -60,6 +69,7 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
         exitLevelText.enabled = false;
+        spawnPos = GameObject.FindWithTag("Spawn Pos");
     }
 
     // Update is called once per frame
