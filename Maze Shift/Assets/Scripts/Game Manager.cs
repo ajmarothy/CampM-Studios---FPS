@@ -44,6 +44,11 @@ public class GameManager : MonoBehaviour
         return spawnPos;
     }
 
+    public void SetSpawnPos(GameObject _spawnPos)
+    {
+        spawnPos = _spawnPos;
+    }
+
     public bool GetPause()
     {
         return isPaused;
