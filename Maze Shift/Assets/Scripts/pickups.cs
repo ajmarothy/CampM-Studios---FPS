@@ -5,8 +5,6 @@ using UnityEngine;
 public class pickups : MonoBehaviour
 {
     [SerializeField] gunStats gun;
-    [SerializeField] healthStats health;
-
 
     private void Start()
     {
@@ -17,8 +15,6 @@ public class pickups : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameManager.instance.playerScript.getGunStats(gun);
-            Destroy(gameObject);
-            GameManager.instance.playerScript.GetHealth(health);
             Destroy(gameObject);
         }
     }

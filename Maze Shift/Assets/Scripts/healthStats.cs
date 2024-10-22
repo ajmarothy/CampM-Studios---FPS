@@ -7,8 +7,22 @@ using UnityEngine;
 public class healthStats : ScriptableObject
 {
     public GameObject health;
-    public AudioClip[] healSound;
+    public string itemName;
+    public int healthAmount;
+    public int healItem, healItemMax;
+    public float healthPercentage;
+    public bool isMaxHeal;
 
-    public int healValue;
-    public float healVolume;
+    public void Heal(PlayerController player)
+    {
+        if (isMaxHeal)
+        {
+            player.HealToFull();
+        }
+        else
+        {
+            healthAmount = Mathf.RoundToInt(player.originalPlayerHP * healthPercentage);
+            player.Heal(healthAmount);
+        }
+    }
 }

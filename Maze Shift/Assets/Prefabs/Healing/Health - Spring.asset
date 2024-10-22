@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Health - Spring
   m_EditorClassIdentifier: 
   health: {fileID: 4623536360137790267, guid: b19882f06c8de1244acbc82dd38f9f53, type: 3}
-  healSound: []
-  healValue: 50
-  healVolume: 0
+  itemName: Healing Spring
+  healthAmount: 0
+  healItem: 0
+  healItemMax: 0
+  healthPercentage: 1
+  isMaxHeal: 1

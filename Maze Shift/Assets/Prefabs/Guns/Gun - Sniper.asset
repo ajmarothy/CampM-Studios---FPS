@@ -22,5 +22,5 @@ MonoBehaviour:
   ammoPickup: 0
   shootRate: 2
   recoilAmount: 6
-  reloadTime: 0
+  reloadTime: 2.5
   shootVol: 0

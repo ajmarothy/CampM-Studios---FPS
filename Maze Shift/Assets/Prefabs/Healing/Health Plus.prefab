@@ -10,8 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5487711871438757386}
   - component: {fileID: 918660313893365525}
+  - component: {fileID: -2010874867676692493}
   - component: {fileID: 2331827415296194530}
   - component: {fileID: 1086579899037774865}
+  - component: {fileID: 3484999039161745683}
   m_Layer: 0
   m_Name: Health Plus
   m_TagString: Health
@@ -27,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8820321925950358457}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 210, y: 1.25, z: 90}
   m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 1
@@ -49,6 +51,19 @@ MonoBehaviour:
   bounceSpeed: 6
   bounceAmplitude: 0.025
   rotationSpeed: 180
+--- !u!114 &-2010874867676692493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8820321925950358457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de7c717cc7164384881d9d9576a434df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthItem: {fileID: 11400000, guid: 0cb423c59ab3f5d43acd7c68b29d777d, type: 2}
 --- !u!33 &2331827415296194530
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -99,3 +114,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3484999039161745683
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8820321925950358457}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.15, y: 4.15, z: 1.25}
+  m_Center: {x: 0, y: 0, z: 0.000000059604645}

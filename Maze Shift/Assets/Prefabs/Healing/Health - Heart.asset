@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Health - Heart
   m_EditorClassIdentifier: 
   health: {fileID: 8820321925950358457, guid: 96f30e5cd9c25914c9ef3fbebca63ac2, type: 3}
-  healSound: []
-  healValue: 5
-  healVolume: 0
+  itemName: Health Pickup
+  healthAmount: 0
+  healItem: 0
+  healItemMax: 3
+  healthPercentage: 0.1
+  isMaxHeal: 0

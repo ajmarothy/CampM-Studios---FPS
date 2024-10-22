@@ -19,11 +19,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text exitLevelText;
     [SerializeField] TMP_Text enemyCounterText;
     public TMP_Text ammoCur, ammoMax;
+    public TMP_Text healItem, healMax;
     
     public PlayerController playerScript;
     public Image playerHPBar;
     public TMP_Text playerHPValue;
     public GameObject playerDamageScreen;
+    public TMP_Text reloading;
+    public TMP_Text healRequest;
+    public TMP_Text healing;
 
     public GameObject player;
     public bool isPaused;

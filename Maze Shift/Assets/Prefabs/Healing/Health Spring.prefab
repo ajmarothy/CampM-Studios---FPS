@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3710885222039503353}
+  - component: {fileID: -3758402100991507231}
   - component: {fileID: 6169144372471656924}
   m_Layer: 0
   m_Name: Health Spring
@@ -34,6 +35,19 @@ Transform:
   - {fileID: 218218863352875854}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: -90}
+--- !u!114 &-3758402100991507231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4623536360137790267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc3787906f807947879ce9f3faf5d14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healingSpring: {fileID: 11400000, guid: 3ebe9fc70fe8f5f49b787c8288141e0f, type: 2}
 --- !u!65 &6169144372471656924
 BoxCollider:
   m_ObjectHideFlags: 0
