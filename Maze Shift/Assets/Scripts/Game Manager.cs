@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public ISettings gameSettings;
 
-    [SerializeField] GameObject menuActive;
+    private GameObject menuActive;
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject loseMenu;
@@ -111,8 +111,11 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        menuActive.SetActive(false);
-        menuActive = null;
+        if (menuActive != null)
+        {
+            menuActive.SetActive(false);
+            menuActive = null;
+        }
     }
 
     public void UpdateGameGoal(int amount)
