@@ -16,7 +16,7 @@ MonoBehaviour:
   HPCurrent: -5
   bullet: {fileID: 3579590406932167635, guid: 3883dce2203220240a4c871077e6848d, type: 3}
   shootRate: 1
-  shootDistance: 3
+  shootDistance: 1.5
   shootAngle: 60
   rotateSpeed: 4
   sightLineAngle: 60
@@ -31,3 +31,6 @@ MonoBehaviour:
   miniSpiderPrefab: {fileID: 0}
   numberOfMiniSpiders: 0
   spawnRadius: 0
+  attackType: 0
+  damageAmount: 0
+  speed: 0
