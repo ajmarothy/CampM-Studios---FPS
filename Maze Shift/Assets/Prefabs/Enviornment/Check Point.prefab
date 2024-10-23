@@ -67,7 +67,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 2.5
+  m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1215582958306978950
 GameObject:
@@ -5128,7 +5128,7 @@ Transform:
   m_GameObject: {fileID: 7885090861360293236}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4, z: 0}
+  m_LocalPosition: {x: 0, y: 0.4, z: 1.33}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children:
