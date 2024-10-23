@@ -7,7 +7,6 @@ using Newtonsoft.Json.Linq;
 
 public class GameManager : MonoBehaviour
 {
-
     public static GameManager instance;
     public ISettings gameSettings;
 
@@ -26,8 +25,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text playerHPValue;
     public GameObject playerDamageScreen;
     public TMP_Text reloading;
-    public TMP_Text healRequest;
-    public TMP_Text healing;
+    public TMP_Text keyIndicatorText;
+    public TMP_Text healingMessage;
 
     public GameObject player;
     private bool isPaused;

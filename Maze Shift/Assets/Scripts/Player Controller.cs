@@ -46,7 +46,6 @@ public class PlayerController : MonoBehaviour , IDamage
     void Start()
     {
         originalPlayerHP = HP;
-        HealToFull();
         playerCamera.transform.localRotation = Quaternion.identity;
         updatePlayerUI();
         spawnPlayer();
@@ -167,9 +166,12 @@ public class PlayerController : MonoBehaviour , IDamage
         {
             healthStats health = healthInv[0];
             health.Heal(this);
+            StartCoroutine(FlashHeal());
             healthInv.RemoveAt(0);
             health.healItem--;
             Debug.Log("Used healing item: " + health.itemName);
+            StopCoroutine(FlashHeal());
+
             updatePlayerUI();
         }
         else if (healthInv.Count > 0 && HP == originalPlayerHP)
@@ -192,8 +194,10 @@ public class PlayerController : MonoBehaviour , IDamage
     public void Heal(int healAmount)
     {
         HP = Mathf.Min(HP + healAmount, originalPlayerHP);
+        StartCoroutine(FlashHeal());
         updatePlayerUI();
         Debug.Log("Player healed by " + healAmount);
+        StopCoroutine(FlashHeal());
     }
     #endregion
 
@@ -337,6 +341,13 @@ public class PlayerController : MonoBehaviour , IDamage
         GameManager.instance.reloading.gameObject.SetActive(true);
         yield return new WaitForSeconds(reloadTime);
         GameManager.instance.reloading.gameObject.SetActive(false);
+    }
+
+    IEnumerator FlashHeal()
+    {
+        GameManager.instance.healingMessage.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.75f);
+        GameManager.instance.healingMessage.gameObject.SetActive(false);
     }
 
     #endregion

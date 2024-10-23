@@ -18,18 +18,18 @@ public class HealingInteractive : MonoBehaviour
                 if (player != null)
                 {
                     healingSpring.Heal(player);
-                    StartCoroutine(flashHeal());
+                    ShowHealingMessage();
+                    StartCoroutine(HideHealingMessage());
                 }
             }
         }
-        GameManager.instance.healRequest.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.instance.healRequest.gameObject.SetActive(true);
+            GameManager.instance.keyIndicatorText.gameObject.SetActive(true);
         }
     }
 
@@ -37,14 +37,18 @@ public class HealingInteractive : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.instance.healRequest.gameObject.SetActive(false);
+            GameManager.instance.keyIndicatorText.gameObject.SetActive(false);
         }
     }
 
-    IEnumerator flashHeal()
+    private void ShowHealingMessage()
     {
-        GameManager.instance.healing.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1.5f);
-        GameManager.instance.healing.gameObject.SetActive(false);
+        GameManager.instance.healingMessage.gameObject.SetActive(true);
+    }
+
+    IEnumerator HideHealingMessage()
+    {
+        yield return new WaitForSeconds(0.75f);
+        GameManager.instance.healingMessage.gameObject.SetActive(false);
     }
 }
