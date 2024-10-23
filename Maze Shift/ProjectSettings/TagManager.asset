@@ -9,6 +9,8 @@ TagManager:
   - Spawn Pos
   - Glow
   - Spikes
+  - Enemy
+  - Illusion
   layers:
   - Default
   - TransparentFX

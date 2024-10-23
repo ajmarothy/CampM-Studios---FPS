@@ -830,7 +830,7 @@ GameObject:
   - component: {fileID: 1625848964237576710}
   m_Layer: 6
   m_Name: Enemy_Golem_BOSS
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -865,22 +865,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ab7e7e457ec9c48a871ab320e44010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyStats: {fileID: 0}
   enemyHPBar: {fileID: 209347752145399947}
   agent: {fileID: 7056168463375104417}
   model: {fileID: 5788546838114464307}
   shootPos: {fileID: 4397778889509308818}
   headPos: {fileID: 2245147339074649624}
-  HP: 40
-  rotateSpeed: 20
-  sightLineAngle: 70
-  bullet: {fileID: 1770451857398571712, guid: 26710d80fbcd80646a0fffea501720c9, type: 3}
-  shootDistance: 40
-  shootRate: 1
-  gravity: 1
-  groundCheckDistance: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  animator: {fileID: 0}
 --- !u!195 &7056168463375104417
 NavMeshAgent:
   m_ObjectHideFlags: 0
