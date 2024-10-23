@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial Level.unity
     guid: fbd1c8a7667230843b44935f992b7068
+  - enabled: 1
+    path: Assets/Scenes/Max's Level.unity
+    guid: d4924f0bed9128f4ea3332ad3cde86d2
   m_configObjects: {}
