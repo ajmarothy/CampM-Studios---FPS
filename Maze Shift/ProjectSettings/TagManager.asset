@@ -11,6 +11,7 @@ TagManager:
   - Spikes
   - Enemy
   - Illusion
+  - Secret
   layers:
   - Default
   - TransparentFX
