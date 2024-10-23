@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Newtonsoft.Json.Linq;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject loseMenu;
     [SerializeField] GameObject settingsMenu;
+    [SerializeField] GameObject mainMenu;
     [SerializeField] TMP_Text exitLevelText;
     [SerializeField] TMP_Text enemyCounterText;
     public TMP_Text ammoCur, ammoMax;
@@ -139,6 +141,7 @@ public class GameManager : MonoBehaviour
         menuActive.SetActive(true);
     }
 
+    #region Settings
     public void OpenSettings(string fromMenu)
     {
         //this method will open the settings menu
@@ -152,6 +155,10 @@ public class GameManager : MonoBehaviour
         {
             loseMenu.SetActive(false);
         }
+        else if (fromMenu == "")
+        {
+
+        }
     }
 
     public void CloseSettings()
@@ -164,6 +171,11 @@ public class GameManager : MonoBehaviour
         else if (previousMenu == "lose")
         {
             loseMenu.SetActive(true);
+        }
+        else if(previousMenu == "main")
+        {
+            mainMenu.SetActive(true);
+            SceneManager.LoadScene(0);
         }
     }
 
@@ -192,4 +204,5 @@ public class GameManager : MonoBehaviour
         gameSettings.SetVolume(savedVolume);
         gameSettings.SetGraphicsQuality(savedQuality);
     }
+    #endregion
 }

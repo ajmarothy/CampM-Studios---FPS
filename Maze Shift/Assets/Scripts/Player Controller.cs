@@ -170,11 +170,9 @@ public class PlayerController : MonoBehaviour , IDamage
             healthStats health = healthInv[0];
             health.Heal(this);
             StartCoroutine(FlashHeal());
-            healthInv.RemoveAt(0);
             health.healItem--;
+            healthInv.RemoveAt(0);
             Debug.Log("Used healing item: " + health.itemName);
-            StopCoroutine(FlashHeal());
-
             updatePlayerUI();
         }
         else if (healthInv.Count > 0 && HP == originalPlayerHP)
