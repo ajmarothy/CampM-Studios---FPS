@@ -4,15 +4,39 @@ using UnityEngine;
 
 public class SecretPassage : MonoBehaviour
 {
+    [SerializeField] GameObject secretPassage;
+
+    Mesh frameOG;
+    Material skinOG;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
+        secretPassage = GameObject.FindWithTag("Secret");
         
+        frameOG = secretPassage.GetComponent<MeshFilter>().mesh;
+        skinOG = secretPassage.GetComponent<MeshRenderer>().material;
+
+       
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
+    {
+         secretPassage.GetComponent<MeshFilter>().mesh = null;
+        secretPassage.GetComponent<MeshRenderer>().material = null;
+        secretPassage.GetComponent<MeshCollider>().enabled = false;
+       
+
+    }
+
+    private void OnTriggerExit(Collider other)
     {
         
+        secretPassage.GetComponent<MeshFilter>().mesh = frameOG;
+        secretPassage.GetComponent<MeshRenderer>().material = skinOG;
+        secretPassage.GetComponent <MeshCollider>().enabled = true;
+
     }
 }
