@@ -24,9 +24,12 @@ public class SecretPassage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-         secretPassage.GetComponent<MeshFilter>().mesh = null;
-        secretPassage.GetComponent<MeshRenderer>().material = null;
-        secretPassage.GetComponent<MeshCollider>().enabled = false;
+         if (other.CompareTag("Player"))
+        {
+            secretPassage.GetComponent<MeshFilter>().mesh = null;
+            secretPassage.GetComponent<MeshRenderer>().material = null;
+            secretPassage.GetComponent<MeshCollider>().enabled = false;
+        }
        
 
     }
@@ -34,9 +37,12 @@ public class SecretPassage : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         
-        secretPassage.GetComponent<MeshFilter>().mesh = frameOG;
-        secretPassage.GetComponent<MeshRenderer>().material = skinOG;
-        secretPassage.GetComponent <MeshCollider>().enabled = true;
+       if (other.CompareTag("Player"))
+        {
+            secretPassage.GetComponent<MeshFilter>().mesh = frameOG;
+            secretPassage.GetComponent<MeshRenderer>().material = skinOG;
+            secretPassage.GetComponent<MeshCollider>().enabled = true;
+        }
 
     }
 }

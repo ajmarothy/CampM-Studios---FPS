@@ -26,17 +26,22 @@ public class WallofIllusion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-         wallIllusion.GetComponent<MeshFilter>().mesh = filterOG;
-        wallIllusion.GetComponent<MeshRenderer>().material = rendererOG;
+        if (other != null)
+        {
+            wallIllusion.GetComponent<MeshFilter>().mesh = filterOG;
+            wallIllusion.GetComponent<MeshRenderer>().material = rendererOG;
+        }
        
     }
 
     private void OnTriggerExit(Collider other)
     {
         //wallIllusion?.SetActive(false);
-
-        wallIllusion.GetComponent<MeshFilter>().mesh = null;
-        wallIllusion.GetComponent <MeshRenderer>().material = null;
+        if (other != null)
+        {
+            wallIllusion.GetComponent<MeshFilter>().mesh = null;
+            wallIllusion.GetComponent<MeshRenderer>().material = null;
+        }
 
     }
 }
