@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -64,15 +65,20 @@ public class PlayerController : MonoBehaviour , IDamage
         {
             movement();
             selectGun();
-            if (Input.GetButton("Heal"))
+            if (Input.GetButtonDown("Heal"))
             {
                 UseHealth();
+                if (healthInv.Count == 0)
+                {
+                    GameManager.instance.healItem.text = healthInv.Count().ToString();
+                    updatePlayerUI();
+                }
             }
-            if (Input.GetButton("Reload"))
+            if (Input.GetButtonDown("Reload"))
             {
                 Reload();
             }
-            if (Input.GetButton("Flashlight"))
+            if (Input.GetButtonDown("Flashlight"))
             {
                 flashlight.enabled = !flashlight.enabled;
             }
@@ -94,16 +100,6 @@ public class PlayerController : MonoBehaviour , IDamage
         {
             GameManager.instance.healItem.text = healthInv.Count.ToString("F0");
         }
-    }
-
-
-    public void spawnPlayer()
-    {
-        controller.enabled = false;
-        transform.position = GameManager.instance.getSpawnPos().transform.position;
-        controller.enabled = true;
-        HP = originalPlayerHP;
-        updatePlayerUI();
     }
 
 
@@ -147,6 +143,15 @@ public class PlayerController : MonoBehaviour , IDamage
         cameraController.ApplyRecoil(recoilAmount);
     }
 
+    public void spawnPlayer()
+    {
+        controller.enabled = false;
+        transform.position = GameManager.instance.getSpawnPos().transform.position;
+        controller.enabled = true;
+        HP = originalPlayerHP;
+        updatePlayerUI();
+    }
+
     #endregion
 
     #region Health
@@ -176,13 +181,13 @@ public class PlayerController : MonoBehaviour , IDamage
         {
             healthStats health = healthInv[0];
             health.Heal(this);
-            StartCoroutine(FlashHeal());
             health.healItem--;
+            StartCoroutine(FlashHeal());
             healthInv.RemoveAt(0);
             Debug.Log("Used healing item: " + health.itemName);
             updatePlayerUI();
         }
-        else if (healthInv.Count > 0 && HP == originalPlayerHP)
+        else if (healthInv.Count >= 0 && HP == originalPlayerHP)
         {
             Debug.Log("Player does not need any health.");
         }

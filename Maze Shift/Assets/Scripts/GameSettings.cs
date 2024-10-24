@@ -50,7 +50,7 @@ public class GameSettings : ISettings
         // write algorithm that changes the difficulty of the enemies
         // easy, normal, hard dropdown in settings menu
         /* 
-            * Easy - enemy settings / 2
+            *  Easy - enemy settings / 2
             *  Normal - enemy settings default
             *  Hard - enemy settings * 2 
         */

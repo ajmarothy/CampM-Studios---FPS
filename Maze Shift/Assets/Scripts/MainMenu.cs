@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
 
     public void settings()
     {
-        GameManager.instance.OpenSettings("");
+        GameManager.instance.OpenSettings("Main");
     }
 
     public void exitGame()
