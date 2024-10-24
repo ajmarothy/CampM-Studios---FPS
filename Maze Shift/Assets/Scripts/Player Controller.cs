@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour , IDamage
 {
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour , IDamage
     [SerializeField] int shootDist;
     [SerializeField] float recoilAmount;
     [SerializeField] float reloadTime;
+    [SerializeField] private Light flashlight;
 
     public int originalPlayerHP;
     public int healthPickup;
@@ -50,6 +52,7 @@ public class PlayerController : MonoBehaviour , IDamage
     {
         originalPlayerHP = HP;
         playerCamera.transform.localRotation = Quaternion.identity;
+        if(flashlight != null) { flashlight.enabled = false; }
         updatePlayerUI();
         spawnPlayer();
     }
@@ -61,13 +64,17 @@ public class PlayerController : MonoBehaviour , IDamage
         {
             movement();
             selectGun();
-            if (Input.GetKeyDown(KeyCode.H))
+            if (Input.GetButton("Heal"))
             {
                 UseHealth();
             }
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetButton("Reload"))
             {
                 Reload();
+            }
+            if (Input.GetButton("Flashlight"))
+            {
+                flashlight.enabled = !flashlight.enabled;
             }
         }
         sprint();

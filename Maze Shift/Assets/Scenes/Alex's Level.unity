@@ -620,10 +620,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 1979595419713469204, guid: b65163634bcdf8141903e6d82ac82d92, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4678713791289668078, guid: b65163634bcdf8141903e6d82ac82d92, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -998,43 +994,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1818951610542517084, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2870413294661305859, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
       propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2870413294661305859, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
-      propertyPath: m_DrawHalo
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2870413294661305859, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
-      propertyPath: m_BounceIntensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3551625615204466707, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
-      propertyPath: far clip plane
-      value: 5000
-      objectReference: {fileID: 0}
-    - target: {fileID: 4724418751274626647, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
-      propertyPath: m_Color.a
-      value: 0.4745098
-      objectReference: {fileID: 0}
-    - target: {fileID: 4724418751274626647, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
-      propertyPath: m_Intensity
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4724418751274626647, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
-      propertyPath: m_Shadows.m_Type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4724418751274626647, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
-      propertyPath: m_BounceIntensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4724418751274626647, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
-      propertyPath: m_Shadows.m_Strength
-      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8743316906995178320, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
       propertyPath: m_Name
@@ -1079,30 +1043,6 @@ PrefabInstance:
     - target: {fileID: 8838874476121153577, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8861384442069231204, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8861384442069231204, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8861384442069231204, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8861384442069231204, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.99965733
-      objectReference: {fileID: 0}
-    - target: {fileID: 8861384442069231204, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.026176924
-      objectReference: {fileID: 0}
-    - target: {fileID: 8861384442069231204, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

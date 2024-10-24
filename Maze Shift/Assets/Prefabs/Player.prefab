@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 8861384442069231204}
   - component: {fileID: 2870413294661305859}
   m_Layer: 0
-  m_Name: Spot Light
+  m_Name: Player Flashlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -575,6 +575,7 @@ MonoBehaviour:
   shootDist: 0
   recoilAmount: 0
   reloadTime: 0
+  flashlight: {fileID: 2870413294661305859}
   originalPlayerHP: 0
   healthPickup: 0
   audioSource: {fileID: 6379338105077204841}
@@ -699,7 +700,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.49803925, g: 0.49803925, b: 0.49803925, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
