@@ -59556,6 +59556,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5215864600773505997, guid: 52a5ecaee177d0e43af00ae8e221ef03, type: 3}
+      propertyPath: winMenu
+      value: 
+      objectReference: {fileID: 2047026711}
     - target: {fileID: 5589605248137488701, guid: 52a5ecaee177d0e43af00ae8e221ef03, type: 3}
       propertyPath: m_Name
       value: End Level Portal
@@ -66311,6 +66315,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b65163634bcdf8141903e6d82ac82d92, type: 3}
+--- !u!1 &2047026711 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8741755651070055807, guid: b65163634bcdf8141903e6d82ac82d92, type: 3}
+  m_PrefabInstance: {fileID: 2047026710}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2048689371
 PrefabInstance:
   m_ObjectHideFlags: 0
