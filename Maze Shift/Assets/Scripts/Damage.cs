@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Damage : MonoBehaviour
 {
-    [SerializeField] public enum damageType { bullet, chaser, stationary, lobbed}
+    [SerializeField] public enum damageType { bullet, chaser, stationary, fireBall, lobbed}
     [SerializeField] damageType type;
     [SerializeField] Rigidbody rb;
 
@@ -17,7 +17,7 @@ public class Damage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(type == damageType.bullet)
+        if(type == damageType.bullet || type == damageType.fireBall)
         {
             rb.velocity = transform.forward * speed;
             Destroy(gameObject, destroyTime);
