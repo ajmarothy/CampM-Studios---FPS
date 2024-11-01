@@ -995,8 +995,8 @@ MonoBehaviour:
   ammoMax: {fileID: 4850207055504746546}
   healItem: {fileID: 8165087650949969451}
   healMax: {fileID: 6788249050210149254}
-  currentBattery: {fileID: 0}
-  maxBattery: {fileID: 0}
+  currentBattery: {fileID: 7120005544751470132}
+  maxBattery: {fileID: 7964151660419286492}
   playerHPValue: {fileID: 8324912674301559907}
   reloading: {fileID: 5847912267112854411}
   keyIndicatorText: {fileID: 3905041475760188481}
@@ -4024,8 +4024,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0, a: 1}
+  m_Material: {fileID: 2100000, guid: cbca93ee2eb62ab44b8d3df58644902f, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6416,8 +6416,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281204714
-  m_fontColor: {r: 0.9165257, g: 1, b: 0.1745283, a: 1}
+    rgba: 4278255615
+  m_fontColor: {r: 1, g: 1, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

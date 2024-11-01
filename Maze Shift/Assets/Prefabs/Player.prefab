@@ -560,6 +560,7 @@ MonoBehaviour:
   ignoreMask:
     serializedVersion: 2
     m_Bits: 136
+  playerCamera: {fileID: 3551625615204466707}
   healthInv: []
   HP: 25
   speed: 7
@@ -570,17 +571,20 @@ MonoBehaviour:
   gunList: []
   gunModel: {fileID: 4814269455649902097}
   muzzleFlash: {fileID: 8385285536618437492}
+  flashlight: {fileID: 2870413294661305859}
+  maxBattery: 100
+  batteryDrainRate: 5
+  flickerThreshold: 20
+  rechargeSpeed: 10
   shootDamage: 0
   shootRate: 0
   shootDist: 0
   recoilAmount: 0
   reloadTime: 0
-  flashlight: {fileID: 2870413294661305859}
-  originalPlayerHP: 0
-  healthPickup: 0
   audioSource: {fileID: 6379338105077204841}
   shootSound: {fileID: 8300000, guid: 48321068c1dcc4446b505222cc76f7e2, type: 3}
-  playerCamera: {fileID: 3551625615204466707}
+  originalPlayerHP: 0
+  healthPickup: 0
 --- !u!33 &4725039235758317717
 MeshFilter:
   m_ObjectHideFlags: 0
