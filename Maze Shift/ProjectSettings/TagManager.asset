@@ -12,6 +12,9 @@ TagManager:
   - Enemy
   - Illusion
   - Secret
+  - Top Cannon
+  - Bottom Cannon
+  - Fireball Wall
   layers:
   - Default
   - TransparentFX

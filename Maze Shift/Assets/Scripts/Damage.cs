@@ -38,7 +38,7 @@ public class Damage : MonoBehaviour
         {
             dmg.takeDamage(damageAmount);
         }
-        if (type == damageType.bullet || type == damageType.chaser || type == damageType.lobbed)
+        if (type == damageType.bullet || type == damageType.chaser || type == damageType.lobbed || type == damageType.fireBall)
         {
             Destroy(gameObject);
         }
