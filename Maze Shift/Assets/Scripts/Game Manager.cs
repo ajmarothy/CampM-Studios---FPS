@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public ISettings gameSettings;
 
-    private GameObject menuActive;
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject loseMenu;
@@ -19,26 +18,28 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject mainMenu;
     [SerializeField] TMP_Text exitLevelText;
     [SerializeField] TMP_Text enemyCounterText;
-    public TMP_Text ammoCur, ammoMax;
-    public TMP_Text healItem, healMax;
-    
+
+    public GameObject player;
+    public GameObject playerDamageScreen;
     public PlayerController playerScript;
     public Image playerHPBar;
+    public Image batteryUI;
+
+    public TMP_Text ammoCur, ammoMax;
+    public TMP_Text healItem, healMax;
+    public TMP_Text currentBattery, maxBattery;
     public TMP_Text playerHPValue;
-    public GameObject playerDamageScreen;
     public TMP_Text reloading;
     public TMP_Text keyIndicatorText;
     public TMP_Text healingMessage;
 
-    public GameObject player;
     private bool isPaused;
     int enemyCounter;
     float timeScaleOG;
     string previousMenu;
 
     private GameObject spawnPos;
-
-
+    private GameObject menuActive;
 
     public GameObject getSpawnPos()
     {
@@ -89,16 +90,13 @@ public class GameManager : MonoBehaviour
                 menuActive = pauseMenu;
                 menuActive.SetActive(GetPause());
             }
-
         }
     }
 
     public void Pause()
     {
         SetPause(!GetPause());
-
         Time.timeScale = 0;
-
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
 
@@ -107,12 +105,9 @@ public class GameManager : MonoBehaviour
     public void Unpause()
     {
         SetPause(!GetPause());
-
         Time.timeScale = timeScaleOG;
-
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-
         if (menuActive != null)
         {
             menuActive.SetActive(false);

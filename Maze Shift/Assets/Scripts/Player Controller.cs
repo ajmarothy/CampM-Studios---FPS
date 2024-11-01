@@ -1,7 +1,9 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +11,7 @@ public class PlayerController : MonoBehaviour , IDamage
 {
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreMask;
+    [SerializeField] Camera playerCamera;
 
     [SerializeField] List<healthStats> healthInv = new List<healthStats>();
     [SerializeField] public int HP;
@@ -21,23 +24,31 @@ public class PlayerController : MonoBehaviour , IDamage
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
     [SerializeField] GameObject gunModel;
     [SerializeField] GameObject muzzleFlash;
+    [SerializeField] Light flashlight;
+    [SerializeField] float maxBattery = 100f;
+    [SerializeField] float batteryDrainRate = 5f;
+    [SerializeField] float flickerThreshold = 20f;
+    [SerializeField] float rechargeSpeed = 10f;
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
     [SerializeField] float recoilAmount;
     [SerializeField] float reloadTime;
-    [SerializeField] private Light flashlight;
-
-    public int originalPlayerHP;
-    public int healthPickup;
 
     public AudioSource audioSource;
     public AudioClip shootSound;
+
+    public int originalPlayerHP;
+    public int healthPickup;
 
     int healthPickupMax = 3;
     int selectedGunPos;
     int selectedHealthItem;
     int jumpCount;
+    float currentBattery;
+
+    bool isFlickering;
+    bool isRecharging;
     bool isShooting;
     bool isSprinting;
     bool isReloading;
@@ -45,15 +56,22 @@ public class PlayerController : MonoBehaviour , IDamage
     Vector3 moveDir;
     Vector3 playerVel;
     Coroutine flashreload;
-
-    [SerializeField] Camera playerCamera;
+    Coroutine flicker;
 
     // Start is called before the first frame update
     void Start()
     {
         originalPlayerHP = HP;
         playerCamera.transform.localRotation = Quaternion.identity;
-        if(flashlight != null) { flashlight.enabled = false; }
+        if(flashlight != null)
+        {
+            flashlight.enabled = false;
+            isFlickering = false;
+            isRecharging = false;
+            GameManager.instance.batteryUI.material.color = Color.green;
+        }
+        flashlight.enabled = false;
+        currentBattery = maxBattery;
         updatePlayerUI();
         spawnPlayer();
     }
@@ -82,6 +100,8 @@ public class PlayerController : MonoBehaviour , IDamage
             {
                 flashlight.enabled = !flashlight.enabled;
             }
+            DrainPower();
+            updatePlayerUI();
         }
         sprint();
     }
@@ -100,8 +120,42 @@ public class PlayerController : MonoBehaviour , IDamage
         {
             GameManager.instance.healItem.text = healthInv.Count.ToString("F0");
         }
+        GameManager.instance.batteryUI.fillAmount = (currentBattery / maxBattery);
+        GameManager.instance.currentBattery.text = currentBattery.ToString("F0") + "%";
+        GameManager.instance.maxBattery.text = maxBattery.ToString("F0") + "%";
+        if(currentBattery == maxBattery) { GameManager.instance.batteryUI.material.color = Color.green; }
+        if(currentBattery < maxBattery - (maxBattery * 0.4)) { GameManager.instance.batteryUI.material.color = Color.yellow; }
+        if(currentBattery < flickerThreshold) { GameManager.instance.batteryUI.material.color = Color.red; }
     }
 
+    public void DrainPower()
+    {
+        if(flashlight.enabled && currentBattery > 0)
+        {
+            currentBattery -= (batteryDrainRate * Time.deltaTime);
+            updatePlayerUI();
+            if (currentBattery <= flickerThreshold && !isFlickering)
+            {
+                isFlickering = true;
+                StartCoroutine(FlickerFlashlight());
+            }
+            if (currentBattery <= 0)
+            {
+                currentBattery = 0;
+                flashlight.enabled = false;
+                isFlickering = false;
+            }
+        }
+    }
+
+    public void StartRecharge()
+    {
+        if (!isRecharging)
+        {
+            isRecharging = true;
+            StartCoroutine(RechargeBattery());
+        }
+    }
 
     #region Player Controls
     void movement()
@@ -362,6 +416,34 @@ public class PlayerController : MonoBehaviour , IDamage
         GameManager.instance.healingMessage.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.75f);
         GameManager.instance.healingMessage.gameObject.SetActive(false);
+    }
+
+    IEnumerator FlickerFlashlight()
+    {
+        while(isFlickering && flashlight.enabled)
+        {
+            flashlight.enabled = Random.value > 0.5f;
+            yield return new WaitForSeconds(Random.Range(0.1f, 0.5f));
+            flashlight.enabled = true;
+        }
+        if(currentBattery == 0) { flashlight.enabled = false; StartCoroutine(RechargeBattery()); }
+    }
+
+    IEnumerator RechargeBattery()
+    {
+        while (currentBattery < maxBattery && !flashlight.enabled)
+        {
+            currentBattery += rechargeSpeed * Time.deltaTime;
+            updatePlayerUI();
+            if(currentBattery >= maxBattery)
+            {
+                currentBattery = maxBattery;
+                isRecharging = false;
+                yield break;
+            }
+            updatePlayerUI();
+            yield return null;
+        }
     }
 
     #endregion
