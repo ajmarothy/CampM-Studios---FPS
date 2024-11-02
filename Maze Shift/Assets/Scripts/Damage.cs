@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class Damage : MonoBehaviour
 {
-    [SerializeField] public enum damageType { bullet, chaser, stationary, fireBall, lobbed}
+    [SerializeField] public enum damageType { bullet, chaser, stationary, fireBall, boulder, lobbed }
     [SerializeField] damageType type;
     [SerializeField] Rigidbody rb;
 
     [SerializeField] int damageAmount;
     [SerializeField] int speed;
     [SerializeField] int destroyTime;
+    // [SerializeField] int gravity;
 
     private Vector3 targetPos;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(type == damageType.bullet || type == damageType.fireBall)
+        if (type == damageType.bullet || type == damageType.fireBall || type == damageType.boulder)
         {
             rb.velocity = transform.forward * speed;
             Destroy(gameObject, destroyTime);
         }
-        else if(type == damageType.chaser)
+        else if (type == damageType.chaser)
         {
             Destroy(gameObject, destroyTime);
         }
@@ -38,7 +39,7 @@ public class Damage : MonoBehaviour
         {
             dmg.takeDamage(damageAmount);
         }
-        if (type == damageType.bullet || type == damageType.chaser || type == damageType.lobbed || type == damageType.fireBall)
+        if (type == damageType.bullet || type == damageType.chaser || type == damageType.lobbed || type == damageType.fireBall || type == damageType.boulder)
         {
             Destroy(gameObject);
         }
