@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7313826980260800329}
   m_Layer: 0
   m_Name: Blaster 2
-  m_TagString: Bottom Cannon
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,8 @@ Transform:
   m_LocalPosition: {x: 0.11641693, y: -1.4647465, z: -0.5}
   m_LocalScale: {x: 0.5, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7961113341893519015}
   m_Father: {fileID: 689619999953165306}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2350312079549578652
@@ -83,6 +84,68 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &193924057365006914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7961113341893519015}
+  m_Layer: 0
+  m_Name: Fire2
+  m_TagString: Bottom Cannon
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7961113341893519015
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193924057365006914}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6669745000951208181}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &1672708840510732371
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3070212908443686680}
+  m_Layer: 0
+  m_Name: Fire1
+  m_TagString: Top Cannon
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3070212908443686680
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672708840510732371}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8922579407740727800}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &4526528401183055440
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,9 +196,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d89a542a800458047b19f335aae7cf17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topCannon: {fileID: 0}
-  bottomCannon: {fileID: 0}
-  trapWall: {fileID: 0}
+  fire1: {fileID: 3070212908443686680}
+  fire2: {fileID: 7961113341893519015}
+  fireball: {fileID: 6884840104375663238, guid: 297b0892005b2f44e9f13885e4af7486, type: 3}
 --- !u!33 &4827389550479383081
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -227,7 +290,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8, y: 8, z: 20}
+  m_Size: {x: 4, y: 8, z: 20}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8485112659296266245
 GameObject:
@@ -242,7 +305,7 @@ GameObject:
   - component: {fileID: 5948228535743899598}
   m_Layer: 0
   m_Name: Blaster 1
-  m_TagString: Top Cannon
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -259,7 +322,8 @@ Transform:
   m_LocalPosition: {x: 0.13098145, y: 2.0724115, z: -0.5}
   m_LocalScale: {x: 0.5, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3070212908443686680}
   m_Father: {fileID: 689619999953165306}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8272105430269535315

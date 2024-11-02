@@ -6,23 +6,16 @@ public class FireballTrap : MonoBehaviour
 {
 
 
-    public GameObject topCannon;
-    public GameObject bottomCannon;
-    public GameObject trapWall;
-
     public Transform fire1;
     public Transform fire2;
+
+    public GameObject fireball;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        topCannon = GameObject.FindWithTag("Top Cannon");
-        bottomCannon = GameObject.FindWithTag("Bottom Cannon");
-        trapWall = GameObject.FindWithTag("Fireball Wall");
-
-        fire1 = topCannon.transform;
-        fire2 = bottomCannon.transform;
+        
     }
 
     // Update is called once per frame
@@ -46,9 +39,9 @@ public class FireballTrap : MonoBehaviour
 
     IEnumerator shootFireball()
     {
-        GameObject projectile1 = Instantiate(topCannon);                //I want it to be this but actually work Damage.damageType.fireBall, fire1);
+        GameObject projectile1 = Instantiate(fireball, fire1.position, fire1.rotation);                //I want it to be this but actually work Damage.damageType.fireBall, fire1);
         yield return new WaitForSeconds(2);
-        GameObject projectile2 = Instantiate(bottomCannon);
+        GameObject projectile2 = Instantiate(fireball, fire2.position, fire2.rotation);
         yield return new WaitForSeconds(2);
     }
 
