@@ -49,6 +49,18 @@ public class DialogText : MonoBehaviour
             textComponent.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
+        if (index == lines.Length - 1)
+        {
+            yield return new WaitForSeconds(3.0f);
+            gameObject.SetActive(false);
+        }
+
+    }
+
+    IEnumerator WaitAndHide(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        gameObject.SetActive(false);
     }
 
     void NextLine()
