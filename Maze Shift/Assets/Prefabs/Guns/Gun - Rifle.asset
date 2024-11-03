@@ -17,10 +17,10 @@ MonoBehaviour:
   shootSound: []
   shootDamage: 4
   shootDistance: 75
-  ammoCurr: 25
+  ammoCurr: 23
   ammoMax: 25
   ammoPickup: 25
-  shootRate: 1
+  shootRate: 0.12
   recoilAmount: 3
   reloadTime: 2
   shootVol: 0

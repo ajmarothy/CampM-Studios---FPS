@@ -573,9 +573,9 @@ MonoBehaviour:
   muzzleFlash: {fileID: 8385285536618437492}
   flashlight: {fileID: 2870413294661305859}
   maxBattery: 100
-  batteryDrainRate: 5
+  batteryDrainRate: 2.5
   flickerThreshold: 20
-  rechargeSpeed: 10
+  rechargeSpeed: 50
   shootDamage: 0
   shootRate: 0
   shootDist: 0
@@ -585,6 +585,7 @@ MonoBehaviour:
   shootSound: {fileID: 8300000, guid: 48321068c1dcc4446b505222cc76f7e2, type: 3}
   originalPlayerHP: 0
   healthPickup: 0
+  dwellTime: 5
 --- !u!33 &4725039235758317717
 MeshFilter:
   m_ObjectHideFlags: 0

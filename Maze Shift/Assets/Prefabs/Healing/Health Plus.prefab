@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 8820321925950358457}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 210, y: 1.25, z: 90}
+  m_LocalPosition: {x: 0, y: 4.5, z: 0}
   m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -45,12 +45,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8820321925950358457}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04c2aa4f86ca6384e9a9c6d234cdef24, type: 3}
+  m_Script: {fileID: 11500000, guid: 095ddff97c52abb4998d9c5b87619b6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceSpeed: 6
-  bounceAmplitude: 0.025
-  rotationSpeed: 180
+  bounceSpeed: 5
+  bounceAmount: 0.1
+  rotationSpeed: 25
 --- !u!114 &-2010874867676692493
 MonoBehaviour:
   m_ObjectHideFlags: 0

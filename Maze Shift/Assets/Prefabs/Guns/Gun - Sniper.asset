@@ -20,7 +20,7 @@ MonoBehaviour:
   ammoCurr: 5
   ammoMax: 5
   ammoPickup: 5
-  shootRate: 2
+  shootRate: 0.6
   recoilAmount: 6
   reloadTime: 2.5
   shootVol: 0

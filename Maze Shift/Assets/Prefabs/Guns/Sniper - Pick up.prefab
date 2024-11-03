@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 922138200712924236}
+  - component: {fileID: 3402206691432897330}
   - component: {fileID: 1990844208915102917}
   - component: {fileID: 9158416312144606495}
   - component: {fileID: 5948068167644395515}
@@ -28,13 +29,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1385121249014795797}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.33937362, z: -0, w: 0.9406517}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15.54, y: 1.25, z: 14.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -39.677, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3402206691432897330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385121249014795797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 095ddff97c52abb4998d9c5b87619b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceSpeed: 3
+  bounceAmount: 0.1
+  rotationSpeed: 10
 --- !u!114 &1990844208915102917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,7 +64,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 11400000, guid: e46f420ebba69f14497e35cc3ce8291f, type: 2}
-  health: {fileID: 11400000, guid: aba6b88db46dd78419985f140d3ba045, type: 2}
 --- !u!33 &9158416312144606495
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -25,10 +25,10 @@ public class PlayerController : MonoBehaviour , IDamage
     [SerializeField] GameObject gunModel;
     [SerializeField] GameObject muzzleFlash;
     [SerializeField] Light flashlight;
-    [SerializeField] float maxBattery = 100f;
-    [SerializeField] float batteryDrainRate = 5f;
-    [SerializeField] float flickerThreshold = 20f;
-    [SerializeField] float rechargeSpeed = 10f;
+    [SerializeField] float maxBattery;
+    [SerializeField] float batteryDrainRate;
+    [SerializeField] float flickerThreshold;
+    [SerializeField] float rechargeSpeed;
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour , IDamage
     int selectedHealthItem;
     int jumpCount;
     float currentBattery;
+    public float dwellTime = 5f;
 
     bool isFlickering;
     bool isRecharging;
@@ -70,7 +71,6 @@ public class PlayerController : MonoBehaviour , IDamage
             isRecharging = false;
             GameManager.instance.batteryUI.material.color = Color.green;
         }
-        flashlight.enabled = false;
         currentBattery = maxBattery;
         updatePlayerUI();
         spawnPlayer();
@@ -433,15 +433,22 @@ public class PlayerController : MonoBehaviour , IDamage
     {
         while (currentBattery < maxBattery && !flashlight.enabled)
         {
-            currentBattery += rechargeSpeed * Time.deltaTime;
-            updatePlayerUI();
+            dwellTime -= 1 * Time.deltaTime;
+            if (dwellTime <= 0)
+            {
+                dwellTime = 0;
+                currentBattery += rechargeSpeed * Time.deltaTime;
+                updatePlayerUI();
+            }
             if(currentBattery >= maxBattery)
             {
                 currentBattery = maxBattery;
                 isRecharging = false;
+                dwellTime = 5f;
                 yield break;
             }
             updatePlayerUI();
+            
             yield return null;
         }
     }
