@@ -25,7 +25,7 @@ public class FireballTrap : MonoBehaviour
     }
 
 
-    public void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.isTrigger)
         {
