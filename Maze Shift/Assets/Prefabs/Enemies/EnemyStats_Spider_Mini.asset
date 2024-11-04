@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HPStart: 2
   HPCurrent: -20
-  bullet: {fileID: 828808059952435433, guid: 27441f83b28bb9441bff875846045f79, type: 3}
-  shootRate: 2
-  shootDistance: 20
-  shootAngle: 90
+  bullet: {fileID: 3579590406932167635, guid: cb59c19f5980bfd479209572640c6abc, type: 3}
+  shootRate: 0.5
+  shootDistance: 1.75
+  shootAngle: 60
   rotateSpeed: 9
   sightLineAngle: 180
   roamDistance: 15
@@ -31,6 +31,6 @@ MonoBehaviour:
   miniSpiderPrefab: {fileID: 0}
   numberOfMiniSpiders: 0
   spawnRadius: 0
-  attackType: 1
+  attackType: 0
   damageAmount: 0
   speed: 0
