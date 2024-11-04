@@ -1426,9 +1426,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: 239afdd46923b4f45981d7bd6dc19681, type: 2}
+  enemyHPFrame: {fileID: 8065558682762997480}
   enemyHPBar: {fileID: 3624270847817107984}
   agent: {fileID: 3911310995940150524}
   model: {fileID: 4745248408573178332}
+  playerPos: {fileID: 0}
   shootPos: {fileID: 4643431001374297822}
   headPos: {fileID: 4515504335806572337}
   animator: {fileID: 9142170192184868387}

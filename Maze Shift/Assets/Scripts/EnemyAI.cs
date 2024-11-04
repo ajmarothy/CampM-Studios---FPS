@@ -9,6 +9,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 {
     [SerializeField] EnemyStats enemyStats;
 
+    [SerializeField] Image enemyHPFrame;
     [SerializeField] Image enemyHPBar;
 
     [SerializeField] NavMeshAgent agent;
@@ -53,6 +54,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         GameManager.instance.UpdateGameGoal(1);
         lastPosition = transform.position;
         originalStoppingDist = agent.stoppingDistance;
+        //playerPos = GameManager.instance.player.transform;
     }
 
     // Update is called once per frame
@@ -61,6 +63,8 @@ public class EnemyAI : MonoBehaviour, IDamage
         animator.SetFloat("Speed", agent.velocity.normalized.magnitude);
 
         ApplyGravity();
+
+        HealthBarFacePlayer();
 
         if (playerInRange && canSpotPlayer())
         {
@@ -229,6 +233,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     public void updateEnemyUI()
     {
         enemyHPBar.fillAmount = (float)HPCurrent / enemyStats.HPStart;
+        enemyHPFrame.fillAmount = 1;
     }
 
     void OnDrawGizmos()
@@ -283,4 +288,19 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
         return difficulty;
     }
+
+    void HealthBarFacePlayer()
+    {
+        if (enemyHPFrame != null)
+        {
+            //players POS
+            Vector3 directionToPlayer = GameManager.instance.player.transform.position - enemyHPFrame.transform.position;
+            directionToPlayer.y = 0; //keep horizontal
+
+            Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+            enemyHPFrame.transform.rotation = Quaternion.Lerp(enemyHPFrame.transform.rotation, targetRotation, Time.deltaTime * enemyStats.rotateSpeed);
+        }
+    }
+
 }
+   
