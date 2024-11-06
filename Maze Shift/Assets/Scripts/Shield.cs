@@ -8,8 +8,8 @@ public class Shield : MonoBehaviour
 {
     [SerializeField] private int shieldMaxHealth = 30;
     [SerializeField] private int shieldCurrHealth;
-    [SerializeField] private float shieldRegenDelay = 1f;
-    [SerializeField] private float shieldRegenRate = 10f;
+    [SerializeField] private float shieldRegenDelay;
+    [SerializeField] private float shieldRegenRate;
 
     bool isRegenerating = false;
     private bool isActive = false;
@@ -26,7 +26,7 @@ public class Shield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isActive && shieldCurrHealth < shieldMaxHealth && !isRegenerating)
+        if(isActive && shieldCurrHealth <= 0 && !isRegenerating)
         {
             StartCoroutine(RegenerateShield());
         }
@@ -58,7 +58,7 @@ public class Shield : MonoBehaviour
 
     private IEnumerator RegenerateShield()
     {
-        Debug.Log("Waiting before regeneration starts.");
+        
         yield return new WaitForSeconds(shieldRegenDelay);
         isRegenerating = true;
 
@@ -75,10 +75,12 @@ public class Shield : MonoBehaviour
 
     public void StartRegeneration()
     {
-        Debug.Log("Shield regeneration called.");
+        if (isRegenerating) return;
+
         isActive = true;
-        if (!isRegenerating)
+        if (shieldCurrHealth <= 0)
         {
+            Debug.Log("Shield regeneration called.");
             StartCoroutine(RegenerateShield());
         }
     }

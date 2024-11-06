@@ -669,6 +669,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7637531707209936597, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
+      propertyPath: shieldMaxHealth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637531707209936597, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
+      propertyPath: shieldRegenRate
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637531707209936597, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
+      propertyPath: shieldCurrHealth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637531707209936597, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
+      propertyPath: shieldRegenDelay
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8743316906995178320, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
       propertyPath: m_Name
       value: Player
@@ -989,7 +1005,7 @@ GameObject:
   - component: {fileID: 1706404627864789725}
   - component: {fileID: 960092913125839176}
   m_Layer: 6
-  m_Name: Enemy_Zombie
+  m_Name: TestBoss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5100,7 +5116,15 @@ MonoBehaviour:
   stage3Threshold: 100
   stage2Effect: {fileID: 0}
   stage3Effect: {fileID: 0}
-  healthBar: {fileID: 0}
+  attackCooldown: 3
+  darkOrbAttack: {fileID: 0}
+  tombSummonAttack: {fileID: 0}
+  trapActivationAttack: {fileID: 0}
+  phantomSlashAttack: {fileID: 0}
+  tombstoneBarrageAttack: {fileID: 0}
+  cursedWhirlwindAttack: {fileID: 0}
+  soulLeechAttack: {fileID: 0}
+  artifactExplosionAttack: {fileID: 0}
 --- !u!137 &8286555505490268278
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

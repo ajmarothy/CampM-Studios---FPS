@@ -601,9 +601,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b720bf8594ec3324daaa046f2c27ca31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldMaxHealth: 30
-  shieldCurrHealth: 30
-  shieldRegenDelay: 1
+  shieldMaxHealth: 20
+  shieldCurrHealth: 20
+  shieldRegenDelay: 10
   shieldRegenRate: 100
 --- !u!33 &4725039235758317717
 MeshFilter:
