@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public Image playerHPBar;
     public Image batteryUI;
 
-    public TMP_Text ammoCur, ammoMax;
+    public TMP_Text ammoCur, ammoTotal;
     public TMP_Text healItem, healMax;
     public TMP_Text currentBattery, maxBattery;
     public TMP_Text playerHPValue;

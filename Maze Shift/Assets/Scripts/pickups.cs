@@ -1,15 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class pickups : MonoBehaviour
 {
     [SerializeField] gunStats gun;
 
-    private void Start()
-    {
-        gun.ammoCurr = gun.ammoMax;
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

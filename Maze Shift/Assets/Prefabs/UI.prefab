@@ -992,7 +992,7 @@ MonoBehaviour:
   playerHPBar: {fileID: 2857380059947670078}
   batteryUI: {fileID: 8764956230603923938}
   ammoCur: {fileID: 8857311775430629170}
-  ammoMax: {fileID: 4850207055504746546}
+  ammoTotal: {fileID: 4850207055504746546}
   healItem: {fileID: 8165087650949969451}
   healMax: {fileID: 6788249050210149254}
   currentBattery: {fileID: 7120005544751470132}
@@ -4272,7 +4272,7 @@ GameObject:
   - component: {fileID: 594818384739678290}
   - component: {fileID: 4850207055504746546}
   m_Layer: 5
-  m_Name: Ammo Max
+  m_Name: Ammo Total
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

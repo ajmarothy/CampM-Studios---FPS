@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: Gun - Sniper
   m_EditorClassIdentifier: 
   gunModel: {fileID: 4698201593948852689, guid: 185ce04d44da342739f0bef843698e6c, type: 3}
+  ammoPickup: {fileID: 6382478436845814052, guid: eab6c5feba238ac41b73deddc3986aca, type: 3}
   hitEffect: {fileID: 5024009746357069192, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
   shootSound: []
   shootDamage: 10
   shootDistance: 100
-  ammoCurr: 5
-  ammoMax: 5
-  ammoPickup: 5
+  ammoCurr: 8
+  ammoPerMag: 8
+  totalAmmo: 40
   shootRate: 0.6
   recoilAmount: 6
   reloadTime: 2.5

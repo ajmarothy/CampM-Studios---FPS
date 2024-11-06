@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour , IDamage
     [SerializeField] int jumpMax;
 
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
+    [SerializeField] gunStats currentGun;
     [SerializeField] GameObject gunModel;
     [SerializeField] GameObject muzzleFlash;
     [SerializeField] Light flashlight;
@@ -113,8 +114,8 @@ public class PlayerController : MonoBehaviour , IDamage
         GameManager.instance.healMax.text = healthPickupMax.ToString("F0");
         if (gunList.Count > 0)
         {
-            GameManager.instance.ammoMax.text = gunList[selectedGunPos].ammoMax.ToString("F0");
             GameManager.instance.ammoCur.text = gunList[selectedGunPos].ammoCurr.ToString("F0");
+            GameManager.instance.ammoTotal.text = gunList[selectedGunPos].totalAmmo.ToString("F0");
         }
         if (healthInv.Count > 0)
         {
@@ -281,6 +282,7 @@ public class PlayerController : MonoBehaviour , IDamage
         shootRate = gun.shootRate;
         recoilAmount = gun.recoilAmount;
         reloadTime = gun.reloadTime;
+        gunList[selectedGunPos].totalAmmo = gun.totalAmmo;
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gun.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
@@ -323,16 +325,23 @@ public class PlayerController : MonoBehaviour , IDamage
         }
     }
 
+    public List<gunStats> GetGunInventory()
+    {
+        return gunList;
+    }
+
     void Reload()
     {
-        if (gunList.Count > 0)
+        if (!isReloading)
         {
-            gunStats currentGun = gunList[selectedGunPos];
-            if (currentGun.ammoCurr < currentGun.ammoMax)
-            {
-                StartCoroutine(ReloadRoutine(currentGun));
-            }
+            StartCoroutine(ReloadRoutine(gunList[selectedGunPos]));
         }
+    }
+
+    public void AddAmmo(gunStats gun, int ammoToAdd)
+    {
+        gun.totalAmmo += ammoToAdd;
+        updatePlayerUI();
     }
 
     #endregion
@@ -377,28 +386,26 @@ public class PlayerController : MonoBehaviour , IDamage
 
     IEnumerator ReloadRoutine(gunStats gun)
     {
-        isShooting = false; // stop shooting
+        if (isReloading || gun.ammoCurr == gun.ammoPerMag || gunList[selectedGunPos].totalAmmo == 0)
+            yield break;
+
         isReloading = true;
-        // add UI message for reloading (orange and flashed over reticle)
-        if (flashreload != null)
-        {
-            StopCoroutine(flashreload);
-            flashreload = null;
-        }
-        GameManager.instance.reloading.gameObject.SetActive(false);
         gunModel.SetActive(false);
-
-        flashreload = StartCoroutine(FlashReload());
-        Debug.Log("Reloading...");
-
+        GameManager.instance.reloading.gameObject.SetActive(true);
+        int roundsNeeded = gun.ammoPerMag - gun.ammoCurr;
+        gun.ammoCurr = 0;
+        if(gunList[selectedGunPos].totalAmmo >= roundsNeeded)
+        {
+            gun.ammoCurr = gun.ammoPerMag;
+            gunList[selectedGunPos].totalAmmo -= roundsNeeded;
+        }
+        else
+        {
+            gun.ammoCurr = gunList[selectedGunPos].totalAmmo;
+            gunList[selectedGunPos].totalAmmo = 0;
+        }
         yield return new WaitForSeconds(reloadTime);
-        // reload / fill the ammo
-        gun.ammoCurr = gun.ammoMax;
-
-        StopCoroutine(FlashReload());
-        flashreload = null;
         GameManager.instance.reloading.gameObject.SetActive(false);
-
         gunModel.SetActive(true);
         updatePlayerUI();
         isReloading = false;
