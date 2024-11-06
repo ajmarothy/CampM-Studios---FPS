@@ -33,6 +33,10 @@ public class GameManager : MonoBehaviour
     public TMP_Text keyIndicatorText;
     public TMP_Text healingMessage;
 
+    public Image shieldHealthBar;
+    public TMP_Text shieldHealthValue;
+    public GameObject playerShieldUI;
+
     private bool isPaused;
     int enemyCounter;
     float timeScaleOG;
@@ -134,6 +138,14 @@ public class GameManager : MonoBehaviour
         Pause();
         menuActive = loseMenu;
         menuActive.SetActive(true);
+    }
+
+    public void ToggleShieldUI(bool toggle)
+    {
+        if(playerShieldUI != null)
+        {
+            playerShieldUI.SetActive(toggle);
+        }
     }
 
     #region Settings

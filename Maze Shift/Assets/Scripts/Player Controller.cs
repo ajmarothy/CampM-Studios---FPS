@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour , IDamage
     [SerializeField] int gravity;
     [SerializeField] int jumpMax;
 
+    [SerializeField] private Shield playerShield;
+
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
     [SerializeField] gunStats currentGun;
     [SerializeField] GameObject gunModel;
@@ -64,6 +66,7 @@ public class PlayerController : MonoBehaviour , IDamage
     void Start()
     {
         originalPlayerHP = HP;
+        playerShield = null;
         playerCamera.transform.localRotation = Quaternion.identity;
         if(flashlight != null)
         {
@@ -127,6 +130,14 @@ public class PlayerController : MonoBehaviour , IDamage
         if(currentBattery == maxBattery) { GameManager.instance.batteryUI.material.color = Color.green; }
         if(currentBattery < maxBattery - (maxBattery * 0.4)) { GameManager.instance.batteryUI.material.color = Color.yellow; }
         if(currentBattery < flickerThreshold) { GameManager.instance.batteryUI.material.color = Color.red; }
+        if(playerShield != null)
+        {
+            float shieldHealthPercent = (float)playerShield.GetCurrentShieldHealth() / playerShield.GetShieldMaxHealth();
+            GameManager.instance.shieldHealthBar.fillAmount = shieldHealthPercent;
+
+            // Display shield health as a percentage (e.g., "50%")
+            GameManager.instance.shieldHealthValue.text = (shieldHealthPercent * 100f).ToString("F0") + "%";
+        }
     }
 
     public void DrainPower()
@@ -212,14 +223,21 @@ public class PlayerController : MonoBehaviour , IDamage
     #region Health
     public void takeDamage(int amount)
     {
-        HP -= amount;
-        HP = Mathf.Max(HP, 0);
-
-        updatePlayerUI();
-        StartCoroutine(damageFlash());
-        if (HP <= 0)
+        if(playerShield != null && playerShield.GetCurrentShieldHealth() > 0)
         {
-            GameManager.instance.YouLose();
+            playerShield.TakeDamage(amount);
+        }
+        else
+        {
+            HP -= amount;
+            HP = Mathf.Max(HP, 0);
+
+            updatePlayerUI();
+            StartCoroutine(damageFlash());
+            if (HP <= 0)
+            {
+                GameManager.instance.YouLose();
+            }
         }
     }
 
@@ -267,6 +285,26 @@ public class PlayerController : MonoBehaviour , IDamage
         Debug.Log("Player healed by " + healAmount);
         StopCoroutine(FlashHeal());
     }
+    #endregion
+
+    #region Shield
+
+    public void PickupShield(Shield shield)
+    {
+        if (playerShield == null)
+        {
+            playerShield = shield;
+            playerShield.StartRegeneration();
+
+            GameManager.instance.ToggleShieldUI(true);
+            Debug.Log("Shield picked up!");
+        }
+        else
+        {
+            Debug.Log("Player already has a shield!");
+        }
+    }
+
     #endregion
 
     #region Guns
