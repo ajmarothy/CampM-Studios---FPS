@@ -18,9 +18,11 @@ MonoBehaviour:
   shootSound: []
   shootDamage: 4
   shootDistance: 75
-  ammoCurr: 25
-  ammoPerMag: 25
-  totalAmmo: 125
+  ammoCurr: 20
+  ammoPerMag: 20
+  totalAmmo: 100
+  startingAmmo: 100
+  maxAmmoCapacity: 200
   shootRate: 0.12
   recoilAmount: 3
   reloadTime: 2

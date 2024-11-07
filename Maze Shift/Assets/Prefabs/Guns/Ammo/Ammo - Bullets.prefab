@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561bb4eaf0a080f49a48433dfd63122f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magMultiplier: 5
+  magMultiplier: 3
 --- !u!33 &852111071766757118
 MeshFilter:
   m_ObjectHideFlags: 0

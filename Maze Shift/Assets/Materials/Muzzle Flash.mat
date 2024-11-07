@@ -15,7 +15,7 @@ Material:
   - _ALPHABLEND_ON
   - _EMISSION
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
@@ -69,7 +69,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 10
     - _GlossMapScale: 1
-    - _Glossiness: 1
+    - _Glossiness: 0
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 2
@@ -81,6 +81,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 1, g: 0.91745555, b: 0.3443396, a: 1}
-    - _EmissionColor: {r: 1.9245282, g: 0.83049846, b: 0, a: 1}
+    - _Color: {r: 1, g: 0.8173575, b: 0.25943398, a: 1}
+    - _EmissionColor: {r: 1.7937293, g: 0.99476403, b: 0.3807445, a: 1}
   m_BuildTextureStacks: []

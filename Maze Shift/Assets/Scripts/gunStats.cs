@@ -14,7 +14,7 @@ public class gunStats : ScriptableObject
 
     public int shootDamage;
     public int shootDistance;
-    public int ammoCurr, ammoPerMag, totalAmmo;
+    public int ammoCurr, ammoPerMag, totalAmmo, startingAmmo, maxAmmoCapacity;
     public float shootRate;
     public float recoilAmount;
     public float reloadTime;

@@ -310,7 +310,11 @@ public class PlayerController : MonoBehaviour , IDamage
     #region Guns
     public void getGunStats(gunStats gun)
     {
-        gunList.Add(gun);
+        gun.totalAmmo = Mathf.Min(gun.startingAmmo, gun.maxAmmoCapacity);
+        if (!gunList.Contains(gun))
+        {
+            gunList.Add(gun);
+        }
         
         selectedGunPos = gunList.Count - 1;
         updatePlayerUI();

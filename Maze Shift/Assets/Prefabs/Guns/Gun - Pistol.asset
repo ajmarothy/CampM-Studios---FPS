@@ -20,7 +20,9 @@ MonoBehaviour:
   shootDistance: 25
   ammoCurr: 8
   ammoPerMag: 8
-  totalAmmo: 40
+  totalAmmo: 24
+  startingAmmo: 24
+  maxAmmoCapacity: 80
   shootRate: 0.75
   recoilAmount: 4
   reloadTime: 1.25
