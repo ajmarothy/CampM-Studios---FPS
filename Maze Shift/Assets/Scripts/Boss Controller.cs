@@ -36,24 +36,67 @@ public class BossController : MonoBehaviour
 
     private float attackTimer = 0f;
 
+    [Header("Movement Settings")]
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float detectionRange = 10f;
+    private Transform playerPos;
+
+    private float currStoppingDist = 5f;
+
     // Start is called before the first frame update
     void Start()
     {
         currHealth = maxHealth;
-        
+        playerPos = GameManager.instance.player.transform;
         UpdateBossStage();
     }
 
     // Update is called once per frame
     void Update()
     {
-        attackTimer = Time.deltaTime;
+        attackTimer -= Time.deltaTime;
 
-     
+        if(Vector3.Distance(transform.position, playerPos.position) <= detectionRange)
+        {
+            MoveToPlayer();
+        }
+        
+
+        if (currStage == 1 && attackTimer <= 0)
+        {
+            Stage1Attacks();
+        }
+        else if (currStage == 2 && attackTimer <= 0)
+        {
+            Stage2Attacks();
+        }
+        else if (currStage == 3 && attackTimer <= 0)
+        {
+            Stage3Attacks();
+        }
 
         if (Input.GetKeyDown(KeyCode.L))
         {
             TakeDamage(10);
+        }
+    }
+
+    private void MoveToPlayer()
+    {
+        if(playerPos != null)
+        {
+            float distToPlayer = Vector3.Distance(transform.position, playerPos.position);
+
+
+            if (distToPlayer > currStoppingDist)
+            {
+                Vector3 directionToPlayer = (playerPos.position - transform.position).normalized;
+
+                transform.position = Vector3.MoveTowards(transform.position, playerPos.position, moveSpeed * Time.deltaTime);
+
+                Quaternion targetRot = Quaternion.LookRotation(directionToPlayer);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * 5f);
+            }
         }
     }
 
@@ -108,6 +151,22 @@ public class BossController : MonoBehaviour
     {
         Debug.Log("Boss defeated!");
         Destroy(gameObject);
+    }
+
+    private void SetStoppingDistForAttack(string attackType)
+    {
+        switch (attackType)
+        {
+            case "melee":
+                currStoppingDist = 2f;
+                break;
+            case "ranged":
+                currStoppingDist = 6f;
+                break;
+            default:
+                currStoppingDist = 5f;
+                break;
+        }
     }
 
     #region Attack Stages 
@@ -175,9 +234,19 @@ public class BossController : MonoBehaviour
 
     private void DarkOrbAttack()
     {
+        SetStoppingDistForAttack("ranged");
+
         if (darkOrbAttack != null)
         {
-            Instantiate(darkOrbAttack, transform.position, Quaternion.identity);
+            GameObject orb =Instantiate(darkOrbAttack, transform.position, Quaternion.identity);
+
+            Rigidbody orbRb = orb.GetComponent<Rigidbody>();
+            if (orbRb != null)
+            {
+                Vector3 directionToPlayer = (playerPos.position - transform.position).normalized;
+                orbRb.velocity = directionToPlayer * 10f;
+            }
+
             Debug.Log("Boss uses Dark Orb!");
         }
     }

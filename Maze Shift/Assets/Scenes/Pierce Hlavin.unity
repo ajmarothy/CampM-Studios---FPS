@@ -5116,8 +5116,8 @@ MonoBehaviour:
   stage3Threshold: 100
   stage2Effect: {fileID: 0}
   stage3Effect: {fileID: 0}
-  attackCooldown: 3
-  darkOrbAttack: {fileID: 0}
+  attackCooldown: 5
+  darkOrbAttack: {fileID: 1549452208150042897, guid: 75796fcbce27ce94fb1e2e529c257cb4, type: 3}
   tombSummonAttack: {fileID: 0}
   trapActivationAttack: {fileID: 0}
   phantomSlashAttack: {fileID: 0}
@@ -5125,6 +5125,8 @@ MonoBehaviour:
   cursedWhirlwindAttack: {fileID: 0}
   soulLeechAttack: {fileID: 0}
   artifactExplosionAttack: {fileID: 0}
+  moveSpeed: 5
+  detectionRange: 25
 --- !u!137 &8286555505490268278
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

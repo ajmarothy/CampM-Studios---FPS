@@ -406,6 +406,16 @@ public class PlayerController : MonoBehaviour , IDamage
                 // add the Vector3.zero once directional damage is applied
                 dmg.takeDamage(shootDamage);
             }
+
+            if (hit.collider.CompareTag("Boss"))
+            {
+                BossController bossController = hit.collider.GetComponent<BossController>();
+                if (bossController != null)
+                {
+                    bossController.TakeDamage(shootDamage);
+                    
+                }
+            }
         }
         applyRecoil();
         yield return new WaitForSeconds(shootRate);
