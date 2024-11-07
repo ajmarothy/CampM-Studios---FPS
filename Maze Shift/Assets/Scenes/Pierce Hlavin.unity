@@ -1006,7 +1006,7 @@ GameObject:
   - component: {fileID: 960092913125839176}
   m_Layer: 6
   m_Name: TestBoss
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5116,7 +5116,7 @@ MonoBehaviour:
   stage3Threshold: 100
   stage2Effect: {fileID: 0}
   stage3Effect: {fileID: 0}
-  attackCooldown: 5
+  attackCooldown: 7
   darkOrbAttack: {fileID: 1549452208150042897, guid: 75796fcbce27ce94fb1e2e529c257cb4, type: 3}
   tombSummonAttack: {fileID: 0}
   trapActivationAttack: {fileID: 0}

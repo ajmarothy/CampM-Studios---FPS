@@ -17,6 +17,7 @@ TagManager:
   - Fireball Wall
   - Fireball
   - Ceiling
+  - Boss
   layers:
   - Default
   - TransparentFX
