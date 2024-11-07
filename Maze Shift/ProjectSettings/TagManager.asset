@@ -16,6 +16,7 @@ TagManager:
   - Bottom Cannon
   - Fireball Wall
   - Fireball
+  - Ceiling
   layers:
   - Default
   - TransparentFX
