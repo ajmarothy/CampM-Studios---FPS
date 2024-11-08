@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour , IDamage
     [SerializeField] private Shield playerShield;
 
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
-    [SerializeField] gunStats currentGun;
+    [SerializeField] public gunStats currentGun;
     [SerializeField] GameObject gunModel;
     [SerializeField] GameObject muzzleFlash;
     [SerializeField] Light flashlight;
@@ -87,6 +87,8 @@ public class PlayerController : MonoBehaviour , IDamage
         {
             movement();
             selectGun();
+            UpdateWeaponRotation();
+
             if (Input.GetButtonDown("Heal"))
             {
                 UseHealth();
@@ -332,6 +334,11 @@ public class PlayerController : MonoBehaviour , IDamage
 
     void selectGun()
     {
+        if (gunList.Count > 0)
+        {
+            currentGun = gunList[selectedGunPos];
+            Debug.Log("Current gun: " + currentGun.name);
+        }
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGunPos < gunList.Count -1)
         {
             selectedGunPos++;
@@ -513,4 +520,18 @@ public class PlayerController : MonoBehaviour , IDamage
     }
 
     #endregion
+
+    void UpdateWeaponRotation()
+    {
+        if (currentGun != null && currentGun.name == "Shovel")
+        {
+            Debug.Log("Shovel is equipped, applying rotation.");
+            gunModel.transform.localRotation = Quaternion.Euler(-8.537f, 82.102f, -74.64f);
+        }
+        else
+        {
+            gunModel.transform.localRotation = Quaternion.identity;
+        }
+    }
 }
+
