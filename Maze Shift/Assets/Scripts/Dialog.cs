@@ -7,6 +7,7 @@ public class DialogText : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
     public float textSpeed;
+    public PlayerController playerScript;
 
     private string[] lines;
     private int index;
@@ -40,6 +41,8 @@ public class DialogText : MonoBehaviour
         textComponent.text = string.Empty;
         gameObject.SetActive(true);
         StartCoroutine(TypeLine());
+        Time.timeScale = 0;
+        playerScript.isDialogActive = true;
     }
 
     IEnumerator TypeLine()
@@ -47,14 +50,14 @@ public class DialogText : MonoBehaviour
         foreach (char c in lines[index].ToCharArray())
         {
             textComponent.text += c;
-            yield return new WaitForSeconds(textSpeed);
-        }
-        if (index == lines.Length - 1)
-        {
-            yield return new WaitForSeconds(3.0f);
-            gameObject.SetActive(false);
+            yield return new WaitForSecondsRealtime(textSpeed);
         }
 
+        if (index == lines.Length - 1)
+        {
+            yield return new WaitForSecondsRealtime(3.0f);
+            gameObject.SetActive(false);
+        }
     }
 
     IEnumerator WaitAndHide(float waitTime)
@@ -73,7 +76,17 @@ public class DialogText : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false);
+
+            StartCoroutine(HideDialogAfterDelay());
         }
+    }
+
+    IEnumerator HideDialogAfterDelay()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
+        gameObject.SetActive(false);
+
+        Time.timeScale = 1;
+        playerScript.isDialogActive = false;
     }
 }

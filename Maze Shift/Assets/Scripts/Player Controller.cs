@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour , IDamage
     float currentBattery;
     public float dwellTime = 5f;
 
+    public bool isDialogActive = false;
     bool isFlickering;
     bool isRecharging;
     bool isShooting;
@@ -367,7 +368,7 @@ public class PlayerController : MonoBehaviour , IDamage
 
     void Shooting()
     {
-        if (Input.GetButton("Fire1") && !GameManager.instance.GetPause() && !isReloading && gunList.Count > 0 && gunList[selectedGunPos].ammoCurr > 0 && !isShooting)
+        if (Input.GetButton("Fire1") && !GameManager.instance.GetPause() && !isReloading && gunList.Count > 0 && gunList[selectedGunPos].ammoCurr > 0 && !isShooting && !isDialogActive)
         {
             StartCoroutine(shoot());
             audioSource.PlayOneShot(shootSound);
