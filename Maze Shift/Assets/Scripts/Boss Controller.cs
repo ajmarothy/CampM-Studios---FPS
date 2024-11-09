@@ -43,6 +43,10 @@ public class BossController : MonoBehaviour
 
     private float currStoppingDist = 5f;
 
+    private bool isBarrageActive = false;
+
+    private float fixedY = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,11 +60,11 @@ public class BossController : MonoBehaviour
     {
         attackTimer -= Time.deltaTime;
 
-        if(Vector3.Distance(transform.position, playerPos.position) <= detectionRange)
+        if (Vector3.Distance(transform.position, playerPos.position) <= detectionRange)
         {
             MoveToPlayer();
         }
-        
+
 
         if (currStage == 1 && attackTimer <= 0)
         {
@@ -83,7 +87,7 @@ public class BossController : MonoBehaviour
 
     private void MoveToPlayer()
     {
-        if(playerPos != null)
+        if (playerPos != null)
         {
             float distToPlayer = Vector3.Distance(transform.position, playerPos.position);
 
@@ -91,8 +95,10 @@ public class BossController : MonoBehaviour
             if (distToPlayer > currStoppingDist)
             {
                 Vector3 directionToPlayer = (playerPos.position - transform.position).normalized;
+                Vector3 newPosition = Vector3.MoveTowards(transform.position, playerPos.position, moveSpeed * Time.deltaTime);
+                newPosition.y = fixedY;
 
-                transform.position = Vector3.MoveTowards(transform.position, playerPos.position, moveSpeed * Time.deltaTime);
+                transform.position = newPosition;
 
                 Quaternion targetRot = Quaternion.LookRotation(directionToPlayer);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * 5f);
@@ -107,11 +113,11 @@ public class BossController : MonoBehaviour
         currHealth -= damage;
         currHealth = Mathf.Max(currHealth, 0);
 
-        
 
-        Debug.Log("Boss Health: " + currHealth + " | Stage: " +  currStage);
 
-        if(currHealth <= 0)
+        Debug.Log("Boss Health: " + currHealth + " | Stage: " + currStage);
+
+        if (currHealth <= 0)
         {
             BossKilled();
         }
@@ -120,9 +126,9 @@ public class BossController : MonoBehaviour
     private void UpdateBossStage()
     {
         if (currHealth <= 0) return;
-   
 
-        if(currHealth <= stage2Threshold && !stage2Activated)
+
+        if (currHealth <= stage2Threshold && !stage2Activated)
         {
             stage2Activated = true;
             currStage = 2;
@@ -141,8 +147,12 @@ public class BossController : MonoBehaviour
 
     private void ActivateStageEffect(GameObject effect)
     {
-        if(effect != null)
+        if (effect != null)
         {
+            effect.transform.SetParent(transform);
+
+            effect.transform.localPosition = new Vector3(0, 2, 0);
+
             effect.SetActive(true);
         }
     }
@@ -194,17 +204,13 @@ public class BossController : MonoBehaviour
 
     private void Stage2Attacks()
     {
-        if (attackTimer <= 0)
+        if (!isBarrageActive)
         {
-            PhantomSlashAttack();
-            attackTimer = attackCooldown;
+            isBarrageActive = true;
+            TombstoneBarrageAttack();
         }
 
-        if (attackTimer <= 0)
-        {
-            TombstoneBarrageAttack();
-            attackTimer = attackCooldown;
-        }
+
     }
 
     private void Stage3Attacks()
@@ -238,7 +244,7 @@ public class BossController : MonoBehaviour
 
         if (darkOrbAttack != null)
         {
-            GameObject orb =Instantiate(darkOrbAttack, transform.position, Quaternion.identity);
+            GameObject orb = Instantiate(darkOrbAttack, transform.position, Quaternion.identity);
 
             Rigidbody orbRb = orb.GetComponent<Rigidbody>();
             if (orbRb != null)
@@ -283,9 +289,17 @@ public class BossController : MonoBehaviour
 
     private void TombstoneBarrageAttack()
     {
-        if (tombstoneBarrageAttack != null)
+        if (tombstoneBarrageAttack != null && attackTimer <= 0)
         {
-            Instantiate(tombstoneBarrageAttack, transform.position, Quaternion.identity);
+            Debug.Log("Tombstone Barrage triggered!");
+
+            int numTombstones = 5;
+            float spawnRadius = 3f;
+
+            StartCoroutine(SpawnTombstones(numTombstones, spawnRadius));
+
+            attackTimer = attackCooldown;
+
             Debug.Log("Boss uses Tombstone Barrage!");
         }
     }
@@ -321,4 +335,34 @@ public class BossController : MonoBehaviour
     }
 
     #endregion
+
+    private IEnumerator SpawnTombstones(int numTombstones, float spawnRadius)
+    {
+        Debug.Log("Starting Tombstone Barrage Coroutine");
+
+        for (int i = 0; i < numTombstones; i++)
+        {
+            Vector3 spawnPos = transform.position + new Vector3(Random.Range(-spawnRadius, spawnRadius), 0, Random.Range(-spawnRadius, spawnRadius));
+
+            GameObject tombstone = Instantiate(tombstoneBarrageAttack, spawnPos, Quaternion.identity);
+
+            Tombstone tombstoneScript = tombstone.GetComponent<Tombstone>();
+
+            
+            if (tombstoneScript != null)
+            {
+               
+                Vector3 randomDirection = (transform.forward + new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-0.5f, 0.5f))).normalized;
+
+                
+                tombstoneScript.SetDirection(randomDirection);
+            }
+
+           
+            Destroy(tombstone, 3f);
+        }
+        yield return null;
+        isBarrageActive = false;
+        Debug.Log("Tombstone Barrage complete!");
+    }
 }
