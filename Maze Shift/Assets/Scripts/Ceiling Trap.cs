@@ -12,7 +12,7 @@ public class CeilingTrap : MonoBehaviour
 
     [SerializeField] int damage;
 
-    GameObject ceiling;
+    //GameObject ceiling;
 
     bool isCrushing;
 
@@ -26,7 +26,7 @@ public class CeilingTrap : MonoBehaviour
         
         down = bottom.position;
 
-        ceiling = GameObject.FindWithTag("Ceiling");
+        //ceiling = GameObject.FindWithTag("Ceiling");
         
         StartCoroutine(crushing());
     }
@@ -34,7 +34,7 @@ public class CeilingTrap : MonoBehaviour
     // Update is called once per frame
     //void Update()
     //{
-       
+    //    transform.position = Vector3.Lerp(up, down, time);
     //}
 
     IEnumerator crushing()
