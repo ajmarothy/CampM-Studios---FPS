@@ -9,15 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: ce05826e3181e7f43a22d5283a527efc
   - enabled: 1
-    path: Assets/Scenes/Tutorial Level.unity
-    guid: fbd1c8a7667230843b44935f992b7068
+    path: Assets/Scenes/Backstory.unity
+    guid: e5c5c2e295f21c543b8e04b9f91072e8
   - enabled: 1
-    path: Assets/Scenes/Max's Level.unity
-    guid: d4924f0bed9128f4ea3332ad3cde86d2
-  - enabled: 1
-    path: Assets/Scenes/Pierce's Level.unity
-    guid: 8f80dc677fe0cb949a42502a568a823d
-  - enabled: 1
-    path: Assets/Scenes/Michael's Level.unity
-    guid: 74542bdcff31e6241bfa52b2659e0f6a
+    path: Assets/Scenes/Tutorial V2.unity
+    guid: e1130fb9d1edd024b8d2a54c709cbea3
   m_configObjects: {}
