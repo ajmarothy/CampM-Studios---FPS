@@ -16,6 +16,10 @@ public class Compass : MonoBehaviour
     float compassUnit;
 
     public CompassMarker fountain;
+    public CompassMarker healthStored;
+    public CompassMarker healthInstant;
+    public CompassMarker gun;
+    public CompassMarker ammo;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +27,10 @@ public class Compass : MonoBehaviour
         compassUnit = compassImage.rectTransform.rect.width / 360f;
 
         AddCompassMarker(fountain);
+        AddCompassMarker(healthStored);
+        AddCompassMarker(healthInstant);
+        AddCompassMarker(gun);
+        AddCompassMarker(ammo);
     }
 
     // Update is called once per frame
@@ -42,7 +50,17 @@ public class Compass : MonoBehaviour
                 scale = 1f - (distance / marker.maxDistance);
             }
 
-            marker.image.rectTransform.localScale = Vector3.one * scale;
+            if (distance > marker.maxDistance)
+            {
+                scale = 0f;
+            }
+             marker.image.rectTransform.localScale = Vector3.one * scale; //scales the image based on distance
+
+            Color tempColor = marker.image.color;             // uses the scale to change the opacity or "fade in/out" the object 
+            tempColor.a = 0.25f + scale;
+            if (tempColor.a > 1)
+                tempColor.a = 1;
+            marker.image.color = tempColor;
         }
     }
 
@@ -53,6 +71,12 @@ public class Compass : MonoBehaviour
         marker.image.sprite = marker.icon;
 
         compassMarkers.Add(marker);
+    }
+
+    public void DeleteCompassMarker(CompassMarker marker)
+    {
+        compassMarkers.Remove(marker);
+        Destroy(marker);
     }
 
     Vector2 GetPosOnCompass(CompassMarker marker)
