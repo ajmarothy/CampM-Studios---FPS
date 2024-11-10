@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7256573809087061255}
   m_Layer: 5
   m_Name: Compass Icon
-  m_TagString: Untagged
+  m_TagString: Compass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

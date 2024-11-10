@@ -31,6 +31,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4417904961189948623}
   - {fileID: 8372075083128258982}
   - {fileID: 218218863352875854}
   m_Father: {fileID: 0}
@@ -258,3 +259,69 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5731547941117289742, guid: dd2f7bc6cbe7c6e44bd8d285d094dc7f, type: 3}
+--- !u!1001 &4170846885184299784
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3710885222039503353}
+    m_Modifications:
+    - target: {fileID: 337310390903754695, guid: 493dd4839b0656844b4273d6268204dc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 337310390903754695, guid: 493dd4839b0656844b4273d6268204dc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 337310390903754695, guid: 493dd4839b0656844b4273d6268204dc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 337310390903754695, guid: 493dd4839b0656844b4273d6268204dc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 337310390903754695, guid: 493dd4839b0656844b4273d6268204dc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 337310390903754695, guid: 493dd4839b0656844b4273d6268204dc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 337310390903754695, guid: 493dd4839b0656844b4273d6268204dc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 337310390903754695, guid: 493dd4839b0656844b4273d6268204dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 337310390903754695, guid: 493dd4839b0656844b4273d6268204dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 337310390903754695, guid: 493dd4839b0656844b4273d6268204dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774424819269527289, guid: 493dd4839b0656844b4273d6268204dc, type: 3}
+      propertyPath: m_Name
+      value: Fountain Marker
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622527209908353831, guid: 493dd4839b0656844b4273d6268204dc, type: 3}
+      propertyPath: maxDistance
+      value: 100
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 493dd4839b0656844b4273d6268204dc, type: 3}
+--- !u!4 &4417904961189948623 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 337310390903754695, guid: 493dd4839b0656844b4273d6268204dc, type: 3}
+  m_PrefabInstance: {fileID: 4170846885184299784}
+  m_PrefabAsset: {fileID: 0}
