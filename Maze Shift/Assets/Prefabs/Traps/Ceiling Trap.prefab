@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bottom: {fileID: 6785436308260002760}
-  time: 1
+  totalTime: 20
   damage: 1000
 --- !u!33 &486230877774314006
 MeshFilter:

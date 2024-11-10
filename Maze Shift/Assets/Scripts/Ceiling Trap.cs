@@ -8,9 +8,11 @@ public class CeilingTrap : MonoBehaviour
     //[SerializeField] Transform top;
     [SerializeField] Transform bottom;
 
-    [SerializeField] float time;
+    [SerializeField] float totalTime;
 
     [SerializeField] int damage;
+
+    float time;
 
     //GameObject ceiling;
 
@@ -22,6 +24,7 @@ public class CeilingTrap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        time += Time.deltaTime;
         up = transform.position;
         
         down = bottom.position;
@@ -40,7 +43,7 @@ public class CeilingTrap : MonoBehaviour
     IEnumerator crushing()
     {
         isCrushing = true;
-        transform.position = Vector3.Lerp(up, down, time);
+        transform.position = Vector3.Lerp(up, down, totalTime/time);
         yield return new WaitForSeconds(0.5f);
         isCrushing = false;
         transform.position = up;
