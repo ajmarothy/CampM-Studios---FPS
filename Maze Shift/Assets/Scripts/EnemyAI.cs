@@ -268,26 +268,26 @@ public class EnemyAI : MonoBehaviour, IDamage
         GameManager.instance.UpdateGameGoal(-1);
     }
 
-    public int EnemyDifficulty(int difficulty)
-    {
-        difficulty = GameManager.instance.gameSettings.GetDifficulty();
-        if(difficulty == 3)
-        {
-            HPCurrent *= 2;
-            enemyStats.shootRate *= 2;
-            enemyStats.shootDistance *= 2;
-            // increase move speed like full time sprint
-            enemyStats.speed *= 2;
-        }
-        else if(difficulty == 1)
-        {
-            HPCurrent /= 2;
-            enemyStats.shootRate /= 2;
-            enemyStats.shootDistance /= 2;
-            // move speed stays at normal speed
-        }
-        return difficulty;
-    }
+    //public int EnemyDifficulty(int difficulty)
+    //{
+    //    difficulty = GameManager.instance.gameSettings.GetDifficulty();
+    //    if(difficulty == 3)
+    //    {
+    //        HPCurrent *= 2;
+    //        enemyStats.shootRate *= 2;
+    //        enemyStats.shootDistance *= 2;
+    //        // increase move speed like full time sprint
+    //        enemyStats.speed *= 2;
+    //    }
+    //    else if(difficulty == 1)
+    //    {
+    //        HPCurrent /= 2;
+    //        enemyStats.shootRate /= 2;
+    //        enemyStats.shootDistance /= 2;
+    //        // move speed stays at normal speed
+    //    }
+    //    return difficulty;
+    //}
 
     void HealthBarFacePlayer()
     {

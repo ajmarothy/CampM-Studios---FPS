@@ -58,21 +58,6 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.instance.CloseSettings();
     }
 
-    public void SetVolume(float volume)
-    {
-        GameManager.instance.gameSettings.SetVolume(volume);
-    }
-
-    public void SetGraphicsQuality(int quality)
-    {
-        GameManager.instance.gameSettings.SetGraphicsQuality(quality);
-    }
-
-    public void SetDifficulty(int difficulty)
-    {
-        GameManager.instance.gameSettings.SetDifficulty(difficulty);
-    }
-
     public void ApplySettings()
     {
         GameManager.instance.ApplySettings();

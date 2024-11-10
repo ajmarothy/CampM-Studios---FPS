@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour , IDamage
     int selectedHealthItem;
     int jumpCount;
     float currentBattery;
+    float sensitivity = 1.0f;
     public float dwellTime = 5f;
 
     public bool isDialogActive = false;
@@ -143,6 +144,7 @@ public class PlayerController : MonoBehaviour , IDamage
         }
     }
 
+    #region Flashlight
     public void DrainPower()
     {
         if(flashlight.enabled && currentBattery > 0)
@@ -171,6 +173,7 @@ public class PlayerController : MonoBehaviour , IDamage
             StartCoroutine(RechargeBattery());
         }
     }
+    #endregion
 
     #region Player Controls
     void movement()
@@ -208,7 +211,7 @@ public class PlayerController : MonoBehaviour , IDamage
 
     public void applyRecoil()
     {
-        cameraController cameraController = playerCamera.GetComponent<cameraController>();
+        CameraController cameraController = playerCamera.GetComponent<CameraController>();
         cameraController.ApplyRecoil(recoilAmount);
     }
 
@@ -219,6 +222,11 @@ public class PlayerController : MonoBehaviour , IDamage
         controller.enabled = true;
         HP = originalPlayerHP;
         updatePlayerUI();
+    }
+
+    public void SetSensitivity(float newSensitivity)
+    {
+        sensitivity = newSensitivity;
     }
 
     #endregion
@@ -310,7 +318,7 @@ public class PlayerController : MonoBehaviour , IDamage
 
     #endregion
 
-    #region Guns
+    #region Weapons
     public void getGunStats(gunStats gun)
     {
         gun.totalAmmo = Mathf.Min(gun.startingAmmo, gun.maxAmmoCapacity);
@@ -394,6 +402,18 @@ public class PlayerController : MonoBehaviour , IDamage
         updatePlayerUI();
     }
 
+    void UpdateWeaponRotation()
+    {
+        if (currentGun != null && currentGun.name == "Shovel")
+        {
+            Debug.Log("Shovel is equipped, applying rotation.");
+            gunModel.transform.localRotation = Quaternion.Euler(-8.537f, 82.102f, -74.64f);
+        }
+        else
+        {
+            gunModel.transform.localRotation = Quaternion.identity;
+        }
+    }
     #endregion
 
     #region IEnumerators
@@ -521,18 +541,5 @@ public class PlayerController : MonoBehaviour , IDamage
     }
 
     #endregion
-
-    void UpdateWeaponRotation()
-    {
-        if (currentGun != null && currentGun.name == "Shovel")
-        {
-            Debug.Log("Shovel is equipped, applying rotation.");
-            gunModel.transform.localRotation = Quaternion.Euler(-8.537f, 82.102f, -74.64f);
-        }
-        else
-        {
-            gunModel.transform.localRotation = Quaternion.identity;
-        }
-    }
 }
 

@@ -10,7 +10,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public ISettings gameSettings;
+    public enum DifficultyLevel { Easy, Medium, Hard }
+    public DifficultyLevel difficultyLevel = DifficultyLevel.Medium;
 
+    [SerializeField] AudioManager audioManager;
+    [SerializeField] ControlsManager controlsManager;
+    [SerializeField] GameplayManager gameplayManager;
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject loseMenu;
@@ -73,8 +78,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        gameSettings = new GameSettings();
-        LoadSettings();
         instance = this;
         timeScaleOG = Time.timeScale;
         player = GameObject.FindWithTag("Player");
@@ -162,9 +165,9 @@ public class GameManager : MonoBehaviour
         {
             loseMenu.SetActive(false);
         }
-        else if (fromMenu == "")
+        else if (fromMenu == "main")
         {
-
+            mainMenu.SetActive(false);
         }
     }
 
@@ -196,20 +199,6 @@ public class GameManager : MonoBehaviour
     {
         gameSettings.ResetToDefaults();
         CloseSettings();
-    }
-
-    public void ChooseDifficulty(int difficulty)
-    {
-        gameSettings.SetDifficulty(difficulty);
-    }
-
-    public void LoadSettings()
-    {
-        float savedVolume = PlayerPrefs.GetFloat("Volume", 1.0f);
-        int savedQuality = PlayerPrefs.GetInt("GraphicsQuality", 2);
-        int savedDifficulty = PlayerPrefs.GetInt("GameDifficulty", 2); // 1, 2 ,3 to set easy to hard; default normale
-        gameSettings.SetVolume(savedVolume);
-        gameSettings.SetGraphicsQuality(savedQuality);
     }
     #endregion
 }

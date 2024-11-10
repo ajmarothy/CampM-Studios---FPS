@@ -831,7 +831,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6685016083276985689}
   m_Layer: 5
-  m_Name: Settings Menus
+  m_Name: Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1227,7 +1227,7 @@ GameObject:
   - component: {fileID: 9162106905804335585}
   - component: {fileID: 8489905216320559921}
   m_Layer: 5
-  m_Name: Graphics Menu
+  m_Name: Button Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2373,7 +2373,7 @@ GameObject:
   - component: {fileID: 4384796847500124631}
   - component: {fileID: 5424196099518605571}
   m_Layer: 5
-  m_Name: Inputs Menu
+  m_Name: Button Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5684,7 +5684,7 @@ GameObject:
   - component: {fileID: 2134842494072474780}
   - component: {fileID: 8573130265025058337}
   m_Layer: 5
-  m_Name: Audio Menu
+  m_Name: Button Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5823,7 +5823,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7077898892867975437
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6566,7 +6566,7 @@ GameObject:
   - component: {fileID: 4492464157651897169}
   - component: {fileID: 3094547680243985580}
   m_Layer: 5
-  m_Name: Gameplay Menu
+  m_Name: Button Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

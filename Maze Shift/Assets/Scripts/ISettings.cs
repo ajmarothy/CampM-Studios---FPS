@@ -4,15 +4,7 @@ using UnityEngine;
 
 public interface ISettings
 {
-    void SetVolume(float  volume);
-    float GetVolume();
-
-    void SetGraphicsQuality(int quality);
-    int GetGraphicsQuality();
-
     void ApplySettings();
+    void SaveSettings();
     void ResetToDefaults();
-
-    void SetDifficulty(int difficuly);
-    int GetDifficulty();
 }
