@@ -47,6 +47,14 @@ public class BossController : MonoBehaviour
 
     private float fixedY = 0f;
 
+    [Header("Soul Leech Settings")]
+    [SerializeField] private GameObject soulLeechEffectPrefab;
+    [SerializeField] private float leechDuration = 5f;
+    [SerializeField] private float leechDamagePerSecond = 5f;
+    [SerializeField] private float healthRestoredPerSecond = 2f;
+
+    private Coroutine soulLeechCoroutine;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -215,22 +223,7 @@ public class BossController : MonoBehaviour
 
     private void Stage3Attacks()
     {
-        if (attackTimer <= 0)
-        {
-            CursedWhirlwindAttack();
-            attackTimer = attackCooldown;
-        }
-
-        if (attackTimer <= 0)
-        {
-            SoulLeechAttack();
-            attackTimer = attackCooldown;
-        }
-
-        if (currHealth <= 10)
-        {
-            ArtifactExplosion();
-        }
+        SoulLeechAttack();
     }
 
 
@@ -318,11 +311,11 @@ public class BossController : MonoBehaviour
 
     private void SoulLeechAttack()
     {
-        if (soulLeechAttack != null)
+        if(soulLeechCoroutine != null)
         {
-            Instantiate(soulLeechAttack, transform.position, Quaternion.identity);
-            Debug.Log("Boss uses Soul Leech!");
+            StopCoroutine(soulLeechCoroutine);
         }
+        soulLeechCoroutine = StartCoroutine(LeechSoulCoroutine());
     }
 
     private void ArtifactExplosion()
@@ -364,5 +357,62 @@ public class BossController : MonoBehaviour
         yield return null;
         isBarrageActive = false;
         Debug.Log("Tombstone Barrage complete!");
+    }
+
+    private IEnumerator LeechSoulCoroutine()
+    {
+        GameObject soulLeechEffect = null;
+        if (soulLeechEffectPrefab != null)
+        {
+            soulLeechEffect = Instantiate(soulLeechEffectPrefab, transform.position, Quaternion.identity);
+            soulLeechEffect.transform.SetParent(transform);
+            soulLeechEffect.transform.localPosition = new Vector3(0, 2, 0); 
+
+            LineRenderer lineRenderer = soulLeechEffect.GetComponent<LineRenderer>();
+            if (lineRenderer != null)
+            {
+                lineRenderer.startWidth = 0.1f; 
+                lineRenderer.endWidth = 0.1f; 
+                lineRenderer.material = new Material(Shader.Find("Sprites/Default")) { color = Color.green }; 
+                lineRenderer.positionCount = 2; 
+            }
+
+            Destroy(soulLeechEffect, leechDuration);
+        }
+
+        float elapsedTime = 0f;
+        Transform playerTransform = GameManager.instance.player.transform;
+
+        while (elapsedTime < leechDuration)
+        {
+            if (playerTransform != null)
+            {
+                IDamage playerDamage = playerTransform.GetComponent<IDamage>();
+                if (playerDamage != null)
+                {
+                    playerDamage.takeDamage((int)(leechDamagePerSecond * Time.deltaTime));
+                }
+            }
+
+            if (currHealth < maxHealth)
+            {
+                currHealth = Mathf.Min(currHealth + (int)(healthRestoredPerSecond * Time.deltaTime), maxHealth);
+            }
+
+            if (soulLeechEffect != null && playerTransform != null)
+            {
+                LineRenderer lineRenderer = soulLeechEffect.GetComponent<LineRenderer>();
+                if (lineRenderer != null)
+                {
+                    lineRenderer.SetPosition(0, transform.position); 
+                    lineRenderer.SetPosition(1, playerTransform.position); 
+                }
+            }
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        Debug.Log("Soul Leech attack finished.");
     }
 }
