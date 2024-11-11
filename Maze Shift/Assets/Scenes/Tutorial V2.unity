@@ -31540,6 +31540,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b65163634bcdf8141903e6d82ac82d92, type: 3}
+--- !u!1 &734113312 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2519009323451242238, guid: b65163634bcdf8141903e6d82ac82d92, type: 3}
+  m_PrefabInstance: {fileID: 734113311}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &735182964
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75860,6 +75865,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5215864600773505997, guid: 52a5ecaee177d0e43af00ae8e221ef03, type: 3}
+      propertyPath: winMenu
+      value: 
+      objectReference: {fileID: 734113312}
     - target: {fileID: 5589605248137488701, guid: 52a5ecaee177d0e43af00ae8e221ef03, type: 3}
       propertyPath: m_Name
       value: End Level Portal

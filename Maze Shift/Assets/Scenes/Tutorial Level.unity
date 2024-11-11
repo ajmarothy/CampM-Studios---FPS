@@ -14847,6 +14847,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 3853139659338857110, guid: b65163634bcdf8141903e6d82ac82d92, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4678713791289668078, guid: b65163634bcdf8141903e6d82ac82d92, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -14955,6 +14959,18 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1971592860}
+    - target: {fileID: 7544273398378685699, guid: b65163634bcdf8141903e6d82ac82d92, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159604988654236023, guid: b65163634bcdf8141903e6d82ac82d92, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8391541726424183471, guid: b65163634bcdf8141903e6d82ac82d92, type: 3}
+      propertyPath: m_FirstSelected
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -31881,6 +31897,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 8052325964892604483}
   glow: {fileID: 0}
+  saveIconWait: 0
 --- !u!33 &7762776244192855866
 MeshFilter:
   m_ObjectHideFlags: 0
