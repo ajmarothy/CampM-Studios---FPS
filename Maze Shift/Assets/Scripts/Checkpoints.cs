@@ -8,10 +8,15 @@ public class CheckPoints : MonoBehaviour
     [SerializeField] Renderer model;
     [SerializeField] GameObject glow;
 
+    [SerializeField] float saveIconWait;
+
+    private FadeInOut FadeInOut;
+
     // Start is called before the first frame update
     void Start()
     {
         glow = GameObject.FindWithTag("Glow");
+        FadeInOut = GameObject.Find("Save Icon").GetComponent<FadeInOut>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -20,6 +25,20 @@ public class CheckPoints : MonoBehaviour
         {
             GameManager.instance.getSpawnPos().transform.position = transform.position;
             glow.SetActive(false);
+            SavingIcon();
         }
+    }
+
+    private void SavingIcon()
+    {
+        StartCoroutine(FadeOnSave());
+    }
+
+    IEnumerator FadeOnSave()
+    {
+        
+        FadeInOut.FadeIn();
+        yield return new WaitForSeconds(saveIconWait);
+        FadeInOut.FadeOut();
     }
 }
