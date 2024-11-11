@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour, ISettings
     public DifficultyLevel difficultyLevel = DifficultyLevel.Medium;
 
     [SerializeField] GraphicsManager graphicsManager;
-    [SerializeField] AudioManager audioManager;
+    [SerializeField] AudioSettingsManager audioManager;
     [SerializeField] ControlsManager controlsManager;
     [SerializeField] GameplayManager gameplayManager;
     [SerializeField] public GameObject pauseMenu;
