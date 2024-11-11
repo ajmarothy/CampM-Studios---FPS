@@ -93876,6 +93876,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Check Point
       objectReference: {fileID: 0}
+    - target: {fileID: 764948464607300179, guid: fea5279fcdac2c1429958f295fab03dc, type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 764948464607300179, guid: fea5279fcdac2c1429958f295fab03dc, type: 3}
+      propertyPath: saveIconWait
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6745521972066398927, guid: fea5279fcdac2c1429958f295fab03dc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 160.92113
