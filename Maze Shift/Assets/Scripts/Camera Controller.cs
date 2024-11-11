@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] float sensitivity = 100f;
+    [SerializeField] float sensitivity;
     [SerializeField] float lockVertMin = -90f;
     [SerializeField] float lockVertMax = 90f;
     [SerializeField] bool invertY = false;
@@ -31,18 +31,10 @@ public class CameraController : MonoBehaviour
     {
         Vector2 lookInput = inputActions.Player.Look.ReadValue<Vector2>();
 
-        float mouseY = lookInput.y * sensitivity * Time.deltaTime;
+        float mouseY = lookInput.y * sensitivity * Time.deltaTime * (invertY ? 1 : -1);
         float mouseX = lookInput.x * sensitivity * Time.deltaTime;
 
-        if (!invertY)
-        {
-            rotX -= mouseY;
-        }
-        else
-        {
-            rotX += mouseY;
-        }
-        rotX = Mathf.Clamp(rotX, lockVertMin, lockVertMax);
+        rotX = Mathf.Clamp(rotX + mouseY, lockVertMin, lockVertMax);
 
         recoilOffsetY = Mathf.Lerp(recoilOffsetY, 0, Time.deltaTime / 0.5f);
 
@@ -55,18 +47,11 @@ public class CameraController : MonoBehaviour
         sensitivity = newSensitivity;
     }
 
-    public void ApplyRecoil(float recoilAmount)
-    {
-        recoilOffsetY -= recoilAmount;
-    }
+    public void SetInvertY(bool isInverted) { invertY = isInverted; }
 
-    private void OnEnable()
-    {
-        inputActions.Enable();
-    }
+    public void ApplyRecoil(float recoilAmount) { recoilOffsetY -= recoilAmount; }
 
-    private void OnDisable()
-    {
-        inputActions.Disable();
-    }
+    private void OnEnable() { inputActions.Enable(); }
+
+    private void OnDisable() { inputActions.Disable(); }
 }

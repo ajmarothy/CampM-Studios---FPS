@@ -25,7 +25,6 @@ public class Compass : MonoBehaviour
     void Start()
     {
         compassUnit = compassImage.rectTransform.rect.width / 360f;
-
         AddCompassMarker(fountain);
         AddCompassMarker(healthStored);
         AddCompassMarker(healthInstant);
@@ -42,7 +41,7 @@ public class Compass : MonoBehaviour
         {
             marker.image.rectTransform.anchoredPosition = GetPosOnCompass(marker);
 
-            float distance = Vector2.Distance(new Vector2(player.transform.position.x, player.transform.position.z), marker.position);
+            float distance = Vector2.Distance(new Vector2(player.transform.position.x, player.transform.position.z), marker.Position);
             float scale = 0f;
 
             if (distance < marker.maxDistance)
@@ -84,7 +83,7 @@ public class Compass : MonoBehaviour
         Vector2 playerPos = new Vector2(player.transform.position.x, player.transform.position.z);
         Vector2 playerFwd = new Vector2(player.transform.forward.x, player.transform.forward.z);
 
-        float angle = Vector2.SignedAngle(marker.position - playerPos, playerFwd);
+        float angle = Vector2.SignedAngle(marker.Position - playerPos, playerFwd);
 
         return new Vector2(compassUnit * angle, 0f);
     }

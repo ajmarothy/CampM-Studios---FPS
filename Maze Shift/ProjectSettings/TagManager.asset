@@ -19,6 +19,7 @@ TagManager:
   - Ceiling
   - Boss
   - Compass
+  - Main Menu
   layers:
   - Default
   - TransparentFX

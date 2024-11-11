@@ -8,6 +8,8 @@ public class ButtonFunctions : MonoBehaviour
     public void Resume()
     {
         GameManager.instance.Unpause();
+        GameManager.instance.previousMenu = null;
+        GameManager.instance.pauseMenu.SetActive(false);
     }
 
 
@@ -25,11 +27,10 @@ public class ButtonFunctions : MonoBehaviour
 #else
         Application.Quit();
 #endif
-
     }
 
 
-    public void respawn()
+    public void Respawn()
     {
         GameManager.instance.playerScript.spawnPlayer();
         GameManager.instance.Unpause();
@@ -39,17 +40,19 @@ public class ButtonFunctions : MonoBehaviour
     {
         
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        respawn();
+        Respawn();
     }
 
 
     public void OpenSettingsPause()
     {
+        GameManager.instance.previousMenu = "pause";
         GameManager.instance.OpenSettings("pause");
     }
 
     public void OpenSettingsLose()
     {
+        GameManager.instance.previousMenu = "lose";
         GameManager.instance.OpenSettings("lose");
     }
 
@@ -65,6 +68,6 @@ public class ButtonFunctions : MonoBehaviour
 
     public void ResetSettings()
     {
-        GameManager.instance.ResetSettings();
+        GameManager.instance.ResetToDefaults();
     }
 }

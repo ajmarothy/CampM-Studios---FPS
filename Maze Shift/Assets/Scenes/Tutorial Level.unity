@@ -7158,7 +7158,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 515977858}
   backgroundMusic: {fileID: 8300000, guid: 423fed7ed12e1364aafaf30b464b08b9, type: 3}
-  gameAudioMixer: {fileID: 0}
 --- !u!4 &515977860
 Transform:
   m_ObjectHideFlags: 0
@@ -14952,6 +14951,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 5747702076786995192, guid: b65163634bcdf8141903e6d82ac82d92, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1971592860}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -28734,7 +28737,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3693072417262307008}
-  - component: {fileID: 2658685410871305070}
   - component: {fileID: 6347937190258052200}
   - component: {fileID: 9017565379765034278}
   m_Layer: 0
@@ -29842,18 +29844,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2658685410871305070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 709360200248038549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04c2aa4f86ca6384e9a9c6d234cdef24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!33 &2762870719299782975
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -30515,18 +30505,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &4550658416628020835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5327906824911950543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04c2aa4f86ca6384e9a9c6d234cdef24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!23 &4595830629864037763
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30924,7 +30902,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9201091357829025660}
-  - component: {fileID: 4550658416628020835}
   - component: {fileID: 1424478499378488980}
   - component: {fileID: 4363105824078570855}
   m_Layer: 0

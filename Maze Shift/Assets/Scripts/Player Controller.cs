@@ -49,7 +49,6 @@ public class PlayerController : MonoBehaviour , IDamage
     int selectedHealthItem;
     int jumpCount;
     float currentBattery;
-    float sensitivity = 1.0f;
     public float dwellTime = 5f;
 
     public bool isDialogActive = false;
@@ -222,11 +221,6 @@ public class PlayerController : MonoBehaviour , IDamage
         controller.enabled = true;
         HP = originalPlayerHP;
         updatePlayerUI();
-    }
-
-    public void SetSensitivity(float newSensitivity)
-    {
-        sensitivity = newSensitivity;
     }
 
     #endregion

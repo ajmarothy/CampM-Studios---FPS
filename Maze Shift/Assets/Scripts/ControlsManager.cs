@@ -1,36 +1,76 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class ControlsManager : MonoBehaviour, ISettings
 {
     [SerializeField] private float sensitivity = 1.0f;
+    [SerializeField] private bool invertY = false;
+
     public PlayerController playerController;
     public CameraController cameraController;
     public InputSystem_Actions playerInputActions;
+    public PlayerInput playerInput;
+    public TMP_Dropdown controlSchemeDropdown;
 
     // Start is called before the first frame update
     private void Awake()
     {
         playerInputActions = new InputSystem_Actions();
-        cameraController = new CameraController();
-        playerController = GameManager.instance.playerScript;
         playerInputActions.Enable();
         LoadControlSettings();
+    }
+
+    private void Start()
+    {
+        PopulateControlSchemeDropdown();
+        controlSchemeDropdown.onValueChanged.AddListener(OnControlSchemeChanged);
+        SetDropdownToCurrentControlScheme();
+    }
+
+    private void PopulateControlSchemeDropdown()
+    {
+        controlSchemeDropdown.ClearOptions();
+        var controlSchemes = playerInput.actions.controlSchemes;
+        List<string> options = new List<string>();
+        foreach(var scheme in controlSchemes)
+        {
+            options.Add(scheme.name);
+        }
+        controlSchemeDropdown.AddOptions(options);
+    }
+
+    public void SetDropdownToCurrentControlScheme()
+    {
+        string currentScheme = playerInput.currentControlScheme;
+        int index = controlSchemeDropdown.options.FindIndex(option => option.text == currentScheme);
+        if(index >= 0)
+        {
+            controlSchemeDropdown.value = index;
+        }
+    }
+
+    private void OnControlSchemeChanged(int index)
+    {
+        string selectedScheme = controlSchemeDropdown.options[index].text;
+        playerInput.SwitchCurrentControlScheme(selectedScheme);
     }
 
     public void SetSensitivity(float newSensitivity)
     {
         sensitivity = newSensitivity;
-        playerController.SetSensitivity(sensitivity);
+        cameraController.SetSensitivity(sensitivity);
     }
 
-    public void UpdateCameraSensitivity(float newSensitivity)
+    public void SetInvertYAxis(bool isInvertedY)
     {
-        cameraController.SetSensitivity(newSensitivity);
+        invertY = isInvertedY;
+        cameraController.SetInvertY(invertY);
     }
 
     public void StartRebind(string actionName, Action onComplete = null)
@@ -54,9 +94,14 @@ public class ControlsManager : MonoBehaviour, ISettings
         PlayerPrefs.Save();
     }
 
-    private void LoadControlSettings()
+    public void LoadControlSettings()
     {
-        PlayerPrefs.SetFloat("Sensitivity", sensitivity);
+        sensitivity = PlayerPrefs.GetFloat("Sensitivity", sensitivity);
+        invertY = PlayerPrefs.GetInt("InvertY", invertY ? 1 : 0) == 1;
+
+        SetSensitivity(sensitivity);
+        SetInvertYAxis(invertY);
+
         foreach(InputAction action in playerInputActions)
         {
             string rebinds = PlayerPrefs.GetString(action.name + "_rebinds", string.Empty);
@@ -70,12 +115,14 @@ public class ControlsManager : MonoBehaviour, ISettings
 
     public void ApplySettings() 
     { 
-        playerController.SetSensitivity(sensitivity); 
+        cameraController.SetSensitivity(sensitivity);
     }
 
     public void SaveSettings()
     {
         PlayerPrefs.SetFloat("Sensitivity", sensitivity);
+        PlayerPrefs.SetInt("InvertY", invertY ? 1 : 0);
+
         foreach(InputAction action in playerInputActions)
         {
             SaveBinding(action);
@@ -86,6 +133,7 @@ public class ControlsManager : MonoBehaviour, ISettings
     public void ResetToDefaults()
     {
         SetSensitivity(1.0f);
+        SetInvertYAxis(false);
         foreach (InputAction action in playerInputActions)
         {
             action.RemoveAllBindingOverrides();
@@ -93,13 +141,7 @@ public class ControlsManager : MonoBehaviour, ISettings
         SaveSettings();
     }
 
-    private void OnEnable()
-    {
-        playerInputActions.Enable();
-    }
+    private void OnEnable() { playerInputActions.Enable(); }
 
-    private void OnDisable()
-    {
-        playerInputActions.Disable();
-    }
+    private void OnDisable() { playerInputActions.Disable(); }
 }

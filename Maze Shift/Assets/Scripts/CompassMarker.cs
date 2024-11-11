@@ -8,7 +8,7 @@ public class CompassMarker : MonoBehaviour
 
     public float maxDistance;
 
-    public Vector2 position
+    public Vector2 Position
     {
         get { return new Vector2(transform.position.x, transform.position.z) ; }
     }

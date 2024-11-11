@@ -6,21 +6,25 @@ using UnityEngine.UI;
 using Newtonsoft.Json.Linq;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, ISettings
 {
     public static GameManager instance;
     public ISettings gameSettings;
     public enum DifficultyLevel { Easy, Medium, Hard }
     public DifficultyLevel difficultyLevel = DifficultyLevel.Medium;
 
+    [SerializeField] GraphicsManager graphicsManager;
     [SerializeField] AudioManager audioManager;
     [SerializeField] ControlsManager controlsManager;
     [SerializeField] GameplayManager gameplayManager;
+    [SerializeField] public GameObject pauseMenu;
     [SerializeField] GameObject winMenu;
-    [SerializeField] GameObject pauseMenu;
-    [SerializeField] GameObject loseMenu;
+    [SerializeField] public GameObject loseMenu;
     [SerializeField] GameObject settingsMenu;
-    [SerializeField] GameObject mainMenu;
+    [SerializeField] GameObject graphicsSettingsMenu;
+    [SerializeField] GameObject audioSettingsMenu;
+    [SerializeField] GameObject controlsSettingsMenu;
+    [SerializeField] GameObject gameplaySettingsMenu;
     [SerializeField] TMP_Text exitLevelText;
     [SerializeField] TMP_Text enemyCounterText;
 
@@ -42,38 +46,15 @@ public class GameManager : MonoBehaviour
     public TMP_Text shieldHealthValue;
     public GameObject playerShieldUI;
 
+    private Stack<string> menuHistory = new Stack<string>();
     private bool isPaused;
     int enemyCounter;
     float timeScaleOG;
-    string previousMenu;
+    public string previousMenu;
 
     private GameObject spawnPos;
     private GameObject menuActive;
 
-    public GameObject getSpawnPos()
-    {
-        return spawnPos;
-    }
-
-    public void SetSpawnPos(GameObject _spawnPos)
-    {
-        spawnPos = _spawnPos;
-    }
-
-    public bool GetPause()
-    {
-        return isPaused;
-    }
-
-    public void SetPause(bool _isPaused)
-    {
-        isPaused = _isPaused;
-    }
-
-    public int GetEnemyCounter()
-    {
-        return enemyCounter;
-    }
 
     // Start is called before the first frame update
     void Awake()
@@ -99,6 +80,33 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    #region Getters / Setters
+    public GameObject getSpawnPos()
+    {
+        return spawnPos;
+    }
+
+    public void SetSpawnPos(GameObject _spawnPos)
+    {
+        spawnPos = _spawnPos;
+    }
+
+    public bool GetPause()
+    {
+        return isPaused;
+    }
+
+    public void SetPause(bool _isPaused)
+    {
+        isPaused = _isPaused;
+    }
+
+    public int GetEnemyCounter()
+    {
+        return enemyCounter;
+    }
+    #endregion
 
     public void Pause()
     {
@@ -154,8 +162,11 @@ public class GameManager : MonoBehaviour
     #region Settings
     public void OpenSettings(string fromMenu)
     {
-        //this method will open the settings menu
         settingsMenu.SetActive(true);
+        graphicsSettingsMenu.SetActive(false);
+        audioSettingsMenu.SetActive(false);
+        controlsSettingsMenu.SetActive(false);
+        gameplaySettingsMenu.SetActive(false);
         previousMenu = fromMenu;
         if (fromMenu == "pause")
         {
@@ -165,40 +176,58 @@ public class GameManager : MonoBehaviour
         {
             loseMenu.SetActive(false);
         }
-        else if (fromMenu == "main")
-        {
-            mainMenu.SetActive(false);
-        }
     }
 
     public void CloseSettings()
     {
         settingsMenu.SetActive(false);
-        if(previousMenu == "pause")
+        Unpause();
+        if (previousMenu == "pause")
         {
+            Pause();
             pauseMenu.SetActive(true);
         }
         else if (previousMenu == "lose")
         {
+            YouLose();
             loseMenu.SetActive(true);
         }
-        else if(previousMenu == "main")
-        {
-            mainMenu.SetActive(true);
-            SceneManager.LoadScene(0);
-        }
+    }
+
+    public void OpenGraphicsSettings()
+    {
+        settingsMenu.SetActive(false);
+        graphicsSettingsMenu.SetActive(true);
+    }
+    public void OpenAudioSettings()
+    {
+        settingsMenu.SetActive(false);
+        audioSettingsMenu.SetActive(true);
+    }
+    public void OpenControlsSettings()
+    {
+        settingsMenu.SetActive(false);
+        controlsSettingsMenu.SetActive(true);
+    }
+    public void OpenGameplaySettings()
+    {
+        settingsMenu.SetActive(false);
+        gameplaySettingsMenu.SetActive(true);
     }
 
     public void ApplySettings()
     {
         gameSettings.ApplySettings();
-        CloseSettings();
     }
 
-    public void ResetSettings()
+    public void SaveSettings()
+    {
+        gameSettings.SaveSettings();
+    }
+
+    public void ResetToDefaults()
     {
         gameSettings.ResetToDefaults();
-        CloseSettings();
     }
     #endregion
 }
