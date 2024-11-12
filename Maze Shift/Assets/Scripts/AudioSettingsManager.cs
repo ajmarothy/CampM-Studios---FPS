@@ -2,45 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class AudioSettingsManager : MonoBehaviour, ISettings
 {
     [SerializeField] AudioMixer MasterMixer;
+    [SerializeField] Slider masterSlider;
+    [SerializeField] Slider musicSlider;
+    [SerializeField] Slider sfxSlider;
 
     float masterVolume;
     float musicVolume;
     float sfxVolume;
 
-    void Start()
+    private void Awake()
     {
         LoadAudioSettings();
     }
 
-    public void SetMasterVolume(float Volume)
+    public void SetMasterVolume(float sliderValue)
     {
-        masterVolume = Volume;
-        MasterMixer.SetFloat("MasterVolume", Volume);
-        PlayerPrefs.SetFloat("MasterVolume", Volume);
+        masterVolume = sliderValue;
+        MasterMixer.SetFloat("MasterVolume", Mathf.Log10(masterVolume) * 20);
+        PlayerPrefs.SetFloat("MasterVolume", masterVolume);
         PlayerPrefs.Save();
     }
 
-    public void SetMusicVolume(float Volume)
+    public void SetMusicVolume(float sliderValue)
     {
-        musicVolume = Volume;
-        MasterMixer.SetFloat("MusicVolume", Volume);
-        PlayerPrefs.SetFloat("MusicVolume", Volume);
+        musicVolume = sliderValue;
+        MasterMixer.SetFloat("MusicVolume", Mathf.Log10(musicVolume) * 20);
+        PlayerPrefs.SetFloat("MusicVolume", musicVolume);
         PlayerPrefs.Save();
     }
 
-    public void SetSFXVolume(float Volume)
+    public void SetSFXVolume(float sliderValue)
     {
-        sfxVolume = Volume;
-        MasterMixer.SetFloat("SFXVolume", Volume);
-        PlayerPrefs.SetFloat("SFXVolume", Volume);
+        sfxVolume = sliderValue;
+        MasterMixer.SetFloat("SFXVolume", Mathf.Log10(sfxVolume) * 20);
+        PlayerPrefs.SetFloat("SFXVolume", sfxVolume);
         PlayerPrefs.Save();
     }
 
-    public void ApplySettings() { LoadAudioSettings(); }
+    public void ApplySettings() 
+    {
+        LoadAudioSettings();
+    }
 
     public void SaveSettings()
     {
@@ -56,9 +63,13 @@ public class AudioSettingsManager : MonoBehaviour, ISettings
         musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.90f);
         sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 0.90f);
 
-        SetMasterVolume(masterVolume);
-        SetMusicVolume(musicVolume);
-        SetSFXVolume(sfxVolume);
+        masterSlider.value = masterVolume;
+        musicSlider.value = musicVolume;
+        sfxSlider.value = sfxVolume;
+
+        MasterMixer.SetFloat("MasterVolume", Mathf.Log10(masterVolume) * 20);
+        MasterMixer.SetFloat("MusicVolume", Mathf.Log10(musicVolume) * 20);
+        MasterMixer.SetFloat("SFXVolume", Mathf.Log10(sfxVolume) * 20);
     }
 
     public void ResetToDefaults()
@@ -67,5 +78,6 @@ public class AudioSettingsManager : MonoBehaviour, ISettings
         SetMusicVolume(0.90f);
         SetSFXVolume(0.90f);
         SaveSettings();
+        LoadAudioSettings();
     }
 }

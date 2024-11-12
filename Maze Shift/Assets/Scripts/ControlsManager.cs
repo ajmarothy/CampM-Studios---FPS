@@ -11,6 +11,7 @@ public class ControlsManager : MonoBehaviour, ISettings
 {
     [SerializeField] private float sensitivity = 1.0f;
     [SerializeField] private bool invertY = false;
+    [SerializeField] private Slider sensitivitySlider;
 
     public PlayerController playerController;
     public CameraController cameraController;
@@ -28,6 +29,11 @@ public class ControlsManager : MonoBehaviour, ISettings
 
     private void Start()
     {
+        if(sensitivitySlider != null)
+        {
+            sensitivitySlider.value = sensitivity;
+            sensitivitySlider.onValueChanged.AddListener(SetSensitivity);
+        }
         PopulateControlSchemeDropdown();
         controlSchemeDropdown.onValueChanged.AddListener(OnControlSchemeChanged);
         SetDropdownToCurrentControlScheme();
@@ -65,6 +71,8 @@ public class ControlsManager : MonoBehaviour, ISettings
     {
         sensitivity = newSensitivity;
         cameraController.SetSensitivity(sensitivity);
+        PlayerPrefs.SetFloat("Sensitivity", sensitivity);
+        PlayerPrefs.Save();
     }
 
     public void SetInvertYAxis(bool isInvertedY)
@@ -73,17 +81,17 @@ public class ControlsManager : MonoBehaviour, ISettings
         cameraController.SetInvertY(invertY);
     }
 
-    public void StartRebind(string actionName, Action onComplete = null)
+    public void StartRebind(Button button, string actionName)
     {
         InputAction action = playerInputActions.FindAction(actionName);
         if (action == null) return;
-
+        button.GetComponentInChildren<TextMeshProUGUI>().text = "Press a key...";
         action.Disable();
 
         action.PerformInteractiveRebinding().OnComplete(opertion => { 
             action.Enable();
             SaveBinding(action);
-            onComplete?.Invoke();
+            button.GetComponentInChildren<TextMeshProUGUI>().text = action.GetBindingDisplayString();
             opertion.Dispose(); }).Start();
     }
 
@@ -96,12 +104,12 @@ public class ControlsManager : MonoBehaviour, ISettings
 
     public void LoadControlSettings()
     {
-        sensitivity = PlayerPrefs.GetFloat("Sensitivity", sensitivity);
+        sensitivity = PlayerPrefs.GetFloat("Sensitivity", 1.0f);
         invertY = PlayerPrefs.GetInt("InvertY", invertY ? 1 : 0) == 1;
 
         SetSensitivity(sensitivity);
         SetInvertYAxis(invertY);
-
+        if(sensitivitySlider != null) { sensitivitySlider.value = sensitivity; }
         foreach(InputAction action in playerInputActions)
         {
             string rebinds = PlayerPrefs.GetString(action.name + "_rebinds", string.Empty);
