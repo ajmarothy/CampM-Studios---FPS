@@ -12,6 +12,10 @@ public class CeilingTrap : MonoBehaviour
 
     [SerializeField] int damage;
 
+    [SerializeField] AudioSource smashSource;
+    [SerializeField] AudioClip[] smash;
+    [SerializeField] float smashVol;
+
     float time;
 
     //GameObject ceiling;
@@ -44,6 +48,7 @@ public class CeilingTrap : MonoBehaviour
     {
         isCrushing = true;
         transform.position = Vector3.Lerp(up, down, totalTime/time);
+        smashSource.PlayOneShot(smash[Random.Range(0,smash.Length)], smashVol);
         yield return new WaitForSeconds(0.5f);
         isCrushing = false;
         transform.position = up;

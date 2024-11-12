@@ -51,7 +51,7 @@ MonoBehaviour:
   damage: 2
   gas:
   - {fileID: 8300000, guid: b3527a59b77b5594786770fe85e8f0df, type: 3}
-  gasVol: 10
+  gasVol: 15
   gasSource: {fileID: 5622744524513153340}
 --- !u!198 &8688093426353320171
 ParticleSystem:
