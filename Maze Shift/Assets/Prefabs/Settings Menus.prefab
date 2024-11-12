@@ -2112,6 +2112,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensitivity: 15
   invertY: 0
+  sensitivitySlider: {fileID: 0}
+  sensitivityText: {fileID: 0}
   playerController: {fileID: 0}
   cameraController: {fileID: 0}
   playerInput: {fileID: 369008628495536798}
@@ -9719,6 +9721,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MasterMixer: {fileID: 24100000, guid: 17ab1391aa4d12f4eb49260c5a9b53ee, type: 2}
+  masterSlider: {fileID: 0}
+  musicSlider: {fileID: 0}
+  sfxSlider: {fileID: 0}
 --- !u!1 &6631069377477845056
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class ControlsManager : MonoBehaviour, ISettings
     [SerializeField] private float sensitivity = 1.0f;
     [SerializeField] private bool invertY = false;
     [SerializeField] private Slider sensitivitySlider;
+    [SerializeField] TMP_Text sensitivityText;
 
     public PlayerController playerController;
     public CameraController cameraController;
@@ -71,6 +72,7 @@ public class ControlsManager : MonoBehaviour, ISettings
     {
         sensitivity = newSensitivity;
         cameraController.SetSensitivity(sensitivity);
+        sensitivityText.text = sensitivitySlider.value.ToString("F0");
         PlayerPrefs.SetFloat("Sensitivity", sensitivity);
         PlayerPrefs.Save();
     }
@@ -105,6 +107,7 @@ public class ControlsManager : MonoBehaviour, ISettings
     public void LoadControlSettings()
     {
         sensitivity = PlayerPrefs.GetFloat("Sensitivity", 1.0f);
+        sensitivityText.text = sensitivitySlider.value.ToString("F0");
         invertY = PlayerPrefs.GetInt("InvertY", invertY ? 1 : 0) == 1;
 
         SetSensitivity(sensitivity);
