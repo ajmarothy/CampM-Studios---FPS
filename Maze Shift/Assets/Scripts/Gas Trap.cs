@@ -8,7 +8,18 @@ public class GasTrap : MonoBehaviour
 
     private float gasTime;
 
-    
+    [SerializeField] AudioClip[] gas;
+    [SerializeField] float gasVol;
+    [SerializeField] AudioSource gasSource;
+
+
+
+
+    private void Awake()
+    {
+        gasSource.PlayOneShot(gas[Random.Range(0, gas.Length)], gasVol);
+    }
+
 
     private void OnTriggerStay(Collider other)
     {
