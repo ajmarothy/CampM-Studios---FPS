@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using Newtonsoft.Json.Linq;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour, ISettings
 {
@@ -114,7 +115,6 @@ public class GameManager : MonoBehaviour, ISettings
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
-
     }
 
     public void Unpause()

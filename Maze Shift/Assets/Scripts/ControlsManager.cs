@@ -30,6 +30,7 @@ public class ControlsManager : MonoBehaviour, ISettings
 
     private void Start()
     {
+        LoadControlSettings();
         if(sensitivitySlider != null)
         {
             sensitivitySlider.value = sensitivity;
@@ -109,7 +110,7 @@ public class ControlsManager : MonoBehaviour, ISettings
         sensitivity = PlayerPrefs.GetFloat("Sensitivity", 1.0f);
         sensitivityText.text = sensitivitySlider.value.ToString("F0");
         invertY = PlayerPrefs.GetInt("InvertY", invertY ? 1 : 0) == 1;
-
+        cameraController.SetSensitivity(sensitivity);
         SetSensitivity(sensitivity);
         SetInvertYAxis(invertY);
         if(sensitivitySlider != null) { sensitivitySlider.value = sensitivity; }
@@ -125,8 +126,12 @@ public class ControlsManager : MonoBehaviour, ISettings
     }
 
     public void ApplySettings() 
-    { 
-        cameraController.SetSensitivity(sensitivity);
+    {
+        if(cameraController != null)
+        {
+            cameraController.SetSensitivity(sensitivity);
+            cameraController.SetInvertY(invertY);
+        }
     }
 
     public void SaveSettings()

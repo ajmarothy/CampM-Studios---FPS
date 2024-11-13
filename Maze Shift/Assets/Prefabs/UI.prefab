@@ -3812,7 +3812,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4856761418048920665}
   - component: {fileID: 8391541726424183471}
-  - component: {fileID: 8422797854990272770}
+  - component: {fileID: 8572151180085306911}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3850,7 +3850,7 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
---- !u!114 &8422797854990272770
+--- !u!114 &8572151180085306911
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3867,16 +3867,16 @@ MonoBehaviour:
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
   m_ActionsAsset: {fileID: -944628639613478452, guid: 7e38852facb793c4fb325ea4de36036e, type: 3}
-  m_PointAction: {fileID: 0}
-  m_MoveAction: {fileID: 0}
-  m_SubmitAction: {fileID: 0}
-  m_CancelAction: {fileID: 0}
-  m_LeftClickAction: {fileID: 0}
-  m_MiddleClickAction: {fileID: 0}
-  m_RightClickAction: {fileID: 0}
-  m_ScrollWheelAction: {fileID: 0}
-  m_TrackedDevicePositionAction: {fileID: 0}
-  m_TrackedDeviceOrientationAction: {fileID: 0}
+  m_PointAction: {fileID: -1654692200621890270, guid: 7e38852facb793c4fb325ea4de36036e, type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: 7e38852facb793c4fb325ea4de36036e, type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: 7e38852facb793c4fb325ea4de36036e, type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: 7e38852facb793c4fb325ea4de36036e, type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: 7e38852facb793c4fb325ea4de36036e, type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: 7e38852facb793c4fb325ea4de36036e, type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: 7e38852facb793c4fb325ea4de36036e, type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: 7e38852facb793c4fb325ea4de36036e, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: 7e38852facb793c4fb325ea4de36036e, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: 7e38852facb793c4fb325ea4de36036e, type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
@@ -7813,10 +7813,6 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 369008628495536798, guid: 167791aa59d570c44b567036009efb08, type: 3}
-      propertyPath: m_UIInputModule
-      value: 
-      objectReference: {fileID: 8422797854990272770}
     - target: {fileID: 387948204897424927, guid: 167791aa59d570c44b567036009efb08, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -7844,6 +7840,14 @@ PrefabInstance:
     - target: {fileID: 2190602029307182720, guid: 167791aa59d570c44b567036009efb08, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230281454356577756, guid: 167791aa59d570c44b567036009efb08, type: 3}
+      propertyPath: playerInput
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230281454356577756, guid: 167791aa59d570c44b567036009efb08, type: 3}
+      propertyPath: sensitivity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2230281454356577756, guid: 167791aa59d570c44b567036009efb08, type: 3}
       propertyPath: sensitivityText
@@ -8050,7 +8054,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9037199813834010300}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3490052131265464720, guid: 167791aa59d570c44b567036009efb08, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5361898477870651214, guid: 167791aa59d570c44b567036009efb08, type: 3}
       insertIndex: -1

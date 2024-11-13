@@ -188,6 +188,68 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &3698078156045566029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4792212435997435862}
+  - component: {fileID: 6743304331403304024}
+  m_Layer: 3
+  m_Name: PlayerInput
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4792212435997435862
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3698078156045566029}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8838874476121153577}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6743304331403304024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3698078156045566029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 7e38852facb793c4fb325ea4de36036e, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Keyboard&Mouse
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 3551625615204466707}
 --- !u!1 &4814269455649902097
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,8 +375,8 @@ AudioSource:
   m_GameObject: {fileID: 8048685472266557379}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 4242181182455564992, guid: 17ab1391aa4d12f4eb49260c5a9b53ee, type: 2}
+  m_audioClip: {fileID: 8300000, guid: e95d37ebbc5494d4099c4718b0551061, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.75
   m_Pitch: 1
@@ -543,6 +605,7 @@ Transform:
   m_Children:
   - {fileID: 7206873898782343091}
   - {fileID: 7035366311448920671}
+  - {fileID: 4792212435997435862}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4534847303116261582
@@ -589,6 +652,7 @@ MonoBehaviour:
   originalPlayerHP: 0
   healthPickup: 0
   dwellTime: 5
+  isDialogActive: 0
 --- !u!114 &7637531707209936597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -710,10 +774,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3e82b8a6a49ce4095c32cfca7c2d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sens: 200
+  sensitivity: 5
   lockVertMin: -90
   lockVertMax: 90
   invertY: 0
+  invertYToggle: {fileID: 0}
 --- !u!20 &3551625615204466707
 Camera:
   m_ObjectHideFlags: 0

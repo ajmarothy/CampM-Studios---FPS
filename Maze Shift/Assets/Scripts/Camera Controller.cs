@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] float sensitivity;
+    [SerializeField] float sensitivity = 1.0f;
     [SerializeField] float lockVertMin = -90f;
     [SerializeField] float lockVertMax = 90f;
     [SerializeField] bool invertY = false;
+    [SerializeField] Toggle invertYToggle;
 
     private InputSystem_Actions inputActions;
-    float rotX = 0f;
-    float recoilOffsetY = 0f;
+    float rotX;
+    float recoilOffsetY;
 
     // Start is called before the first frame update
     private void Awake()

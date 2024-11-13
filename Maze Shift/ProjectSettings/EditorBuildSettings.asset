@@ -20,4 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial Level.unity
     guid: fbd1c8a7667230843b44935f992b7068
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 66e7ba929f1eadb45aac81c3f1baed5c, type: 2}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 7e38852facb793c4fb325ea4de36036e, type: 3}
