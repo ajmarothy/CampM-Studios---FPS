@@ -53,6 +53,8 @@ MonoBehaviour:
   cpSource: {fileID: 522835809903705750}
   fountain:
   - {fileID: 8300000, guid: 59632d2a4f26da649b1584a04744fcde, type: 3}
+  - {fileID: 8300000, guid: 3a3bd7250d9dfe044b2996cccd5b4494, type: 3}
+  - {fileID: 8300000, guid: 3e70e27d378a6ce4783617781298db19, type: 3}
   - {fileID: 8300000, guid: c2bc8b1de59874340b674bd7b0cf9c1b, type: 3}
   cpVol: 15
 --- !u!135 &8159733957375079899

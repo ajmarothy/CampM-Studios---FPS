@@ -23,7 +23,7 @@ public class CheckPoints : MonoBehaviour
         glow = GameObject.FindWithTag("Glow");
         FadeInOut = GameObject.Find("Save Icon").GetComponent<FadeInOut>();
 
-        cpSource.PlayOneShot(fountain[0], cpVol);
+        cpSource.PlayOneShot(fountain[Random.Range(0,2)], cpVol);
     }
 
    
@@ -34,7 +34,7 @@ public class CheckPoints : MonoBehaviour
        
         if (other.CompareTag("Player") && transform.position != GameManager.instance.getSpawnPos().transform.position)
         {
-            cpSource.PlayOneShot(fountain[1], cpVol);
+            cpSource.PlayOneShot(fountain[3], cpVol);
             GameManager.instance.getSpawnPos().transform.position = transform.position;
             glow.SetActive(false);
             SavingIcon();
