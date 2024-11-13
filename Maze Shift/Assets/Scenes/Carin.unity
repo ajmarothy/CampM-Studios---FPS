@@ -322,6 +322,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ceiling Trap
       objectReference: {fileID: 0}
+    - target: {fileID: 1786297787233637673, guid: 6ee0a71fee10c914ab542b6bc5af6559, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5925943582189465526, guid: 6ee0a71fee10c914ab542b6bc5af6559, type: 3}
       propertyPath: m_LocalPosition.x
       value: 213.02867

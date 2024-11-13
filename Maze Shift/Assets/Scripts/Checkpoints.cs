@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CheckPoints : MonoBehaviour
@@ -12,22 +13,34 @@ public class CheckPoints : MonoBehaviour
 
     private FadeInOut FadeInOut;
 
+    [SerializeField] AudioSource cpSource;
+    [SerializeField] AudioClip[] fountain;
+    [SerializeField] float cpVol;
+
     // Start is called before the first frame update
     void Start()
     {
         glow = GameObject.FindWithTag("Glow");
         FadeInOut = GameObject.Find("Save Icon").GetComponent<FadeInOut>();
+
+        cpSource.PlayOneShot(fountain[0], cpVol);
     }
 
+   
     private void OnTriggerEnter(Collider other)
     {
+        if (glow == false)
+            return;
+       
         if (other.CompareTag("Player") && transform.position != GameManager.instance.getSpawnPos().transform.position)
         {
+            cpSource.PlayOneShot(fountain[1], cpVol);
             GameManager.instance.getSpawnPos().transform.position = transform.position;
             glow.SetActive(false);
             SavingIcon();
         }
     }
+
 
     private void SavingIcon()
     {
