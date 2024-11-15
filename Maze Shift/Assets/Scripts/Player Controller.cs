@@ -40,6 +40,11 @@ public class PlayerController : MonoBehaviour , IDamage
 
     public AudioSource audioSource;
     public AudioClip shootSound;
+    [SerializeField] private AudioClip walkSound;
+    [SerializeField] private AudioClip sprintSound;
+    [SerializeField] private AudioClip takeDamageSound;
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip flashlightSound;
 
     public int originalPlayerHP;
     public int healthPickup;
@@ -57,6 +62,7 @@ public class PlayerController : MonoBehaviour , IDamage
     bool isShooting;
     bool isSprinting;
     bool isReloading;
+    bool isWalking;
 
     Vector3 moveDir;
     Vector3 playerVel;
@@ -87,6 +93,7 @@ public class PlayerController : MonoBehaviour , IDamage
         if (!GameManager.instance.GetPause())
         {
             movement();
+            HandleWalkingSound();
             selectGun();
             UpdateWeaponRotation();
 
@@ -105,6 +112,7 @@ public class PlayerController : MonoBehaviour , IDamage
             }
             if (Input.GetButtonDown("Flashlight"))
             {
+                audioSource.PlayOneShot(flashlightSound);
                 flashlight.enabled = !flashlight.enabled;
             }
             DrainPower();
@@ -223,12 +231,40 @@ public class PlayerController : MonoBehaviour , IDamage
         updatePlayerUI();
     }
 
+    void HandleWalkingSound()
+    {
+        bool isMoving = moveDir.magnitude > 0.1f && controller.isGrounded;
+
+        if (isMoving && !isWalking && !Input.GetButton("Sprint"))
+        {
+            isWalking = true;
+            audioSource.clip = walkSound;
+            audioSource.loop = true;
+            audioSource.Play();
+        }
+
+        else if (isMoving && Input.GetButton("Sprint") && audioSource.clip != sprintSound)
+        {
+            audioSource.clip = sprintSound;
+            audioSource.loop = true;
+            audioSource.Play();
+        }
+
+        else if (!isMoving && isWalking)
+        {
+            isWalking = false;
+            audioSource.Stop();
+        }
+    }
+
     #endregion
 
     #region Health
     public void takeDamage(int amount)
     {
-        if(playerShield != null && playerShield.GetCurrentShieldHealth() > 0)
+        audioSource.PlayOneShot(takeDamageSound);
+
+        if (playerShield != null && playerShield.GetCurrentShieldHealth() > 0)
         {
             playerShield.TakeDamage(amount);
         }
@@ -241,6 +277,7 @@ public class PlayerController : MonoBehaviour , IDamage
             StartCoroutine(damageFlash());
             if (HP <= 0)
             {
+                audioSource.PlayOneShot(deathSound);
                 GameManager.instance.YouLose();
             }
         }

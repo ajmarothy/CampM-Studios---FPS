@@ -8,6 +8,8 @@ public class LeverAndDoor : MonoBehaviour
     [SerializeField] float moveHeight;
     [SerializeField] float moveDuration;
     [SerializeField] Animator animator;
+    [SerializeField] AudioClip doorOpenSound;
+    public AudioSource audioSource;
 
     private bool playerInTrigger = false;
     private bool objectMoving = false;
@@ -17,8 +19,9 @@ public class LeverAndDoor : MonoBehaviour
     {
         if (playerInTrigger && Input.GetKeyDown(KeyCode.E) && !objectMoving)
         {
-       
+            
             animator.SetTrigger("LeverUp");
+            audioSource.PlayOneShot(doorOpenSound);
 
             objectMoving = true;
             StartCoroutine(MoveHiddenObject(moveHeight, moveDuration));
@@ -30,6 +33,7 @@ public class LeverAndDoor : MonoBehaviour
     {
         if (moveableObject == null) yield break;
 
+        yield return new WaitForSeconds(.5f);
         Vector3 initialPosition = moveableObject.transform.position;
         Vector3 targetPosition = initialPosition + new Vector3(0, height, 0);
         float elapsedTime = 0f;
