@@ -23,12 +23,14 @@ public class CheckPoints : MonoBehaviour
         glow = GameObject.FindWithTag("Glow");
         FadeInOut = GameObject.Find("Save Icon").GetComponent<FadeInOut>();
 
-        cpSource.PlayOneShot(fountain[Random.Range(0,2)], cpVol);
+        //cpSource.PlayOneShot(fountain[Random.Range(0, 2)], cpVol);
     }
 
    
     private void OnTriggerEnter(Collider other)
     {
+        cpSource.Stop();
+
         if (glow == false)
             return;
        
