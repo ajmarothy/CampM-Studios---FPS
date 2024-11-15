@@ -17,7 +17,7 @@ public class GasTrap : MonoBehaviour
 
     private void Awake()
     {
-        gasSource.PlayOneShot(gas[Random.Range(0, gas.Length)], gasVol);
+        //gasSource.PlayOneShot(gas[Random.Range(0, gas.Length)], gasVol);
     }
 
 
@@ -29,7 +29,7 @@ public class GasTrap : MonoBehaviour
 
         if (dmg != null )
         {
-            if (gasTime > 1)
+            if (gasTime > 0.5)
             {
                 dmg.takeDamage(damage);
                 gasTime = 0;

@@ -322,10 +322,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpikeTrap
       objectReference: {fileID: 0}
-    - target: {fileID: 937814007511760047, guid: 7cc32adfbd8774c448ecdc5bd2e27da3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3731479626670730139, guid: 7cc32adfbd8774c448ecdc5bd2e27da3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 221.3596
@@ -382,10 +378,6 @@ PrefabInstance:
     - target: {fileID: 1786297787233637673, guid: 6ee0a71fee10c914ab542b6bc5af6559, type: 3}
       propertyPath: m_Name
       value: Ceiling Trap
-      objectReference: {fileID: 0}
-    - target: {fileID: 1786297787233637673, guid: 6ee0a71fee10c914ab542b6bc5af6559, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5925943582189465526, guid: 6ee0a71fee10c914ab542b6bc5af6559, type: 3}
       propertyPath: m_LocalPosition.x
@@ -615,17 +607,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 522835809903705750, guid: fea5279fcdac2c1429958f295fab03dc, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 59632d2a4f26da649b1584a04744fcde, type: 3}
     - target: {fileID: 638949269533020731, guid: fea5279fcdac2c1429958f295fab03dc, type: 3}
       propertyPath: m_Name
       value: Check Point
-      objectReference: {fileID: 0}
-    - target: {fileID: 638949269533020731, guid: fea5279fcdac2c1429958f295fab03dc, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6745521972066398927, guid: fea5279fcdac2c1429958f295fab03dc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -837,10 +821,6 @@ PrefabInstance:
     - target: {fileID: 8944647299885887143, guid: bf79efa845dae304595c2c1280aa6aa9, type: 3}
       propertyPath: m_Name
       value: Gas Trap
-      objectReference: {fileID: 0}
-    - target: {fileID: 8944647299885887143, guid: bf79efa845dae304595c2c1280aa6aa9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
