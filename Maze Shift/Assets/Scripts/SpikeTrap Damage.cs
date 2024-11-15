@@ -26,8 +26,8 @@ public class TrapDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (spikes.transform.position.y > 0)
-        {
+       // if (spikes.transform.position.y > 0)
+        //{
             IDamage dmg = other.GetComponent<IDamage>();
 
             if (dmg != null)
@@ -35,15 +35,15 @@ public class TrapDamage : MonoBehaviour
                 dmg.takeDamage(damage);
             }
 
-        }      
+       // }      
 
 
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (spikes.transform.position.y > 0)
-        {
+       // if (spikes.transform.position.y > 0)
+       // {
             IDamage dmg = other.GetComponent<IDamage>();
 
             if (dmg != null)
@@ -51,7 +51,7 @@ public class TrapDamage : MonoBehaviour
                 dmg.takeDamage(damage);
             }
 
-        }
+       // }
 
 
     }

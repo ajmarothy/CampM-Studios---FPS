@@ -147,7 +147,7 @@ MonoBehaviour:
   spikeSource: {fileID: 2749377287989194422}
   spikeSounds:
   - {fileID: 8300000, guid: 905021b1a4d4ebf4bbfa06474d744845, type: 3}
-  spikeVol: 10
+  spikeVol: 5
 --- !u!65 &7203344095110723731
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -167,7 +167,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 0.1, z: 2}
+  m_Size: {x: 2, y: 1, z: 2}
   m_Center: {x: 0, y: 0.15, z: 0}
 --- !u!82 &2749377287989194422
 AudioSource:
