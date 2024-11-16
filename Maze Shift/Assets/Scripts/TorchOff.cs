@@ -11,7 +11,7 @@ public class TorchOff : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerInTrigger && Input.GetKey(KeyCode.E))
+        if (playerInTrigger && Input.GetKeyDown(KeyCode.E))
         {
             toggleFlame();
         }
