@@ -8,6 +8,8 @@ public class TutorialPuzzle : MonoBehaviour
     [SerializeField] float moveHeight;
     [SerializeField] float moveDuration;
     [SerializeField] List<GameObject> flames;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip doorOpen;
 
     private bool objectMoving = false;
 
@@ -16,6 +18,7 @@ public class TutorialPuzzle : MonoBehaviour
         if (!objectMoving && AreAllFlamesOut())
         {
             objectMoving = true;
+            audioSource.PlayOneShot(doorOpen);
             StartCoroutine(MoveDoor(moveHeight, moveDuration));
         }
     }

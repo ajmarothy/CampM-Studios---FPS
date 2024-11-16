@@ -8,7 +8,8 @@ public class ClosingDoor : MonoBehaviour
     [SerializeField] GameObject moveableObject;
     [SerializeField] float moveHeight;
     [SerializeField] float moveDuration;
- 
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip doorClose;
 
     private bool playerInTrigger = false;
     private bool objectMoving = false;
@@ -17,11 +18,25 @@ public class ClosingDoor : MonoBehaviour
 
     void Update()
     {
-        if (playerInTrigger && !objectMoving)
+        if (Time.timeScale == 0)
         {
+            if (audioSource.isPlaying)
+            {
+                audioSource.Pause();
+            }
+        }
+        else
+        {
+            if (!audioSource.isPlaying && objectMoving)
+            {
+                audioSource.UnPause();
+            }
+        }
 
-           
-
+        if (playerInTrigger && !objectMoving && Time.timeScale != 0)
+        {
+            audioSource.clip = doorClose;
+            audioSource.Play();
             objectMoving = true;
             StartCoroutine(MoveHiddenObject(moveHeight, moveDuration));
         }
