@@ -7,6 +7,11 @@ public class pickups : MonoBehaviour
 {
     [SerializeField] gunStats gun;
 
+    private void Start()
+    {
+        gun.ammoCurr = gun.ammoPerMag;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

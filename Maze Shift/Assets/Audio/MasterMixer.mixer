@@ -33,6 +33,20 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &-1139251938078447776
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 5c9a21a7f76362f4b97f16c1d37608e6
+  m_EffectName: Attenuation
+  m_MixLevel: 2bed3bc2afab1f74e9e86d803d0dfa74
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
@@ -51,6 +65,8 @@ AudioMixerController:
   m_ExposedParameters:
   - guid: 811cf5c138700654e915e6c82be5939f
     name: MasterVolume
+  - guid: 654bb0e850d872747b3581ad089d6858
+    name: MenuVolume
   - guid: acf60aa24fe712b4bbecccd6d80ef0a0
     name: MusicVolume
   - guid: 78072a985a37e264c96fc04de821c540
@@ -60,6 +76,7 @@ AudioMixerController:
     - 3916baf061fdb5a4c978db2f70312e0a
     - 21701433644f5b64981218b134831997
     - 82f246c17439c66479e67b12a934a0c4
+    - bd90547863893f74196b3fe3222be131
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -75,6 +92,7 @@ AudioMixerGroupController:
   m_Children:
   - {fileID: 4242181182455564992}
   - {fileID: -7747395700920325719}
+  - {fileID: 8215329478613679946}
   m_Volume: 811cf5c138700654e915e6c82be5939f
   m_Pitch: 6a4310cb166558549940abcf8b77b424
   m_Send: 00000000000000000000000000000000
@@ -112,6 +130,7 @@ AudioMixerSnapshotController:
     811cf5c138700654e915e6c82be5939f: -6
     acf60aa24fe712b4bbecccd6d80ef0a0: -3
     78072a985a37e264c96fc04de821c540: -3
+    654bb0e850d872747b3581ad089d6858: -12
     ca74c81b58cfbde4894f41769adf815f: -3
   m_TransitionOverrides: {}
 --- !u!243 &4242181182455564992
@@ -147,3 +166,22 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!243 &8215329478613679946
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Menu Music
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: bd90547863893f74196b3fe3222be131
+  m_Children: []
+  m_Volume: 654bb0e850d872747b3581ad089d6858
+  m_Pitch: 74de68e1c65ed004e9818a88a3bc54cf
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -1139251938078447776}
+  m_UserColorIndex: 5
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0

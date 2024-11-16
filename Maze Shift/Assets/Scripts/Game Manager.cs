@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour, ISettings
     [SerializeField] AudioSettingsManager audioManager;
     [SerializeField] ControlsManager controlsManager;
     [SerializeField] GameplayManager gameplayManager;
+    [SerializeField] private MusicManager musicManager;
     [SerializeField] public GameObject pauseMenu;
     [SerializeField] GameObject winMenu;
     [SerializeField] public GameObject loseMenu;
@@ -48,10 +49,11 @@ public class GameManager : MonoBehaviour, ISettings
     public GameObject playerShieldUI;
 
     private Stack<string> menuHistory = new Stack<string>();
+    public string currentMenu;
+
     private bool isPaused;
     int enemyCounter;
     float timeScaleOG;
-    public string previousMenu;
 
     private GameObject spawnPos;
     private GameObject menuActive;
@@ -115,6 +117,7 @@ public class GameManager : MonoBehaviour, ISettings
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
+        OpenMenuMusic();
     }
 
     public void Unpause()
@@ -128,6 +131,7 @@ public class GameManager : MonoBehaviour, ISettings
             menuActive.SetActive(false);
             menuActive = null;
         }
+        CloseMenuMusic();
     }
 
     public void UpdateGameGoal(int amount)
@@ -149,6 +153,7 @@ public class GameManager : MonoBehaviour, ISettings
         Pause();
         menuActive = loseMenu;
         menuActive.SetActive(true);
+        OpenMenuMusic();
     }
 
     public void ToggleShieldUI(bool toggle)
@@ -162,17 +167,12 @@ public class GameManager : MonoBehaviour, ISettings
     #region Settings
     public void OpenSettings(string fromMenu)
     {
-        settingsMenu.SetActive(true);
-        graphicsSettingsMenu.SetActive(false);
-        audioSettingsMenu.SetActive(false);
-        controlsSettingsMenu.SetActive(false);
-        gameplaySettingsMenu.SetActive(false);
-        previousMenu = fromMenu;
-        if (fromMenu == "pause")
+        OpenMenu("settings");
+        if(fromMenu == "pause")
         {
             pauseMenu.SetActive(false);
         }
-        else if (fromMenu == "lose")
+        else if(fromMenu == "lose")
         {
             loseMenu.SetActive(false);
         }
@@ -180,39 +180,91 @@ public class GameManager : MonoBehaviour, ISettings
 
     public void CloseSettings()
     {
-        settingsMenu.SetActive(false);
-        Unpause();
-        if (previousMenu == "pause")
+        CloseCurrentMenu();
+    }
+
+    public void OpenMenu(string menuName)
+    {
+        if (!string.IsNullOrEmpty(currentMenu))
         {
-            Pause();
-            pauseMenu.SetActive(true);
+            menuHistory.Push(currentMenu);
+            SetMenuActive(currentMenu, false);
         }
-        else if (previousMenu == "lose")
+        currentMenu = menuName;
+        SetMenuActive(menuName, true);
+    }
+
+    public void CloseCurrentMenu()
+    {
+        SetMenuActive(currentMenu, false);
+        if(menuHistory.Count > 0)
         {
-            YouLose();
-            loseMenu.SetActive(true);
+            currentMenu = menuHistory.Pop();
+            SetMenuActive(currentMenu, true);
         }
+        else
+        {
+            currentMenu = null;
+            Unpause();
+        }
+    }
+
+    private void SetMenuActive(string menuName, bool isActive)
+    {
+        switch (menuName)
+        {
+            case "pause":
+                pauseMenu.SetActive(isActive);
+                break;
+            case "lose":
+                loseMenu.SetActive(isActive);
+                break;
+            case "settings":
+                settingsMenu.SetActive(isActive);
+                break;
+            case "graphics":
+                graphicsSettingsMenu.SetActive(isActive);
+                break;
+            case "audio":
+                audioSettingsMenu.SetActive(isActive);
+                break;
+            case "controls":
+                controlsSettingsMenu.SetActive(isActive);
+                break;
+            case "gameplay":
+                gameplaySettingsMenu.SetActive(isActive);
+                break;
+            default: break;
+        }
+    }
+
+    public void OpenMenuMusic()
+    {
+        Time.timeScale = 0;
+        musicManager.PlayMenuMusic();
+    }
+
+    public void CloseMenuMusic()
+    {
+        Time.timeScale = timeScaleOG;
+        musicManager.PlayBackgroundMusic();
     }
 
     public void OpenGraphicsSettings()
     {
-        settingsMenu.SetActive(false);
-        graphicsSettingsMenu.SetActive(true);
+        OpenMenu("graphics");
     }
     public void OpenAudioSettings()
     {
-        settingsMenu.SetActive(false);
-        audioSettingsMenu.SetActive(true);
+        OpenMenu("audio");
     }
     public void OpenControlsSettings()
     {
-        settingsMenu.SetActive(false);
-        controlsSettingsMenu.SetActive(true);
+        OpenMenu("controls");
     }
     public void OpenGameplaySettings()
     {
-        settingsMenu.SetActive(false);
-        gameplaySettingsMenu.SetActive(true);
+        OpenMenu("gameplay");
     }
 
     public void ApplySettings()
