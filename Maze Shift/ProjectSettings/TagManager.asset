@@ -21,6 +21,7 @@ TagManager:
   - Main Menu
   - Compass Marker
   - Compass
+  - ShieldAudio
   layers:
   - Default
   - TransparentFX

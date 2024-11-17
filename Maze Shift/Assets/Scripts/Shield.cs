@@ -23,7 +23,17 @@ public class Shield : MonoBehaviour
     {
         shieldCurrHealth = 0;
         playerController = GetComponent<PlayerController>();
-        audioSource = playerController.GetComponent<AudioSource>();
+        GameObject shieldAudio = GameObject.FindGameObjectWithTag("ShieldAudio");
+
+        if (shieldAudio != null)
+        {
+            audioSource = shieldAudio.GetComponent<AudioSource>();
+
+            if (audioSource != null)
+            {
+                audioSource.enabled = false;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -63,7 +73,13 @@ public class Shield : MonoBehaviour
     {
         
         yield return new WaitForSeconds(shieldRegenDelay);
+
         isRegenerating = true;
+
+        if (audioSource != null && !audioSource.enabled)
+        {
+            audioSource.enabled = true;
+        }
 
         while (shieldCurrHealth < shieldMaxHealth)
         {
@@ -73,12 +89,13 @@ public class Shield : MonoBehaviour
         }
 
         isRegenerating = false;
-        Debug.Log("Shield regeneration complete.");
+      
 
         if (shieldRegenCompleteSound != null && audioSource != null)
         {
             audioSource.PlayOneShot(shieldRegenCompleteSound);
         }
+        Debug.Log("Shield regeneration complete.");
     }
 
     public void StartRegeneration()
