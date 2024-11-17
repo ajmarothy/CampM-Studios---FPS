@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8579402972994636006}
   - component: {fileID: 5081781053672724932}
   - component: {fileID: 6076227048730835866}
+  - component: {fileID: 850764377524048870}
   m_Layer: 0
   m_Name: Health Heart Marker
-  m_TagString: Compass
+  m_TagString: Compass Marker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,3 +79,15 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 2221f2dfc0c1f814d91dfe0b4b90cb59, type: 3}
   image: {fileID: 0}
   maxDistance: 25
+--- !u!114 &850764377524048870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832345810188697800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ca702e0cb6f88438b8d8e243f29302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

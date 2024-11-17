@@ -18,8 +18,9 @@ TagManager:
   - Fireball
   - Ceiling
   - Boss
-  - Compass
   - Main Menu
+  - Compass Marker
+  - Compass
   layers:
   - Default
   - TransparentFX

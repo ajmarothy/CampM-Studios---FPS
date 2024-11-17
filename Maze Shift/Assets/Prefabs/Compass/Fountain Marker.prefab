@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 4583647361464115801}
   - component: {fileID: 401300215743701225}
   - component: {fileID: 6622527209908353831}
+  - component: {fileID: 6181273427737951778}
   m_Layer: 0
   m_Name: Fountain Marker
-  m_TagString: Compass
+  m_TagString: Compass Marker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,3 +79,15 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 746c7588610fd764e91552b7a00817a0, type: 3}
   image: {fileID: 0}
   maxDistance: 100
+--- !u!114 &6181273427737951778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4774424819269527289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ca702e0cb6f88438b8d8e243f29302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

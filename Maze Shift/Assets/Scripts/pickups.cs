@@ -17,6 +17,8 @@ public class pickups : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameManager.instance.playerScript.getGunStats(gun);
+            var receiver = GetComponentInChildren<ParentListener>();
+            receiver.Notify(destroyed: true, unwanted: true);
             Destroy(gameObject);
         }
     }

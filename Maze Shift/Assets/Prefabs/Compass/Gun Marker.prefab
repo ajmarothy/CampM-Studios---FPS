@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 3917855871426883112}
   - component: {fileID: 5669995400260368644}
   - component: {fileID: 7398610300339405862}
+  - component: {fileID: -3317367149380897264}
   m_Layer: 0
   m_Name: Gun Marker
-  m_TagString: Compass
+  m_TagString: Compass Marker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,3 +122,15 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3317367149380897264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6924531984544435613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ca702e0cb6f88438b8d8e243f29302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

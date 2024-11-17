@@ -20,6 +20,8 @@ public class HealthPickup : MonoBehaviour
             {
                 GameManager.instance.playerScript.GetHealth(health);
                 health.healItem++;
+                var receiver = GetComponentInChildren<ParentListener>();
+                receiver.Notify(destroyed: true, unwanted: true);
                 Destroy(gameObject);
             }
         }

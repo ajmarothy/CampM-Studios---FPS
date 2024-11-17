@@ -11,6 +11,8 @@ public class HealingTrigger : MonoBehaviour
         if (other.CompareTag("Player") && GameManager.instance.playerScript.HP < GameManager.instance.playerScript.originalPlayerHP)
         {
             healthItem.Heal(GameManager.instance.playerScript);
+            var receiver = GetComponentInChildren<ParentListener>();
+            receiver.Notify(destroyed: true, unwanted: true);
             Destroy(gameObject);
         }
     }

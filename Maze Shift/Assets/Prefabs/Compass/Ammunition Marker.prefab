@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 5081407534506161610}
   - component: {fileID: 3039340500435427831}
   - component: {fileID: 2694151884964922144}
+  - component: {fileID: -782887723550201563}
   m_Layer: 0
   m_Name: Ammunition Marker
-  m_TagString: Compass
+  m_TagString: Compass Marker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,3 +122,15 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: a3a9600bfd6f4ed4f963c9c1f9d92daa, type: 3}
   image: {fileID: 0}
   maxDistance: 25
+--- !u!114 &-782887723550201563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4772565503649140800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ca702e0cb6f88438b8d8e243f29302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
