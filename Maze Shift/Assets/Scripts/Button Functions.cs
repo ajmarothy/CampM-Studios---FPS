@@ -8,7 +8,6 @@ public class ButtonFunctions : MonoBehaviour
     public void Resume()
     {
         GameManager.instance.Unpause();
-        GameManager.instance.currentMenu = null;
     }
 
 
@@ -44,19 +43,42 @@ public class ButtonFunctions : MonoBehaviour
 
     public void OpenSettingsPause()
     {
-        GameManager.instance.OpenMenu("pause");
+        GameManager.instance.OpenMenu("settings");
     }
 
     public void OpenSettingsLose()
     {
-        GameManager.instance.OpenMenu("lose");
+        GameManager.instance.OpenMenu("settings");
     }
 
+    public void OpenGraphicsSettings()
+    {
+        GameManager.instance.OpenMenu("graphics");
+    }
 
+    public void OpenAudioSettings()
+    {
+        GameManager.instance.OpenMenu("audio");
+    }
+
+    public void OpenControlSettings()
+    {
+        GameManager.instance.OpenMenu("controls");
+    }
+
+    public void OpenGameplaySettings()
+    {
+        GameManager.instance.OpenMenu("gameplay");
+    }
 
     public void CloseSettingsMenu()
     {
         GameManager.instance.CloseSettings();
+    }
+
+    public void CloseSubmenu()
+    {
+        GameManager.instance.CloseSubmenu();
     }
 
     public void ApplySettings()

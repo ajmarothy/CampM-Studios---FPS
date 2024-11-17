@@ -19,6 +19,9 @@ public class AudioSettingsManager : MonoBehaviour, ISettings
     [SerializeField] TMP_Text musicLevelText;
     [SerializeField] TMP_Text sfxLevelText;
     [SerializeField] TMP_Text menuLevelText;
+    [SerializeField] string musicVolumeParameter = "MenuVolume";
+    [SerializeField] float musicAttenuation = -20f;
+    [SerializeField] float attenuationDuration = 0.5f;
 
     float masterVolume;
     float musicVolume;
@@ -116,8 +119,7 @@ public class AudioSettingsManager : MonoBehaviour, ISettings
     {
         if (sfxPreview != null && sfxPreview.clip != null)
         {
-            sfxPreview.volume = sfxSlider.value;
-            sfxPreview.PlayOneShot(sfxPreview.clip);
+            StartCoroutine(PlayPreview());
         }
     }
 
@@ -162,5 +164,28 @@ public class AudioSettingsManager : MonoBehaviour, ISettings
         SetMenuVolume(0.50f);
         SaveSettings();
         LoadAudioSettings();
+    }
+
+    private IEnumerator PlayPreview()
+    {
+        MasterMixer.SetFloat(musicVolumeParameter, musicAttenuation);
+        sfxPreview.volume = sfxSlider.value;
+        sfxPreview.PlayOneShot(sfxPreview.clip);
+
+        yield return new WaitForSeconds(sfxPreview.clip.length);
+
+        float currentVolume;
+        MasterMixer.GetFloat(musicVolumeParameter, out currentVolume);
+
+        float targetVolume = 0.5f;
+        float elapsed = 0f;
+        while(elapsed < attenuationDuration)
+        {
+            elapsed += Time.deltaTime;
+            float newVolume = Mathf.Lerp(currentVolume, targetVolume, elapsed/attenuationDuration);
+            MasterMixer.SetFloat(musicVolumeParameter, newVolume);
+            yield return null;
+        }
+        MasterMixer.SetFloat(musicVolumeParameter, targetVolume);
     }
 }

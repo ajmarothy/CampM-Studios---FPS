@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour, ISettings
 
     private Stack<string> menuHistory = new Stack<string>();
     public string currentMenu;
+    public string parentMenu;
 
     private bool isPaused;
     int enemyCounter;
@@ -165,26 +166,10 @@ public class GameManager : MonoBehaviour, ISettings
     }
 
     #region Settings
-    public void OpenSettings(string fromMenu)
-    {
-        OpenMenu("settings");
-        if(fromMenu == "pause")
-        {
-            pauseMenu.SetActive(false);
-        }
-        else if(fromMenu == "lose")
-        {
-            loseMenu.SetActive(false);
-        }
-    }
-
-    public void CloseSettings()
-    {
-        CloseCurrentMenu();
-    }
 
     public void OpenMenu(string menuName)
     {
+        if (currentMenu == menuName) return;
         if (!string.IsNullOrEmpty(currentMenu))
         {
             menuHistory.Push(currentMenu);
@@ -193,22 +178,33 @@ public class GameManager : MonoBehaviour, ISettings
         currentMenu = menuName;
         SetMenuActive(menuName, true);
     }
-
-    public void CloseCurrentMenu()
+    public void OpenSettings(string fromMenu)
     {
-        SetMenuActive(currentMenu, false);
-        if(menuHistory.Count > 0)
-        {
-            currentMenu = menuHistory.Pop();
-            SetMenuActive(currentMenu, true);
-        }
-        else
-        {
-            currentMenu = null;
-            Unpause();
-        }
+        parentMenu = fromMenu;
+        OpenMenu("settings");
     }
 
+    public void OpenSubMenu(string subMenuName)
+    {
+        SetMenuActive(currentMenu, false);
+        currentMenu = subMenuName;
+        SetMenuActive(subMenuName, true);
+    }
+
+    public void CloseSubmenu()
+    {
+        SetMenuActive(currentMenu, false);
+        currentMenu = "settings";
+        SetMenuActive(currentMenu, true);
+    }
+
+    public void CloseSettings()
+    {
+        SetMenuActive(currentMenu, false);
+        currentMenu = parentMenu;
+        parentMenu = null;
+        SetMenuActive(currentMenu, true);
+    }
     private void SetMenuActive(string menuName, bool isActive)
     {
         switch (menuName)
@@ -238,6 +234,26 @@ public class GameManager : MonoBehaviour, ISettings
         }
     }
 
+    public void OpenGraphicsSettings()
+    {
+        OpenMenu("graphics");
+    }
+
+    public void OpenAudioSettings()
+    {
+        OpenMenu("audio");
+    }
+
+    public void OpenControlsSettings()
+    {
+        OpenMenu("controls");
+    }
+    
+    public void OpenGameplaySettings()
+    {
+        OpenMenu("gameplay");
+    }
+
     public void OpenMenuMusic()
     {
         Time.timeScale = 0;
@@ -248,23 +264,6 @@ public class GameManager : MonoBehaviour, ISettings
     {
         Time.timeScale = timeScaleOG;
         musicManager.PlayBackgroundMusic();
-    }
-
-    public void OpenGraphicsSettings()
-    {
-        OpenMenu("graphics");
-    }
-    public void OpenAudioSettings()
-    {
-        OpenMenu("audio");
-    }
-    public void OpenControlsSettings()
-    {
-        OpenMenu("controls");
-    }
-    public void OpenGameplaySettings()
-    {
-        OpenMenu("gameplay");
     }
 
     public void ApplySettings()
@@ -281,5 +280,6 @@ public class GameManager : MonoBehaviour, ISettings
     {
         gameSettings.ResetToDefaults();
     }
+
     #endregion
 }

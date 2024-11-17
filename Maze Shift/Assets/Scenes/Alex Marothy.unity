@@ -454,6 +454,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd7fd9e1fafe0d541adf0f1f34abeebb, type: 3}
+--- !u!82 &386909999 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1098792591828204667, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
+  m_PrefabInstance: {fileID: 1872199998}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &405685314
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,6 +1856,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 4543901016926120266, guid: b65163634bcdf8141903e6d82ac82d92, type: 3}
+      propertyPath: backgroundMusicSource
+      value: 
+      objectReference: {fileID: 386909999}
     - target: {fileID: 4678713791289668078, guid: b65163634bcdf8141903e6d82ac82d92, type: 3}
       propertyPath: m_Pivot.x
       value: 0
