@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour , IDamage
     [SerializeField] private AudioClip takeDamageSound;
     [SerializeField] private AudioClip deathSound;
     [SerializeField] private AudioClip flashlightSound;
+    [SerializeField] private AudioClip reloadSound;
+    [SerializeField] private AudioClip jumpSound;
 
     public int originalPlayerHP;
     public int healthPickup;
@@ -196,6 +198,7 @@ public class PlayerController : MonoBehaviour , IDamage
 
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
+            audioSource.PlayOneShot(jumpSound);
             jumpCount++;
             playerVel.y = jumpSpeed;
         }
@@ -501,6 +504,7 @@ public class PlayerController : MonoBehaviour , IDamage
             yield break;
 
         isReloading = true;
+        audioSource.PlayOneShot(reloadSound);
         gunModel.SetActive(false);
         GameManager.instance.reloading.gameObject.SetActive(true);
         int roundsNeeded = gun.ammoPerMag - gun.ammoCurr;
