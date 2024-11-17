@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour, ISettings
     [SerializeField] AudioSettingsManager audioManager;
     [SerializeField] ControlsManager controlsManager;
     [SerializeField] GameplayManager gameplayManager;
-    [SerializeField] private MusicManager musicManager;
+    [SerializeField] MusicManager musicManager;
     [SerializeField] public GameObject pauseMenu;
     [SerializeField] GameObject winMenu;
     [SerializeField] public GameObject loseMenu;
@@ -256,13 +256,11 @@ public class GameManager : MonoBehaviour, ISettings
 
     public void OpenMenuMusic()
     {
-        Time.timeScale = 0;
         musicManager.PlayMenuMusic();
     }
 
     public void CloseMenuMusic()
     {
-        Time.timeScale = timeScaleOG;
         musicManager.PlayBackgroundMusic();
     }
 

@@ -89,8 +89,7 @@ public class GraphicsManager : MonoBehaviour, ISettings
 
     public void LoadGraphicsSettings()
     {
-        int localResolution = PlayerPrefs.GetInt("Resolution", resolutions.Length - 1);
-        selectedResolution = localResolution;
+        selectedResolution = PlayerPrefs.GetInt("Resolution", resolutions.Length - 1);
         qualityLevel = PlayerPrefs.GetInt("QualityLevel", 2);
         isFullscreen = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
         isVSyncEnabled = PlayerPrefs.GetInt("VSync", 1) == 1;

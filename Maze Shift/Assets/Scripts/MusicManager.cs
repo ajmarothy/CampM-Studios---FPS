@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    [SerializeField] private AudioSource backgroundMusicSource;
-    [SerializeField] private AudioSource menuMusicSource;
+    [SerializeField] AudioSource backgroundMusicSource;
+    [SerializeField] AudioSource menuMusicSource;
 
     public void PlayMenuMusic()
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour, ISettings
@@ -8,6 +9,7 @@ public class MainMenu : MonoBehaviour, ISettings
     public ISettings gameSettings;
     [SerializeField] GraphicsManager graphicsManager;
     [SerializeField] AudioSettingsManager audioManager;
+    [SerializeField] MusicManager musicManager;
     [SerializeField] ControlsManager controlsManager;
     [SerializeField] GameplayManager gameplayManager;
     [SerializeField] GameObject mainMenu;
@@ -16,15 +18,20 @@ public class MainMenu : MonoBehaviour, ISettings
     [SerializeField] GameObject audioSettingsMenu;
     [SerializeField] GameObject controlsSettingsMenu;
     [SerializeField] GameObject gameplaySettingsMenu;
+
     private Stack<string> menuHistory = new Stack<string>();
-    private string previousMenu;
+    private string currentMenu;
+    private string parentMenu;
 
     private void Awake()
     {
-        graphicsManager.LoadGraphicsSettings();
-        audioManager.LoadAudioSettings();
-        controlsManager.LoadControlSettings();
-        gameplayManager.LoadGameplaySettings();
+        if (!Application.isPlaying)
+        {
+            graphicsManager.LoadGraphicsSettings();
+            audioManager.LoadAudioSettings();
+            controlsManager.LoadControlSettings();
+            gameplayManager.LoadGameplaySettings();
+        }
     }
 
     public void PlayGame()
@@ -47,66 +54,101 @@ public class MainMenu : MonoBehaviour, ISettings
     }
 
     #region Settings
+
+    public void OpenMenu(string menuName)
+    {
+        if (currentMenu == menuName) return;
+        if (!string.IsNullOrEmpty(currentMenu))
+        {
+            menuHistory.Push(currentMenu);
+            SetMenuActive(currentMenu, false);
+        }
+        currentMenu = menuName;
+        SetMenuActive(menuName, true);
+    }
     public void OpenSettings(string fromMenu)
     {
-        menuHistory.Push(fromMenu);
-        settingsMenu.SetActive(true);
-        graphicsSettingsMenu.SetActive(false);
-        audioSettingsMenu.SetActive(false);
-        controlsSettingsMenu.SetActive(false);
-        gameplaySettingsMenu.SetActive(false);
+        parentMenu = fromMenu;
+        OpenMenu("settings");
+    }
 
-        graphicsManager.LoadGraphicsSettings();
-        audioManager.LoadAudioSettings();
-        controlsManager.LoadControlSettings();
-        gameplayManager.LoadGameplaySettings();
+    public void OpenSubMenu(string subMenuName)
+    {
+        SetMenuActive(currentMenu, false);
+        currentMenu = subMenuName;
+        SetMenuActive(subMenuName, true);
+    }
+
+    public void CloseSubmenu()
+    {
+        SetMenuActive(currentMenu, false);
+        currentMenu = "settings";
+        SetMenuActive(currentMenu, true);
     }
 
     public void CloseSettings()
     {
-        settingsMenu.SetActive(false);
-        graphicsSettingsMenu.SetActive(false);
-        audioSettingsMenu.SetActive(false);
-        controlsSettingsMenu.SetActive(false);
-        gameplaySettingsMenu.SetActive(false);
-
-        if (menuHistory.Count > 0)
+        SetMenuActive(currentMenu, false);
+        currentMenu = parentMenu;
+        parentMenu = null;
+        SetMenuActive(currentMenu, true);
+    }
+    private void SetMenuActive(string menuName, bool isActive)
+    {
+        switch (menuName)
         {
-            previousMenu = menuHistory.Pop();
-            switch (previousMenu)
-            {
-                case "main":
-                    mainMenu.SetActive(true);
-                    break;
-            }
+            case "settings":
+                settingsMenu.SetActive(isActive);
+                break;
+            case "graphics":
+                graphicsSettingsMenu.SetActive(isActive);
+                break;
+            case "audio":
+                audioSettingsMenu.SetActive(isActive);
+                break;
+            case "controls":
+                controlsSettingsMenu.SetActive(isActive);
+                break;
+            case "gameplay":
+                gameplaySettingsMenu.SetActive(isActive);
+                break;
+            default: break;
         }
     }
 
     public void OpenGraphicsSettings()
     {
-        settingsMenu.SetActive(false);
-        graphicsSettingsMenu.SetActive(true);
+        OpenMenu("graphics");
     }
+
     public void OpenAudioSettings()
     {
-        settingsMenu.SetActive(false);
-        audioSettingsMenu.SetActive(true);
+        OpenMenu("audio");
     }
+
     public void OpenControlsSettings()
     {
-        settingsMenu.SetActive(false);
-        controlsSettingsMenu.SetActive(true);
+        OpenMenu("controls");
     }
+    
     public void OpenGameplaySettings()
     {
-        settingsMenu.SetActive(false);
-        gameplaySettingsMenu.SetActive(true);
+        OpenMenu("gameplay");
+    }
+
+    public void OpenMenuMusic()
+    {
+        musicManager.PlayMenuMusic();
+    }
+
+    public void CloseMenuMusic()
+    {
+        musicManager.PlayBackgroundMusic();
     }
 
     public void ApplySettings()
     {
         gameSettings.ApplySettings();
-        SaveSettings();
     }
 
     public void SaveSettings()
@@ -118,6 +160,8 @@ public class MainMenu : MonoBehaviour, ISettings
     {
         gameSettings.ResetToDefaults();
     }
+
     #endregion
+
 
 }

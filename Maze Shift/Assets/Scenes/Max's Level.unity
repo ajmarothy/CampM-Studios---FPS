@@ -25047,6 +25047,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d9eba7dfa80d4844a6f803ec1531796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &515319319 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1098792591828204667, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
+  m_PrefabInstance: {fileID: 515319316}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &515481399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61514,6 +61519,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 4543901016926120266, guid: b65163634bcdf8141903e6d82ac82d92, type: 3}
+      propertyPath: backgroundMusicSource
+      value: 
+      objectReference: {fileID: 515319319}
     - target: {fileID: 4678713791289668078, guid: b65163634bcdf8141903e6d82ac82d92, type: 3}
       propertyPath: m_Pivot.x
       value: 0
