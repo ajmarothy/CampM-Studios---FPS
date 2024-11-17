@@ -11,15 +11,23 @@ public class LevelLoader : MonoBehaviour
     public Slider slider;
     public float loadDuration = 5f;
 
-    public void loadLevel(int sceneIndex)
+    public void LoadLevel(string sceneName)
     {
+        Debug.Log($"Attempting to load scene: {sceneName}");
+
+        if (!Application.CanStreamedLevelBeLoaded(sceneName))
+        {
+            Debug.LogError($"Scene '{sceneName}' does not exist or is not added to Build Settings.");
+            return;
+        }
+
         loadingScreen.SetActive(true);
-        StartCoroutine(loadWithFixedDuration(sceneIndex));
+        StartCoroutine(LoadWithFixedDuration(sceneName));
     }
 
-    IEnumerator loadWithFixedDuration(int sceneIndex)
+    IEnumerator LoadWithFixedDuration(string sceneName)
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
         operation.allowSceneActivation = false;
 
         float elapsedTime = 0f;
@@ -33,6 +41,8 @@ public class LevelLoader : MonoBehaviour
             yield return null;
         }
 
+        Debug.Log($"Loading complete. Activating scene: {sceneName}");
         operation.allowSceneActivation = true;
     }
+
 }
