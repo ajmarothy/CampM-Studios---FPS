@@ -760,6 +760,8 @@ MonoBehaviour:
   takeDamageSound: {fileID: 8300000, guid: 794be7c4bd9e64c9bbb9776937807a9e, type: 3}
   deathSound: {fileID: 8300000, guid: 125d46bc97f544fe6b46072b509f4b28, type: 3}
   flashlightSound: {fileID: 8300000, guid: 61a375a35368ccc4ea6160fb8464b8aa, type: 3}
+  reloadSound: {fileID: 8300000, guid: 7e66fe6cac6ce7048ab1ee0607230eb9, type: 3}
+  jumpSound: {fileID: 8300000, guid: 622f42e8d781b8a44b119174e4ed9708, type: 3}
   originalPlayerHP: 0
   healthPickup: 0
   dwellTime: 5

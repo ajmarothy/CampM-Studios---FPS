@@ -236,28 +236,41 @@ public class PlayerController : MonoBehaviour , IDamage
 
     void HandleWalkingSound()
     {
-        bool isMoving = moveDir.magnitude > 0.1f && controller.isGrounded;
+        bool isMoving = moveDir.magnitude > 0.1f && IsGrounded();
 
-        if (isMoving && !isWalking && !Input.GetButton("Sprint"))
+        if (isMoving && !isWalking && !isSprinting)
         {
             isWalking = true;
-            audioSource.clip = walkSound;
-            audioSource.loop = true;
-            audioSource.Play();
+            isSprinting = false;
+            if (audioSource.clip != walkSound || !audioSource.isPlaying)
+            {
+                audioSource.clip = walkSound;
+                audioSource.loop = true;
+                audioSource.Play();
+            }
         }
-
-        else if (isMoving && Input.GetButton("Sprint") && audioSource.clip != sprintSound)
+        else if (isMoving && Input.GetButton("Sprint") && !isSprinting)
         {
-            audioSource.clip = sprintSound;
-            audioSource.loop = true;
-            audioSource.Play();
+            isSprinting = true;
+            isWalking = false;
+            if (audioSource.clip != sprintSound || !audioSource.isPlaying)
+            {
+                audioSource.clip = sprintSound;
+                audioSource.loop = true;
+                audioSource.Play();
+            }
         }
-
-        else if (!isMoving && isWalking)
+        else if (!isMoving && (isWalking || isSprinting))
         {
             isWalking = false;
+            isSprinting = false;
             audioSource.Stop();
         }
+    }
+
+    bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position, Vector3.down, 1.1f);
     }
 
     #endregion
