@@ -30,4 +30,8 @@ public class EnemyStats : ScriptableObject
 
     public int damageAmount; //damage dealt by the enemy
     public float speed; //speed for chaser or bullet
+
+    public AudioClip attackSound;
+    public AudioClip damageTakenSound;
+    public AudioClip deathSound;
 }

@@ -762,6 +762,7 @@ MonoBehaviour:
   flashlightSound: {fileID: 8300000, guid: 61a375a35368ccc4ea6160fb8464b8aa, type: 3}
   reloadSound: {fileID: 8300000, guid: 7e66fe6cac6ce7048ab1ee0607230eb9, type: 3}
   jumpSound: {fileID: 8300000, guid: 622f42e8d781b8a44b119174e4ed9708, type: 3}
+  shieldRegenSound: {fileID: 8300000, guid: 4e8fa7c6831b33d4bb8c7c5f18a3a018, type: 3}
   originalPlayerHP: 0
   healthPickup: 0
   dwellTime: 5
@@ -782,6 +783,7 @@ MonoBehaviour:
   shieldCurrHealth: 20
   shieldRegenDelay: 10
   shieldRegenRate: 100
+  shieldRegenCompleteSound: {fileID: 8300000, guid: 4e8fa7c6831b33d4bb8c7c5f18a3a018, type: 3}
 --- !u!33 &4725039235758317717
 MeshFilter:
   m_ObjectHideFlags: 0

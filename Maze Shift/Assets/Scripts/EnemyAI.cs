@@ -18,6 +18,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPos;
     [SerializeField] Animator animator;
 
+    [SerializeField] AudioSource audioSource;
+
     private int HPCurrent;
 
     bool IsShooting;
@@ -176,6 +178,11 @@ public class EnemyAI : MonoBehaviour, IDamage
         IsShooting = true;
         animator.SetTrigger("attackTrigger");
 
+        if (audioSource != null && enemyStats.attackSound != null)
+        {
+            audioSource.PlayOneShot(enemyStats.attackSound);
+        }
+
         GameObject projectile = Instantiate(enemyStats.bullet, shootPos.position, transform.rotation);
         Damage damageComponent = projectile.GetComponent<Damage>();
 
@@ -208,7 +215,12 @@ public class EnemyAI : MonoBehaviour, IDamage
         updateEnemyUI();
         StartCoroutine(flashDamageColor());
 
-        if(someCo != null)
+        if (audioSource != null && enemyStats.damageTakenSound != null)
+        {
+            audioSource.PlayOneShot(enemyStats.damageTakenSound);
+        }
+
+        if (someCo != null)
         {
             StopCoroutine(someCo);
             isRoaming = false;
@@ -216,7 +228,12 @@ public class EnemyAI : MonoBehaviour, IDamage
         agent.SetDestination(GameManager.instance.player.transform.position);
         if (HPCurrent <= 0)
         {
-            
+
+            if (audioSource != null && enemyStats.deathSound != null)
+            {
+                audioSource.PlayOneShot(enemyStats.deathSound);
+            }
+
             agent.speed = 0;
             animator.SetTrigger("deathTrigger");
             StartCoroutine(waitForDeathAnimation());
