@@ -22,6 +22,8 @@ public class AmmoPickups : MonoBehaviour
                         player.AddAmmo(gun, ammoToAdd);
                         Debug.Log($"Added {ammoToAdd} ammo to {gun.name}. New Total ammo: {gun.totalAmmo}");
                     }
+                    var receiver = GetComponentInChildren<ParentListener>();
+                    receiver.Notify(destroyed: true, unwanted: true);
                     Destroy(gameObject);
                 }
                 else

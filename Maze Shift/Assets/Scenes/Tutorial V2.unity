@@ -24323,6 +24323,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 600758590}
   m_Mesh: {fileID: 4300048, guid: ab02f76641b00024bbb1f7ef756067c6, type: 3}
+--- !u!82 &602565272 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1098792591828204667, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
+  m_PrefabInstance: {fileID: 1930200740}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &602565627 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1328702645671913860, guid: 69b082a62a25613469e1d1e8bfe13761, type: 3}
@@ -29091,6 +29096,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 4543901016926120266, guid: b65163634bcdf8141903e6d82ac82d92, type: 3}
+      propertyPath: backgroundMusicSource
+      value: 
+      objectReference: {fileID: 602565272}
     - target: {fileID: 4678713791289668078, guid: b65163634bcdf8141903e6d82ac82d92, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -32727,6 +32736,14 @@ PrefabInstance:
     - target: {fileID: 2564530798356145858, guid: 93888d0ae105f7d4eaa80a45c2225909, type: 3}
       propertyPath: m_Name
       value: Pistol - Pick up
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602461075266766594, guid: 93888d0ae105f7d4eaa80a45c2225909, type: 3}
+      propertyPath: unwanted
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602461075266766594, guid: 93888d0ae105f7d4eaa80a45c2225909, type: 3}
+      propertyPath: maxDistance
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9048462196423300166, guid: 93888d0ae105f7d4eaa80a45c2225909, type: 3}
       propertyPath: m_LocalPosition.x
@@ -44911,6 +44928,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 36837883368065303, guid: eab6c5feba238ac41b73deddc3986aca, type: 3}
+      propertyPath: maxDistance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2781472769784850483, guid: eab6c5feba238ac41b73deddc3986aca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 161.25
@@ -64489,6 +64510,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health Heart
       objectReference: {fileID: 0}
+    - target: {fileID: 2052587505719080282, guid: 92e973672e064cd47949f86cab3277ad, type: 3}
+      propertyPath: maxDistance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4373854633078671071, guid: 92e973672e064cd47949f86cab3277ad, type: 3}
       propertyPath: m_LocalPosition.x
       value: 223.94727
@@ -69032,6 +69057,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 36837883368065303, guid: eab6c5feba238ac41b73deddc3986aca, type: 3}
+      propertyPath: maxDistance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2781472769784850483, guid: eab6c5feba238ac41b73deddc3986aca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 212
@@ -79530,6 +79559,10 @@ PrefabInstance:
     - target: {fileID: 444527116080043146, guid: 92e973672e064cd47949f86cab3277ad, type: 3}
       propertyPath: m_Name
       value: Health Heart (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2052587505719080282, guid: 92e973672e064cd47949f86cab3277ad, type: 3}
+      propertyPath: maxDistance
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4373854633078671071, guid: 92e973672e064cd47949f86cab3277ad, type: 3}
       propertyPath: m_LocalPosition.x
