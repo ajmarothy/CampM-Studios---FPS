@@ -10,6 +10,8 @@ public class Shield : MonoBehaviour
     [SerializeField] private int shieldCurrHealth;
     [SerializeField] private float shieldRegenDelay;
     [SerializeField] private float shieldRegenRate;
+    [SerializeField] private AudioClip shieldRegenCompleteSound;
+    private AudioSource audioSource;
 
     bool isRegenerating = false;
     private bool isActive = false;
@@ -21,6 +23,7 @@ public class Shield : MonoBehaviour
     {
         shieldCurrHealth = 0;
         playerController = GetComponent<PlayerController>();
+        audioSource = playerController.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -71,6 +74,11 @@ public class Shield : MonoBehaviour
 
         isRegenerating = false;
         Debug.Log("Shield regeneration complete.");
+
+        if (shieldRegenCompleteSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(shieldRegenCompleteSound);
+        }
     }
 
     public void StartRegeneration()

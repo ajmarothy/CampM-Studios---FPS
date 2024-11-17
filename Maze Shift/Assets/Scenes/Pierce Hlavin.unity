@@ -559,6 +559,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4534847303116261582, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
+      propertyPath: shieldRegenSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 4e8fa7c6831b33d4bb8c7c5f18a3a018, type: 3}
     - target: {fileID: 8743316906995178320, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
       propertyPath: m_Name
       value: Player

@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour , IDamage
     [SerializeField] private AudioClip flashlightSound;
     [SerializeField] private AudioClip reloadSound;
     [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip shieldRegenSound;
 
     public int originalPlayerHP;
     public int healthPickup;
@@ -353,6 +354,11 @@ public class PlayerController : MonoBehaviour , IDamage
         {
             playerShield = shield;
             playerShield.StartRegeneration();
+
+            if(shieldRegenSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(shieldRegenSound);
+            }
 
             GameManager.instance.ToggleShieldUI(true);
             Debug.Log("Shield picked up!");

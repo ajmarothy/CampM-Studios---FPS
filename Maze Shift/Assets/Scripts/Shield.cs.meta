@@ -3,7 +3,8 @@ guid: b720bf8594ec3324daaa046f2c27ca31
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - shieldRegenCompleteSound: {fileID: 8300000, guid: 4e8fa7c6831b33d4bb8c7c5f18a3a018, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
