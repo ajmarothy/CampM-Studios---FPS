@@ -34,3 +34,6 @@ MonoBehaviour:
   attackType: 0
   damageAmount: 0
   speed: 0
+  attackSound: {fileID: 8300000, guid: d05a2647962a9414780112df5b7d18e4, type: 3}
+  damageTakenSound: {fileID: 8300000, guid: 6ba247fc916e5b44195110c45cb1fbbf, type: 3}
+  deathSound: {fileID: 8300000, guid: 2f1f954cb86fa7d47b7c9eb24a24cde4, type: 3}
