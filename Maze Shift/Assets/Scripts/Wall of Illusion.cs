@@ -10,7 +10,9 @@ public class WallofIllusion : MonoBehaviour
     Mesh filterOG;
     Material rendererOG;
 
-
+    [SerializeField] AudioSource magicSource;
+    [SerializeField] AudioClip[] wallMagic;
+    [SerializeField] float magicVol;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,7 @@ public class WallofIllusion : MonoBehaviour
     {
         if (other != null)
         {
+            magicSource.PlayOneShot(wallMagic[Random.Range(0, wallMagic.Length)], magicVol);
             wallIllusion.GetComponent<MeshFilter>().mesh = filterOG;
             wallIllusion.GetComponent<MeshRenderer>().material = rendererOG;
         }

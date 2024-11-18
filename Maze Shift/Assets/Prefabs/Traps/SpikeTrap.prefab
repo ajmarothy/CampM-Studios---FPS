@@ -22,7 +22,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3731479626670730139
 Transform:
   m_ObjectHideFlags: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
   spikeSource: {fileID: 2749377287989194422}
   spikeSounds:
   - {fileID: 8300000, guid: 905021b1a4d4ebf4bbfa06474d744845, type: 3}
-  spikeVol: 5
+  spikeVol: 2
 --- !u!65 &7203344095110723731
 BoxCollider:
   m_ObjectHideFlags: 0

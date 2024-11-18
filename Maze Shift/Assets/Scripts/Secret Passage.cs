@@ -9,7 +9,9 @@ public class SecretPassage : MonoBehaviour
     Mesh frameOG;
     Material skinOG;
 
-
+    [SerializeField] AudioSource crumbleSource;
+    [SerializeField] AudioClip[] wallCrumble;
+    [SerializeField] float crumbleVol;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,7 @@ public class SecretPassage : MonoBehaviour
     {
          if (other.CompareTag("Player"))
         {
+            crumbleSource.PlayOneShot(wallCrumble[Random.Range(0, wallCrumble.Length)], crumbleVol);
             secretPassage.GetComponent<MeshFilter>().mesh = null;
             secretPassage.GetComponent<MeshRenderer>().material = null;
             secretPassage.GetComponent<MeshCollider>().enabled = false;
