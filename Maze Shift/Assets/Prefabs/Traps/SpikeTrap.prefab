@@ -22,7 +22,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3731479626670730139
 Transform:
   m_ObjectHideFlags: 0
@@ -145,9 +145,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spikeAnim: {fileID: 3342722265686622040}
   spikeSource: {fileID: 2749377287989194422}
-  spikeSounds:
-  - {fileID: 8300000, guid: 905021b1a4d4ebf4bbfa06474d744845, type: 3}
-  spikeVol: 2
+  spikeOn: {fileID: 8300000, guid: d8dd7894e4432da4cb99b28d8ec697b2, type: 3}
+  spikeOff: {fileID: 8300000, guid: 960e91419108c4b4698a074ffa1ea1e2, type: 3}
+  spikeVol: 5
 --- !u!65 &7203344095110723731
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -225,7 +225,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
