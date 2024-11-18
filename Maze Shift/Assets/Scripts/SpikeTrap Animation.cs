@@ -12,7 +12,8 @@ public class SpikeTrapAnim : MonoBehaviour
 
 
     [SerializeField] AudioSource spikeSource;
-    [SerializeField] AudioClip[] spikeSounds;
+    [SerializeField] AudioClip spikeOn;
+    [SerializeField] AudioClip spikeOff;
     [SerializeField] float spikeVol;
 
 
@@ -28,10 +29,10 @@ public class SpikeTrapAnim : MonoBehaviour
     {
         
         spikeAnim.SetTrigger("open");
-        spikeSource.PlayOneShot(spikeSounds[Random.Range(0, spikeSounds.Length)], spikeVol);
+        spikeSource.PlayOneShot(spikeOn, spikeVol);
         yield return new WaitForSeconds(2.5f);
         spikeAnim.SetTrigger("close");
-        spikeSource.PlayOneShot(spikeSounds[Random.Range(0, spikeSounds.Length)], spikeVol);
+        spikeSource.PlayOneShot(spikeOff, spikeVol);
         yield return new WaitForSeconds(2.5f);
         StartCoroutine(WorkingTrap());
 
