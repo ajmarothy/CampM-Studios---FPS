@@ -13,11 +13,11 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadLevel(string sceneName)
     {
-        Debug.Log($"Attempting to load scene: {sceneName}");
+ 
 
         if (!Application.CanStreamedLevelBeLoaded(sceneName))
         {
-            Debug.LogError($"Scene '{sceneName}' does not exist or is not added to Build Settings.");
+   
             return;
         }
 
@@ -41,7 +41,6 @@ public class LevelLoader : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log($"Loading complete. Activating scene: {sceneName}");
         operation.allowSceneActivation = true;
     }
 

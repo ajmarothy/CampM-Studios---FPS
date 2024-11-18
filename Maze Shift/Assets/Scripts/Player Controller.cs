@@ -321,11 +321,9 @@ public class PlayerController : MonoBehaviour , IDamage
         }
         else if (healthInv.Count >= 0 && HP == originalPlayerHP)
         {
-            Debug.Log("Player does not need any health.");
         }
         else
         {
-            Debug.Log("No healing items available.");
         }
     }
 
@@ -333,7 +331,7 @@ public class PlayerController : MonoBehaviour , IDamage
     {
         HP = originalPlayerHP;
         updatePlayerUI();
-        Debug.Log("Player healed to full health");
+
     }
 
     public void Heal(int healAmount)
@@ -341,7 +339,7 @@ public class PlayerController : MonoBehaviour , IDamage
         HP = Mathf.Min(HP + healAmount, originalPlayerHP);
         StartCoroutine(FlashHeal());
         updatePlayerUI();
-        Debug.Log("Player healed by " + healAmount);
+
         StopCoroutine(FlashHeal());
     }
     #endregion
@@ -361,11 +359,11 @@ public class PlayerController : MonoBehaviour , IDamage
             }
 
             GameManager.instance.ToggleShieldUI(true);
-            Debug.Log("Shield picked up!");
+
         }
         else
         {
-            Debug.Log("Player already has a shield!");
+
         }
     }
 
@@ -399,7 +397,7 @@ public class PlayerController : MonoBehaviour , IDamage
         if (gunList.Count > 0)
         {
             currentGun = gunList[selectedGunPos];
-            Debug.Log("Current gun: " + currentGun.name);
+       
         }
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGunPos < gunList.Count -1)
         {
