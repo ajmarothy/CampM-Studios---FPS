@@ -11,6 +11,7 @@ public class ArtifactPickup : MonoBehaviour
     public bool rotate;
 
     public float rotationSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +38,7 @@ public class ArtifactPickup : MonoBehaviour
 
     public void CollectArtifact()
     {
+         //var collect = gameObject.GetComponentInParent<ArtifactCollected>();
         switch (ArtifactType)
         {
             case ArtifactTypes.filler:         // exists as a default or future use for another similar pickup method
@@ -44,18 +46,22 @@ public class ArtifactPickup : MonoBehaviour
 
             case ArtifactTypes.firstLevel:     // code for collecting each levels artifact goes in the switch statement. 
                 Debug.Log("First Level Artifact Collected");
+                gameObject.GetComponentInParent<ArtifactCollected>().ItemCollected();
                 return; 
 
             case ArtifactTypes.secondLevel:
                 Debug.Log("Second Level Artifact Collected");
+                gameObject.GetComponentInParent<ArtifactCollected>().ItemCollected();
                 return;
 
             case ArtifactTypes.thirdLevel:
                 Debug.Log("Third Level Artifact Collected");
+                gameObject.GetComponentInParent<ArtifactCollected>().ItemCollected();
                 return;
 
             case ArtifactTypes.fourthLevel:
                 Debug.Log("Fourth Level Artifact Collected");
+                gameObject.GetComponentInParent<ArtifactCollected>().ItemCollected();
                 return;
         }
     }

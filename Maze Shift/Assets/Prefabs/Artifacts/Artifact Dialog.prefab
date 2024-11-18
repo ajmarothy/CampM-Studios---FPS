@@ -1,0 +1,161 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &410450772452308009
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5316311786061704328}
+  - component: {fileID: 1692920763175445516}
+  - component: {fileID: 174438861656808849}
+  m_Layer: 0
+  m_Name: Artifact Dialog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5316311786061704328
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410450772452308009}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.20516458, y: -0.20200966, z: -0.6823895, w: 0.67189604}
+  m_LocalPosition: {x: -0.9820268, y: 97.96797, z: -58.501312}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7457748717784807452}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1692920763175445516
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410450772452308009}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 2.5
+  m_Center: {x: -2.9482365, y: 0, z: 0}
+--- !u!114 &174438861656808849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410450772452308009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a25158dda8dc5b94d83f76ad0fb3a93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogLines:
+  - This rock... I get the feeling it's no coincidence to find this here. I should
+    hold onto it
+  dialogPanel: {fileID: 0}
+--- !u!1001 &7453853006419431570
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5316311786061704328}
+    m_Modifications:
+    - target: {fileID: 1742858173413876, guid: f481652b8ce25b64582f987c74450715, type: 3}
+      propertyPath: m_Name
+      value: Rune Artifact 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4038656602646670, guid: f481652b8ce25b64582f987c74450715, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.714489
+      objectReference: {fileID: 0}
+    - target: {fileID: 4038656602646670, guid: f481652b8ce25b64582f987c74450715, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.6471171
+      objectReference: {fileID: 0}
+    - target: {fileID: 4038656602646670, guid: f481652b8ce25b64582f987c74450715, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4038656602646670, guid: f481652b8ce25b64582f987c74450715, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9650752
+      objectReference: {fileID: 0}
+    - target: {fileID: 4038656602646670, guid: f481652b8ce25b64582f987c74450715, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4038656602646670, guid: f481652b8ce25b64582f987c74450715, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.26197308
+      objectReference: {fileID: 0}
+    - target: {fileID: 4038656602646670, guid: f481652b8ce25b64582f987c74450715, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4038656602646670, guid: f481652b8ce25b64582f987c74450715, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4038656602646670, guid: f481652b8ce25b64582f987c74450715, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -30.374
+      objectReference: {fileID: 0}
+    - target: {fileID: 4038656602646670, guid: f481652b8ce25b64582f987c74450715, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074304296053757594, guid: f481652b8ce25b64582f987c74450715, type: 3}
+      propertyPath: ArtifactType
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1742858173413876, guid: f481652b8ce25b64582f987c74450715, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3746862798882230900}
+  m_SourcePrefab: {fileID: 100100000, guid: f481652b8ce25b64582f987c74450715, type: 3}
+--- !u!1 &7455523159048612198 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1742858173413876, guid: f481652b8ce25b64582f987c74450715, type: 3}
+  m_PrefabInstance: {fileID: 7453853006419431570}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3746862798882230900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7455523159048612198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd74abdb8113995458cc23b47b2a4487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collected: 0
+  endPortal: {fileID: 0}
+--- !u!4 &7457748717784807452 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4038656602646670, guid: f481652b8ce25b64582f987c74450715, type: 3}
+  m_PrefabInstance: {fileID: 7453853006419431570}
+  m_PrefabAsset: {fileID: 0}
