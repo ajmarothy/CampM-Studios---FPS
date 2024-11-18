@@ -17,9 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Max's Level.unity
     guid: d4924f0bed9128f4ea3332ad3cde86d2
-  - enabled: 0
-    path: Assets/Scenes/Tutorial Level.unity
-    guid: fbd1c8a7667230843b44935f992b7068
+  - enabled: 1
+    path: Assets/Scenes/Level - Final.unity
+    guid: 8f80dc677fe0cb949a42502a568a823d
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: ffbe8a9e66dcc034abaa62c9921da39e
