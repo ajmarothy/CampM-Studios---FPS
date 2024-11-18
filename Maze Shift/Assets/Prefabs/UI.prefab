@@ -887,7 +887,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6740576476564967018}
         m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
-        m_MethodName: respawn
+        m_MethodName: Respawn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
