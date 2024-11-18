@@ -233,6 +233,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2483824550624639972}
+  - component: {fileID: 3098075974169221182}
+  - component: {fileID: 7680230148685140465}
   m_Layer: 0
   m_Name: End Level Portal
   m_TagString: Untagged
@@ -260,6 +262,35 @@ Transform:
   - {fileID: 3739164085763858378}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 95.251, z: 0}
+--- !u!114 &3098075974169221182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5589605248137488701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd74abdb8113995458cc23b47b2a4487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collected: 0
+  endPortal: {fileID: 5589605248137488701}
+--- !u!114 &7680230148685140465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5589605248137488701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bebc34e4690763c4face3a4856aaae62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogLines:
+  - Nothing is happening... Maybe I need that rock from before?
+  dialogPanel: {fileID: 0}
 --- !u!1 &6203280605133729808
 GameObject:
   m_ObjectHideFlags: 0
