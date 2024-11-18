@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6594521190994364135}
   - component: {fileID: 620323597156238528}
+  - component: {fileID: 6057049852998849192}
   - component: {fileID: 2172572056982900123}
   - component: {fileID: 4540215924566407472}
   - component: {fileID: 2405096110520304777}
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7382072358745730922}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.70710576, z: -0, w: 0.7071079}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -1.39, y: 0.83, z: -12.72}
   m_LocalScale: {x: 1.7307, y: 1.7307, z: 1.7307}
   m_ConstrainProportionsScale: 0
@@ -48,6 +49,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shieldPrefab: {fileID: 0}
+--- !u!114 &6057049852998849192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7382072358745730922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 095ddff97c52abb4998d9c5b87619b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceSpeed: 3
+  bounceAmount: 0.1
+  rotationSpeed: 10
 --- !u!33 &2172572056982900123
 MeshFilter:
   m_ObjectHideFlags: 0
