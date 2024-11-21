@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+
 public class ButtonFunctions : MonoBehaviour
 {
     [SerializeField] private AudioSource uiAudioSource;
@@ -11,6 +13,10 @@ public class ButtonFunctions : MonoBehaviour
     [SerializeField] private AudioClip cancelButtion;
     [SerializeField] private AudioClip openMenu;
     [SerializeField] private AudioClip openSubmenu;
+
+    
+
+   
 
     public void Resume()
     {
@@ -40,6 +46,7 @@ public class ButtonFunctions : MonoBehaviour
         PlaySoundEffect(resetButton);
         GameManager.instance.playerScript.spawnPlayer();
         GameManager.instance.Unpause();
+       
     }
 
     public void NextScene()
@@ -116,4 +123,7 @@ public class ButtonFunctions : MonoBehaviour
             uiAudioSource.PlayOneShot(clip);
         }
     }
+
+
+  
 }

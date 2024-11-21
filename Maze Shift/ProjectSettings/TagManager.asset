@@ -22,6 +22,7 @@ TagManager:
   - Compass Marker
   - Compass
   - ShieldAudio
+  - Respawn Message
   layers:
   - Default
   - TransparentFX
