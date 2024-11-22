@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour , IDamage
     public bool isDialogActive = false;
     bool isFlickering;
     bool isRecharging;
+    bool isReadyToRecharge;
     bool isShooting;
     bool isSprinting;
     bool isReloading;
@@ -111,13 +112,12 @@ public class PlayerController : MonoBehaviour , IDamage
             }
             if (Input.GetButtonDown("Reload"))
             {
-                Reload();
+                if(gunList.Count  > 0)
+                {
+                    Reload();
+                }
             }
-            if (Input.GetButtonDown("Flashlight"))
-            {
-                audioSource.PlayOneShot(flashlightSound);
-                flashlight.enabled = !flashlight.enabled;
-            }
+            HandleFlashlightToggle();
             DrainPower();
             updatePlayerUI();
         }
@@ -155,6 +155,33 @@ public class PlayerController : MonoBehaviour , IDamage
     }
 
     #region Flashlight
+    private void HandleFlashlightToggle()
+    {
+        if (Input.GetButtonDown("Flashlight"))
+        {
+            if (flashlight.enabled || isRecharging)
+            {
+                flashlight.enabled = false;
+                isFlickering = false;
+                StopCoroutine(FlickerFlashlight());
+                audioSource.PlayOneShot(flashlightSound);
+                StartRecharge();
+            }
+            else if (currentBattery > 0 && !isFlickering)
+            {
+                audioSource.PlayOneShot(flashlightSound);
+                flashlight.enabled = true;
+                DrainPower();
+            }
+            else
+            {
+                audioSource.PlayOneShot(flashlightSound);
+                flashlight.enabled = false;
+                isFlickering = false;
+            }
+        }
+    }
+
     public void DrainPower()
     {
         if(flashlight.enabled && currentBattery > 0)
@@ -168,19 +195,20 @@ public class PlayerController : MonoBehaviour , IDamage
             }
             if (currentBattery <= 0)
             {
-                currentBattery = 0;
                 flashlight.enabled = false;
+                currentBattery = 0;
                 isFlickering = false;
+                StartRecharge();
             }
         }
     }
 
     public void StartRecharge()
     {
-        if (!isRecharging)
+        StopCoroutine(FlickerFlashlight());
+        if (!isRecharging && !flashlight.enabled)
         {
-            isRecharging = true;
-            StartCoroutine(RechargeBattery());
+            StartCoroutine(WaitForDwellTime());
         }
     }
     #endregion
@@ -565,31 +593,51 @@ public class PlayerController : MonoBehaviour , IDamage
             yield return new WaitForSeconds(Random.Range(0.1f, 0.5f));
             flashlight.enabled = true;
         }
-        if(currentBattery == 0) { flashlight.enabled = false; StartCoroutine(RechargeBattery()); }
+        if(currentBattery == 0)
+        {
+            isFlickering = false;
+            flashlight.enabled = false;
+            StartRecharge();
+        }
+    }
+
+    IEnumerator WaitForDwellTime()
+    {
+        isReadyToRecharge = false;
+        float elapsedTime = 0f;
+        while(elapsedTime < dwellTime && !flashlight.enabled)
+        {
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        if (!flashlight.enabled)
+        {
+            isReadyToRecharge = true;
+            isRecharging = true;
+            StartCoroutine(RechargeBattery());
+        }
     }
 
     IEnumerator RechargeBattery()
     {
         while (currentBattery < maxBattery && !flashlight.enabled)
         {
-            dwellTime -= 1 * Time.deltaTime;
-            if (dwellTime <= 0)
-            {
-                dwellTime = 0;
-                currentBattery += rechargeSpeed * Time.deltaTime;
-                updatePlayerUI();
-            }
+            if (!isReadyToRecharge)
+                yield break;
+            currentBattery += rechargeSpeed * Time.deltaTime;
+            updatePlayerUI();
             if(currentBattery >= maxBattery)
             {
                 currentBattery = maxBattery;
                 isRecharging = false;
+                isReadyToRecharge = false;
                 dwellTime = 5f;
                 yield break;
             }
             updatePlayerUI();
-            
             yield return null;
         }
+        isRecharging = false;
     }
 
     #endregion

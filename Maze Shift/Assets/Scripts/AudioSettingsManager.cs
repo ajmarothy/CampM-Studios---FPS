@@ -27,15 +27,28 @@ public class AudioSettingsManager : MonoBehaviour, ISettings
     float musicVolume;
     float sfxVolume;
     float menuVolume;
+    private float sfxCooldown = 0.05f;
+    private float lastPlayedTime = 0f;
 
     bool isInitializing = false;
+    bool isPlayingSFX = false;
 
     private void Awake()
     {
         isInitializing = true;
+        isPlayingSFX = false;
         LoadAudioSettings();
         UpdateSliderText();
         isInitializing = false;
+    }
+
+    private void Update()
+    {
+        if (sfxPreview.isPlaying)
+        { 
+            sfxPreview.volume = sfxSlider.value; 
+        }
+        isPlayingSFX = false;
     }
 
     public void OnSliderValueChanged(string type)
@@ -57,6 +70,11 @@ public class AudioSettingsManager : MonoBehaviour, ISettings
             case "SFX":
                 volume = sfxSlider.value;
                 SetSFXVolume(volume);
+                if (sfxPreview.isPlaying) 
+                {
+                    sfxPreview.Stop();
+                    isPlayingSFX = false;
+                }
                 PlaySFXPreview();
                 UpdateSliderText();
                 break;
@@ -117,9 +135,13 @@ public class AudioSettingsManager : MonoBehaviour, ISettings
 
     public void PlaySFXPreview()
     {
-        if (sfxPreview != null && sfxPreview.clip != null)
+        if (sfxPreview != null && sfxPreview.clip != null && !sfxPreview.isPlaying)
         {
-            StartCoroutine(PlayPreview());
+            isPlayingSFX = true;
+            MasterMixer.SetFloat(musicVolumeParameter, musicAttenuation);
+            sfxPreview.volume = sfxSlider.value;
+            sfxPreview.PlayOneShot(sfxPreview.clip);
+            StartCoroutine(ResetSFXPlayFlag(sfxPreview.clip.length));
         }
     }
 
@@ -166,26 +188,9 @@ public class AudioSettingsManager : MonoBehaviour, ISettings
         LoadAudioSettings();
     }
 
-    private IEnumerator PlayPreview()
+    private IEnumerator ResetSFXPlayFlag(float duration)
     {
-        MasterMixer.SetFloat(musicVolumeParameter, musicAttenuation);
-        sfxPreview.volume = sfxSlider.value;
-        sfxPreview.PlayOneShot(sfxPreview.clip);
-
-        yield return new WaitForSeconds(sfxPreview.clip.length);
-
-        float currentVolume;
-        MasterMixer.GetFloat(musicVolumeParameter, out currentVolume);
-
-        float targetVolume = 0.5f;
-        float elapsed = 0f;
-        while(elapsed < attenuationDuration)
-        {
-            elapsed += Time.deltaTime;
-            float newVolume = Mathf.Lerp(currentVolume, targetVolume, elapsed/attenuationDuration);
-            MasterMixer.SetFloat(musicVolumeParameter, newVolume);
-            yield return null;
-        }
-        MasterMixer.SetFloat(musicVolumeParameter, targetVolume);
+        yield return new WaitForSeconds(duration);
+        isPlayingSFX = false;
     }
 }

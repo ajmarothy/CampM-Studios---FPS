@@ -19,9 +19,8 @@ public class LeverAndDoor : MonoBehaviour
     {
         if (playerInTrigger && Input.GetKeyDown(KeyCode.E) && !objectMoving)
         {
-            
-            animator.SetTrigger("LeverUp");
             audioSource.PlayOneShot(doorOpenSound);
+            animator.SetTrigger("LeverUp");
 
             objectMoving = true;
             StartCoroutine(MoveHiddenObject(moveHeight, moveDuration));
