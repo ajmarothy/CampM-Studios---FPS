@@ -279,6 +279,17 @@ public class PlayerController : MonoBehaviour , IDamage
 
     void HandleWalkingSound()
     {
+        if (isDialogActive)
+        {
+            if (isWalking || isSprinting)
+            {
+                isWalking = false;
+                isSprinting = false;
+                audioSource.Stop();
+            }
+            return;
+        }
+
         bool isMoving = moveDir.magnitude > 0.1f && IsGrounded();
 
         if (isMoving && !isWalking && !isSprinting)
