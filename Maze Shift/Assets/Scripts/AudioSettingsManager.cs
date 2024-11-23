@@ -19,7 +19,8 @@ public class AudioSettingsManager : MonoBehaviour, ISettings
     [SerializeField] TMP_Text musicLevelText;
     [SerializeField] TMP_Text sfxLevelText;
     [SerializeField] TMP_Text menuLevelText;
-    [SerializeField] string musicVolumeParameter = "MenuVolume";
+    [SerializeField] string masterVolumeParameter = "MasterVolume";
+    [SerializeField] string menuVolumeParameter = "MenuVolume";
     [SerializeField] float musicAttenuation = -20f;
     [SerializeField] float attenuationDuration = 0.5f;
 
@@ -27,6 +28,7 @@ public class AudioSettingsManager : MonoBehaviour, ISettings
     float musicVolume;
     float sfxVolume;
     float menuVolume;
+    float originalMasterVolume;
     private float sfxCooldown = 0.05f;
     private float lastPlayedTime = 0f;
 
@@ -35,11 +37,38 @@ public class AudioSettingsManager : MonoBehaviour, ISettings
 
     private void Awake()
     {
+        MasterMixer.GetFloat(masterVolumeParameter, out originalMasterVolume);
         isInitializing = true;
         isPlayingSFX = false;
         LoadAudioSettings();
         UpdateSliderText();
         isInitializing = false;
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        Debug.Log($"Application Focus: {focus}");
+        if (focus)
+        {
+            MasterMixer.SetFloat(masterVolumeParameter, originalMasterVolume);
+        }
+        else
+        {
+            MasterMixer.SetFloat(masterVolumeParameter, -80f);
+        }
+    }
+
+    private void OnApplicationPause(bool pause)
+    {
+        Debug.Log($"Application Pause: ");
+        if (!pause)
+        {
+            MasterMixer.SetFloat(masterVolumeParameter, originalMasterVolume);
+        }
+        else
+        {
+            MasterMixer.SetFloat(masterVolumeParameter, -80f);
+        }
     }
 
     private void Update()
@@ -138,7 +167,7 @@ public class AudioSettingsManager : MonoBehaviour, ISettings
         if (sfxPreview != null && sfxPreview.clip != null && !sfxPreview.isPlaying)
         {
             isPlayingSFX = true;
-            MasterMixer.SetFloat(musicVolumeParameter, musicAttenuation);
+            MasterMixer.SetFloat(menuVolumeParameter, musicAttenuation);
             sfxPreview.volume = sfxSlider.value;
             sfxPreview.PlayOneShot(sfxPreview.clip);
             StartCoroutine(ResetSFXPlayFlag(sfxPreview.clip.length));
