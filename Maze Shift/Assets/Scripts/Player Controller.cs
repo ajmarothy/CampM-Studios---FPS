@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour , IDamage
     public int originalPlayerHP;
     public int healthPickup;
 
+    int flickerCoroutineCount = 0;
     int healthPickupMax = 3;
     int selectedGunPos;
     int selectedHealthItem;
@@ -60,6 +61,7 @@ public class PlayerController : MonoBehaviour , IDamage
     public float dwellTime = 5f;
 
     public bool isDialogActive = false;
+    bool isLowBattery;
     bool isFlickering;
     bool isRecharging;
     bool isReadyToRecharge;
@@ -159,11 +161,12 @@ public class PlayerController : MonoBehaviour , IDamage
     {
         if (Input.GetButtonDown("Flashlight"))
         {
+            StopCoroutine(FlickerFlashlight());
             if (flashlight.enabled || isRecharging)
             {
                 flashlight.enabled = false;
                 isFlickering = false;
-                StopCoroutine(FlickerFlashlight());
+                isLowBattery = false;
                 audioSource.PlayOneShot(flashlightSound);
                 StartRecharge();
             }
@@ -171,9 +174,18 @@ public class PlayerController : MonoBehaviour , IDamage
             {
                 audioSource.PlayOneShot(flashlightSound);
                 flashlight.enabled = true;
+                isLowBattery = false;
+                isFlickering = false;
                 DrainPower();
             }
-            else
+            else if (isFlickering && isLowBattery && flashlight.enabled || !flashlight.enabled)
+            {
+                audioSource.PlayOneShot(flashlightSound);
+                isFlickering = false;
+                flashlight.enabled = false;
+                StartRecharge();
+            }
+            else // in any other case, turn it off and just sit there and shut up
             {
                 audioSource.PlayOneShot(flashlightSound);
                 flashlight.enabled = false;
@@ -184,6 +196,7 @@ public class PlayerController : MonoBehaviour , IDamage
 
     public void DrainPower()
     {
+        isLowBattery = false;
         if(flashlight.enabled && currentBattery > 0)
         {
             currentBattery -= (batteryDrainRate * Time.deltaTime);
@@ -191,6 +204,7 @@ public class PlayerController : MonoBehaviour , IDamage
             if (currentBattery <= flickerThreshold && !isFlickering)
             {
                 isFlickering = true;
+                isLowBattery = true;
                 StartCoroutine(FlickerFlashlight());
             }
             if (currentBattery <= 0)
@@ -205,9 +219,9 @@ public class PlayerController : MonoBehaviour , IDamage
 
     public void StartRecharge()
     {
-        StopCoroutine(FlickerFlashlight());
         if (!isRecharging && !flashlight.enabled)
         {
+            StopAllCoroutines();
             StartCoroutine(WaitForDwellTime());
         }
     }
@@ -587,13 +601,20 @@ public class PlayerController : MonoBehaviour , IDamage
 
     IEnumerator FlickerFlashlight()
     {
-        while(isFlickering && flashlight.enabled)
+        while(isFlickering && flashlight.enabled && isLowBattery)
         {
             flashlight.enabled = Random.value > 0.5f;
             yield return new WaitForSeconds(Random.Range(0.1f, 0.5f));
             flashlight.enabled = true;
+            isLowBattery = true;
+            isFlickering = true;
         }
-        if(currentBattery == 0)
+        if(isLowBattery && Input.GetButtonDown("Flashlight"))
+        {
+            flashlight.enabled = false;
+            yield break;
+        }
+        if(currentBattery <= 0)
         {
             isFlickering = false;
             flashlight.enabled = false;
@@ -631,6 +652,7 @@ public class PlayerController : MonoBehaviour , IDamage
                 currentBattery = maxBattery;
                 isRecharging = false;
                 isReadyToRecharge = false;
+                isLowBattery = false;
                 dwellTime = 5f;
                 yield break;
             }
