@@ -19,7 +19,7 @@ public class TipText : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && gameObject.activeSelf)
+        if (Input.GetKeyDown(KeyCode.E) && gameObject.activeSelf)
         {
             HideTip();
         }
