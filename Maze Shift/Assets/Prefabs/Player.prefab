@@ -617,9 +617,9 @@ Transform:
   m_GameObject: {fileID: 8385285536618437492}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.003, y: 0.146, z: 1.511}
-  m_LocalScale: {x: 1.23, y: 1.23, z: 1.23}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0, y: 0.075, z: 1.35}
+  m_LocalScale: {x: 1, y: 1, z: 0.005}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5676676429835440285}
   m_Father: {fileID: 2658995987695058695}
@@ -745,7 +745,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 8385285536618437492}
   flashlight: {fileID: 2870413294661305859}
   maxBattery: 100
-  batteryDrainRate: 2.5
+  batteryDrainRate: 5
   flickerThreshold: 20
   rechargeSpeed: 50
   shootDamage: 0
