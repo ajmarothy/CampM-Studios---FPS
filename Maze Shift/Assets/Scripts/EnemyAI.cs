@@ -35,6 +35,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     Color colorOriginal;
 
     Coroutine someCo;
+    private bool isDead = false;
+    private bool isInDeathState = false;
 
     public int GetOGhp()
     {
@@ -175,6 +177,11 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     IEnumerator shoot()
     {
+        if (isDead || isInDeathState)
+        {
+            yield break;
+        }
+
         IsShooting = true;
         animator.SetTrigger("attackTrigger");
 
@@ -211,6 +218,11 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public void takeDamage(int amount)
     {
+        if (isDead || isInDeathState)
+        {
+            return;
+        }
+
         HPCurrent -= amount;
         updateEnemyUI();
         StartCoroutine(flashDamageColor());
@@ -226,18 +238,26 @@ public class EnemyAI : MonoBehaviour, IDamage
             isRoaming = false;
         }
         agent.SetDestination(GameManager.instance.player.transform.position);
-        if (HPCurrent <= 0)
+
+        if (HPCurrent <= 0 && !isDead)
         {
-
-            if (audioSource != null && enemyStats.deathSound != null)
-            {
-                audioSource.PlayOneShot(enemyStats.deathSound);
-            }
-
-            agent.speed = 0;
-            animator.SetTrigger("deathTrigger");
-            StartCoroutine(waitForDeathAnimation());
+            isDead = true;
+            HandleDeath();
         }
+    }
+
+    void HandleDeath()
+    {
+        if (audioSource != null && enemyStats.deathSound != null)
+        {
+            audioSource.PlayOneShot(enemyStats.deathSound);
+        }
+
+
+        isInDeathState = true;
+        agent.speed = 0;
+        animator.SetTrigger("deathTrigger");
+        StartCoroutine(waitForDeathAnimation());
     }
 
     IEnumerator flashDamageColor()
@@ -283,6 +303,8 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
         Destroy(gameObject);
         GameManager.instance.UpdateGameGoal(-1);
+        isDead = false;
+        isInDeathState = false;
     }
 
     //public int EnemyDifficulty(int difficulty)
