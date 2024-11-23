@@ -17,9 +17,9 @@ MonoBehaviour:
   bullet: {fileID: 3579590406932167635, guid: cb59c19f5980bfd479209572640c6abc, type: 3}
   shootRate: 0.5
   shootDistance: 1.75
-  shootAngle: 60
+  shootAngle: 100
   rotateSpeed: 9
-  sightLineAngle: 180
+  sightLineAngle: 240
   roamDistance: 15
   roamPauseTime: 3
   gravity: 1
