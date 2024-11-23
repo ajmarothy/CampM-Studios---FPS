@@ -19,7 +19,7 @@ MonoBehaviour:
   shootDistance: 1.5
   shootAngle: 60
   rotateSpeed: 4
-  sightLineAngle: 60
+  sightLineAngle: 300
   roamDistance: 20
   roamPauseTime: 2
   gravity: 1
