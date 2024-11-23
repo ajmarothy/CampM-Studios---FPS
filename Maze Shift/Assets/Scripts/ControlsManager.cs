@@ -63,7 +63,7 @@ public class ControlsManager : MonoBehaviour, ISettings
         }
     }
 
-    private void OnControlSchemeChanged(int index)
+    public void OnControlSchemeChanged(int index)
     {
         string selectedScheme = controlSchemeDropdown.options[index].text;
         playerInput.SwitchCurrentControlScheme(selectedScheme);
@@ -148,7 +148,7 @@ public class ControlsManager : MonoBehaviour, ISettings
 
     public void ResetToDefaults()
     {
-        SetSensitivity(1.0f);
+        SetSensitivity(5f);
         SetInvertYAxis(false);
         foreach (InputAction action in playerInputActions)
         {

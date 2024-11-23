@@ -23,17 +23,6 @@ public class MainMenu : MonoBehaviour, ISettings
     private string currentMenu;
     private string parentMenu;
 
-    private void Awake()
-    {
-        if (!Application.isPlaying)
-        {
-            graphicsManager.LoadGraphicsSettings();
-            audioManager.LoadAudioSettings();
-            controlsManager.LoadControlSettings();
-            gameplayManager.LoadGameplaySettings();
-        }
-    }
-
     public void PlayGame()
     {
         SceneManager.LoadScene(1);
