@@ -53,11 +53,7 @@ public class DialogText : MonoBehaviour
             yield return new WaitForSecondsRealtime(textSpeed);
         }
 
-        if (index == lines.Length - 1)
-        {
-            yield return new WaitForSecondsRealtime(3.0f);
-            gameObject.SetActive(false);
-        }
+       
     }
 
     IEnumerator WaitAndHide(float waitTime)
@@ -77,7 +73,10 @@ public class DialogText : MonoBehaviour
         else
         {
 
-            StartCoroutine(HideDialogAfterDelay());
+            gameObject.SetActive(false);
+
+            Time.timeScale = 1;
+            playerScript.isDialogActive = false;
         }
     }
 

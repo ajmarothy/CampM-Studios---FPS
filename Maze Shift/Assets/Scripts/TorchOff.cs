@@ -5,7 +5,8 @@ using UnityEngine;
 public class TorchOff : MonoBehaviour
 {
     [SerializeField] GameObject flame;
-
+    [SerializeField] AudioClip flameToggle;
+    [SerializeField] AudioSource audioSource;
 
     private bool playerInTrigger = false;
     // Update is called once per frame
@@ -35,6 +36,8 @@ public class TorchOff : MonoBehaviour
 
     void toggleFlame()
     {
+        audioSource.PlayOneShot(flameToggle);
+
         if (flame.activeSelf)
         {
             flame.SetActive(false);

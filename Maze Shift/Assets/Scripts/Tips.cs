@@ -42,7 +42,9 @@ public class TipText : MonoBehaviour
 
     void HideTip()
     {
-        StartCoroutine(HideTipCoroutine());
+        gameObject.SetActive(false);
+        Time.timeScale = 1;
+        playerScript.isDialogActive = false;
     }
 
     private IEnumerator HideTipCoroutine()
