@@ -201,9 +201,8 @@ MonoBehaviour:
   fire2: {fileID: 7961113341893519015}
   fireball: {fileID: 6884840104375663238, guid: 297b0892005b2f44e9f13885e4af7486, type: 3}
   cannonSource: {fileID: 7113203465757885183}
-  cannonFire:
-  - {fileID: 8300000, guid: e9d32155e45b50547a0e3eb6782c5103, type: 3}
-  cannonVol: 0.5
+  cannonFire: {fileID: 8300000, guid: e9d32155e45b50547a0e3eb6782c5103, type: 3}
+  cannonVol: 10
 --- !u!33 &4827389550479383081
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -307,9 +306,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7747395700920325719, guid: 17ab1391aa4d12f4eb49260c5a9b53ee, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e9d32155e45b50547a0e3eb6782c5103, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0

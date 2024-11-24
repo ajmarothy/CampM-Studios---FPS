@@ -12,7 +12,7 @@ public class FireballTrap : MonoBehaviour
     public GameObject fireball;
 
     [SerializeField] AudioSource cannonSource;
-    [SerializeField] AudioClip[] cannonFire;
+    [SerializeField] AudioClip cannonFire;
     [SerializeField] float cannonVol;
 
 
@@ -43,10 +43,10 @@ public class FireballTrap : MonoBehaviour
 
     IEnumerator shootFireball()
     {
-        cannonSource.PlayOneShot(cannonFire[Random.Range(0, cannonFire.Length)], cannonVol);
+        cannonSource.PlayOneShot(cannonFire, cannonVol);
         GameObject projectile1 = Instantiate(fireball, fire1.position, fire1.rotation);                //I want it to be this but actually work Damage.damageType.fireBall, fire1);
         yield return new WaitForSeconds(2);
-        cannonSource.PlayOneShot(cannonFire[Random.Range(0, cannonFire.Length)], cannonVol);
+        cannonSource.PlayOneShot(cannonFire, cannonVol);
         GameObject projectile2 = Instantiate(fireball, fire2.position, fire2.rotation);
         yield return new WaitForSeconds(2);
     }

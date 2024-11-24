@@ -310,6 +310,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8838874476121153577, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
   m_PrefabInstance: {fileID: 80467869}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &590320044
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 689619999953165306, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 191.28885
+      objectReference: {fileID: 0}
+    - target: {fileID: 689619999953165306, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 689619999953165306, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 168.51909
+      objectReference: {fileID: 0}
+    - target: {fileID: 689619999953165306, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 689619999953165306, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 689619999953165306, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 689619999953165306, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 689619999953165306, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 689619999953165306, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 689619999953165306, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526528401183055440, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
+      propertyPath: m_Name
+      value: Fireball Wall
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
 --- !u!1 &792179251 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 862254869451510115, guid: d94a6b67fe8644242b46d091f952a9cc, type: 3}
@@ -423,6 +480,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall - Secret Passage
       objectReference: {fileID: 0}
+    - target: {fileID: 862254869451510115, guid: d94a6b67fe8644242b46d091f952a9cc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6513949880954213727, guid: d94a6b67fe8644242b46d091f952a9cc, type: 3}
       propertyPath: crumbleVol
       value: 5
@@ -498,6 +559,10 @@ PrefabInstance:
     - target: {fileID: 937814007511760047, guid: 7cc32adfbd8774c448ecdc5bd2e27da3, type: 3}
       propertyPath: m_Name
       value: SpikeTrap
+      objectReference: {fileID: 0}
+    - target: {fileID: 937814007511760047, guid: 7cc32adfbd8774c448ecdc5bd2e27da3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3731479626670730139, guid: 7cc32adfbd8774c448ecdc5bd2e27da3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -796,6 +861,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Check Point
       objectReference: {fileID: 0}
+    - target: {fileID: 638949269533020731, guid: fea5279fcdac2c1429958f295fab03dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6745521972066398927, guid: fea5279fcdac2c1429958f295fab03dc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 221.969
@@ -846,63 +915,6 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 1098792591828204667, guid: 9f118b1fb827be54a85935c07f1c8865, type: 3}
   m_PrefabInstance: {fileID: 80467869}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1802552590
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 689619999953165306, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 191.03665
-      objectReference: {fileID: 0}
-    - target: {fileID: 689619999953165306, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 689619999953165306, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 167.63222
-      objectReference: {fileID: 0}
-    - target: {fileID: 689619999953165306, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 689619999953165306, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 689619999953165306, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 689619999953165306, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 689619999953165306, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 689619999953165306, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 689619999953165306, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4526528401183055440, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
-      propertyPath: m_Name
-      value: Fireball Wall
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f22994087d39fdc49af8a347ec2e127c, type: 3}
 --- !u!1001 &2057383122
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -914,6 +926,10 @@ PrefabInstance:
     - target: {fileID: 4619892600746308588, guid: 251b93645bd6e694eb1b6aa433e489f7, type: 3}
       propertyPath: m_Name
       value: Wall - Illusion
+      objectReference: {fileID: 0}
+    - target: {fileID: 4619892600746308588, guid: 251b93645bd6e694eb1b6aa433e489f7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6407041082798205673, guid: 251b93645bd6e694eb1b6aa433e489f7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1025,6 +1041,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5622744524513153340, guid: bf79efa845dae304595c2c1280aa6aa9, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598318440803442090, guid: bf79efa845dae304595c2c1280aa6aa9, type: 3}
+      propertyPath: gasVol
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7994346504194655397, guid: bf79efa845dae304595c2c1280aa6aa9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 199.282
@@ -1069,6 +1093,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gas Trap
       objectReference: {fileID: 0}
+    - target: {fileID: 8944647299885887143, guid: bf79efa845dae304595c2c1280aa6aa9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1083,10 +1111,10 @@ SceneRoots:
   - {fileID: 80467869}
   - {fileID: 374846}
   - {fileID: 2141625388}
-  - {fileID: 1802552590}
   - {fileID: 6940909138110943337}
   - {fileID: 873493884}
   - {fileID: 1472171084}
   - {fileID: 865609203}
   - {fileID: 2057383122}
   - {fileID: 813608117}
+  - {fileID: 590320044}

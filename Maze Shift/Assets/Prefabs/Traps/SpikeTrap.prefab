@@ -147,7 +147,7 @@ MonoBehaviour:
   spikeSource: {fileID: 2749377287989194422}
   spikeOn: {fileID: 8300000, guid: d8dd7894e4432da4cb99b28d8ec697b2, type: 3}
   spikeOff: {fileID: 8300000, guid: 960e91419108c4b4698a074ffa1ea1e2, type: 3}
-  spikeVol: 0.5
+  spikeVol: 2
 --- !u!65 &7203344095110723731
 BoxCollider:
   m_ObjectHideFlags: 0
